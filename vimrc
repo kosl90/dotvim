@@ -24,7 +24,7 @@ set wrap
 "set nowrap
 set ignorecase
 set incsearch  " instance search
-" set cursorline  " heighlight current line
+"set cursorline  " heighlight current line
 set wildmenu
 set ruler  " show the cursor position all the time
 set showcmd  " display incomplete commands
@@ -84,12 +84,6 @@ set shiftwidth=4  " indent length 4
 "                                plugin
 "==========================================================================
 "==========================================================================
-"                                totd
-" url: http://www.vim.org/scripts/script.php?script_id=88
-" =========================================================================
-nmap <leader><F1> :TipOfTheDay<CR>
-
-"==========================================================================
 "                            DoxygenToolkit
 " url: http://www.vim.org/scripts/script.php?script_id=987
 "==========================================================================
@@ -119,9 +113,9 @@ let g:pydiction_location="/home/l/.vim/ftplugin/python_dict/complete-dict"
 "                            clang-complete
 " url: http://www.vim.org/scripts/script.php?script_id=3302
 "==========================================================================
-let g:clang_use_library=1
-let g:clang_library_path="/usr/local/lib"
-let g:clang_auto_select=1
+"let g:clang_use_library=1
+"let g:clang_library_path="/usr/local/lib"
+"let g:clang_auto_select=1
 
 "==========================================================================
 "                               snipMate
@@ -138,7 +132,7 @@ let g:snips_author = 'kosl90'
 "==========================================================================
 "                               vimim
 "==========================================================================
-let g:vimim_map = 'c-bslash'
+"let g:vimim_map = 'c-bslash'
 
 "==========================================================================
 "                              vim-latex
@@ -146,7 +140,7 @@ let g:vimim_map = 'c-bslash'
 " Starting with Vim 7, the filetype of empty .tex files defaults to
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
 " The following changes the default filetype back to 'tex':
-let g:tex_flavor='latex'
+"let g:tex_flavor='latex'
 
 
 
@@ -172,13 +166,15 @@ nmap <F8> :silent! %s/\s\+$//g<CR><C-s>
 nmap <C-F8> :%s///g
 nmap <C-n><C-h> :nohls<cr>
 nmap <C-h> :h 
-nmap <F2> :helptags ~/.vim/doc<CR>
+" nmap <F2> :helptags ~/.vim/doc<CR>
+nmap <F2> :Helptags<CR>
 nmap <M-a> ^
 nmap <M-l> $
 "au BufRead * try | execute "compiler ".&filetype | catch /./ | endtry 
 nmap <F9> :call CompileC_PP()<CR>
 nmap <C-F9> :call RunC_PP()<CR>
 nmap <C-i> :call InsertDomain()<CR>
+nmap <C-X><C-F> :NERDTree<CR>
 
 
 "==========================================================================
@@ -278,6 +274,10 @@ func! RunC_PP()
 endfunc
 
 func! InsertDomain()
+    if &ft != 'C' && &ft != 'CPP'
+        return
+    endif
+
     if has('win32')
         let newline='\r\n'
     else
@@ -296,3 +296,7 @@ function! <SID>SynStack()
     endif
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+if has("autocmd")
+    autocmd! bufwritepost .vimrc source $MYVIMRC
+endif
