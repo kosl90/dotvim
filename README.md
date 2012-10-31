@@ -6,3 +6,6 @@ This is my Vim configurations
     ln -s ~/.vim/vimrc ~/.vimrc  # create symlinks
     cd ~/.vim
     git submodule update --init  # fetch submodules
+
+# Updating all bundled plugins
+    git submodule foreach git pull origin master
