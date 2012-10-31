@@ -6,7 +6,6 @@ function help_info {
 
 case "$1" in
     "install")
-        git clone git://github.com/kosl90/dotvim.git ~/.vim
         ln -s ~/.vim/vimrc ~/.vimrc
         chmod +x ./repo.sh
         cd ~/.vim
