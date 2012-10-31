@@ -136,6 +136,11 @@ let g:snips_author = 'kosl90'
 " The following changes the default filetype back to 'tex':
 "let g:tex_flavor='latex'
 
+"=========================================================================
+"                             syntastic
+"=========================================================================
+let g:syntastic_check_on_open=1
+
 
 
 "==========================================================================
