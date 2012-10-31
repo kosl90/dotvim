@@ -122,12 +122,6 @@ let g:pydiction_location="/home/l/.vim/ftplugin/python_dict/complete-dict"
 " url: http://www.vim.org/scripts/script.php?script_id=3302
 "==========================================================================
 let g:snips_author = 'kosl90'
-" <tab> is conflicted with pydiction's
-" if the section is selected, <tab> to next, otherwise <C-j>
-"if &ft == "python"
-    "ino <C-j> <c-r>=TriggerSnippet()<CR>
-    "snor <C-j> <esc>i<right><c-r>=TirggerSnippet()<cr>
-"endif
 
 "==========================================================================
 "                               vimim
@@ -157,7 +151,6 @@ vmap <C-c> "+y
 "imap <C-v> <esc>"+gp
 "nmap <C-v> "+gp
 "vmap <C-v> "+gp
-"nmap <F5> :!gnome-terminal -x sh -c "python '%'; read -s -p 'press any key to exit...' -n 1;"<CR>
 nmap <F5> :call Run_Py()<CR>
 nmap <C-F5> :!pep8 %<CR>
 nmap <F6> :call CFamilyFormat()<CR>
@@ -170,7 +163,6 @@ nmap <C-h> :h
 nmap <F2> :Helptags<CR>
 nmap <M-a> ^
 nmap <M-l> $
-"au BufRead * try | execute "compiler ".&filetype | catch /./ | endtry 
 nmap <F9> :call CompileC_PP()<CR>
 nmap <C-F9> :call RunC_PP()<CR>
 nmap <C-i> :call InsertDomain()<CR>
@@ -273,6 +265,7 @@ func! RunC_PP()
     exec 'redraw!'
 endfunc
 
+
 func! InsertDomain()
     if &ft != 'C' && &ft != 'CPP'
         return
@@ -289,6 +282,7 @@ func! InsertDomain()
     exec cmd
 endfunc
 
+
 nmap <C-S-P> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
     if !exists("*synstack")
@@ -297,6 +291,8 @@ function! <SID>SynStack()
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
+
+" auto source .vimrc when saving
 if has("autocmd")
     autocmd! bufwritepost .vimrc source $MYVIMRC
 endif
