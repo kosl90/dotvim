@@ -171,7 +171,7 @@ nmap <M-l> $
 nmap <F9> :call CompileC_PP()<CR>
 nmap <C-F9> :call RunC_PP()<CR>
 nmap <C-i> :call InsertDomain()<CR>
-nmap <C-X><C-F> :NERDTree<CR>
+nmap <leader>f :NERDTreeToggle<CR>
 
 
 "==========================================================================
