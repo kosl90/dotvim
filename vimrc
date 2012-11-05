@@ -77,7 +77,7 @@ set smarttab
 set expandtab
 set tabstop=8  " tab length 8
 set shiftwidth=4  " indent length 4
-
+set softtabstop=4
 
 
 "==========================================================================
@@ -88,7 +88,7 @@ set shiftwidth=4  " indent length 4
 " url: http://www.vim.org/scripts/script.php?script_id=987
 "==========================================================================
 "let g:DoxygenToolkit_commentType = "C++
-let g:DoxygenToolkit_authorName="kosl90"
+let g:DoxygenToolkit_authorName="Li Liqiang"
 let g:DoxygenToolkit_briefTag_funcName = "yes"
 let g:DoxygenToolkit_briefTag_post="- "
 let g:DoxygenToolkit_paramTag_post=" - "
