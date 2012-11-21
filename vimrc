@@ -4,6 +4,7 @@
 "==========================================================================
 " source $VIMRUNTIME/vimrc_example.vim
 
+set foldmethod=marker
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
@@ -22,14 +23,14 @@ set nobackup
 set number
 set wrap
 "set nowrap
-set ignorecase
+set noignorecase
 set incsearch  " instance search
 "set cursorline  " heighlight current line
 set wildmenu
 set ruler  " show the cursor position all the time
 set showcmd  " display incomplete commands
 set textwidth=79
-set colorcolumn=80
+"set colorcolumn=80
 set history=50
 set autoread
 set autowriteall
@@ -53,7 +54,11 @@ endif
 
 if has("gui_running")
     set guioptions+=b  " v scroll bar
+    set guioptions-=m
+    set winaltkeys=no
 endif
+
+set infercase
 
 
 
@@ -61,7 +66,6 @@ endif
 "                                encode
 "==========================================================================
 set encoding=utf-8
-set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set fileformat=unix
 
@@ -97,7 +101,7 @@ let g:DoxygenToolkit_fileTag="@file - "
 let g:DoxygenToolkit_versionTag="@version - "
 let g:DoxygenToolkit_dateTag="@date - "
 let g:DoxygenToolkit_authorTag="@author - "
-"let g:DoxygenToolkit_licenseTag="My own license - "
+let g:DoxygenToolkit_licenseTag="@license - "
 
 map <F4> :Dox<CR>
 map <C-F4> :DoxAuthor<CR>
@@ -106,7 +110,7 @@ map <C-F4> :DoxAuthor<CR>
 "                            python-dict
 " url: http://www.vim.org/scripts/script.php?script_id=850
 "==========================================================================
-let g:pydiction_location="/home/l/.vim/ftplugin/python_dict/complete-dict"
+"let g:pydiction_location="/home/l/.vim/ftplugin/python_dict/complete-dict"
 " let g:pydiction_menu_height=15  " default
 
 "==========================================================================
@@ -139,7 +143,16 @@ let g:snips_author = 'kosl90'
 "=========================================================================
 "                             syntastic
 "=========================================================================
-let g:syntastic_check_on_open=1
+"let g:syntastic_check_on_open=1
+let g:syntastic_mode_map = { 'mode': 'passive', "active_filetypes": ['python'], "passive_filetypes":[]}
+let g:syntastic_error_symbol='X'
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_compiler="clang++"
+let g:syntastic_cpp_compiler_options=" -std=c++0x"
+let g:syntastic_cpp_auto_refresh_includes = 1
+nmap ,e :Error<CR>
+nmap ,s :SyntasticCheck<CR>
+nmap ,t :SyntasticToggleMode<CR>
 
 
 
@@ -151,13 +164,13 @@ nmap <leader>e :e $MYVIMRC<CR>
 nmap <leader>s :so $MYVIMRC<CR>
 nmap <leader>w :lcd %:p:h<CR>
 nmap <C-s> <ESC>:w<CR>
-nmap ,s <ESC>:w<CR>
+"nmap ,s <ESC>:w<CR>
 vmap <C-c> "+y
 "imap <C-v> <esc>"+gp
 "nmap <C-v> "+gp
 "vmap <C-v> "+gp
 nmap <F5> :call Run_Py()<CR>
-nmap <C-F5> :!pep8 %<CR>
+nmap <C-F5> :call Flake8()<CR>
 nmap <F6> :call CFamilyFormat()<CR>
 " delete the blank of the line
 nmap <F8> :silent! %s/\s\+$//g<CR><C-s>
@@ -169,9 +182,13 @@ nmap <F2> :Helptags<CR>
 nmap <M-a> ^
 nmap <M-l> $
 nmap <F9> :call CompileC_PP()<CR>
-nmap <C-F9> :call RunC_PP()<CR>
+nmap <S-F9> :call RunC_PP()<CR>
 nmap <C-i> :call InsertDomain()<CR>
 nmap <leader>f :NERDTreeToggle<CR>
+nmap <leader>t :SyntasticToggleMode<CR>
+" To avoid popup menu in Ubuntu
+imap <F10> <ESC>
+nmap <F10> <ESC>
 
 
 "==========================================================================
@@ -199,12 +216,16 @@ function! CFamilyFormat()
         let docformat = '2'
     endif
 
-    if &ft == 'C' || &ft == 'CPP'
-        "execute "!astyle -A3s4cCSNLwYm0MfUpHjk1nz".docformat." --options=none '".fullpath."'"
-        exe "!astyle '".fullpath."'"
+    if &ft == 'c' || &ft == 'cpp'
+        execute "!astyle -A3s4cCSNLwYm0MfUpHjk1nz".docformat." --options=none '".fullpath."'"
+        "exe "!astyle '".fullpath."'"
+        echo "Format finished"
     elseif &ft == 'JAVA'
         execute "!astyle --options=none --style=java -s4cCSLwYmMfUpHjk1nz".docformat." '".fullpath."'"
     endif
+
+    let dummpy = input('press enter to continue...')
+    execute "redraw!"
 endfunction
 
 
@@ -221,7 +242,7 @@ funct! CompileC_PP()
     if &ft == 'c'
         set makeprg=gcc\ -g\ -Wall\ -o\ %<\.exe\ %
     elseif &ft == 'cpp'
-        set makeprg=g++\ -g\ -Wall\ -o\ %<\.exe\ %
+        set makeprg=g++\ -std=c++0x\ -g\ -Wall\ -o\ %<\.exe\ %
     else
         execute "!notify-send -i vim 'Falurely' 'this is not a C/CPP file'"
         return
