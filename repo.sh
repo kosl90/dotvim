@@ -6,19 +6,12 @@ function help_info {
 
 case "$1" in
     "init")
-        if [ -d bundle && -s bunlde ];
-        then
-            ln -s ~/.vim/vimrc ~/.vimrc
-            chmod +x ./repo.sh
-            cd ~/.vim
-            git submodule update --init
-        else
-            echo "Initialization had been done"
-        fi
+        ln -s $HOME/.vim/vimrc $HOME/.vimrc
+        git submodule update --init --recursive
         ;;
 
     "update")
-        git submodule foreach git pull origin master
+        git submodule foreach --recursive git pull origin master
         ;;
 
     "add")
