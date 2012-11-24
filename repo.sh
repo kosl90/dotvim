@@ -21,7 +21,7 @@ case "$1" in
         git submodule foreach git pull origin master
         ;;
 
-    "install")
+    "add")
         dirname=$(basename $2)
         dirname=${dirname%%.*}
 
@@ -31,10 +31,6 @@ case "$1" in
         fi
 
         git submodule add $2 bundle/$dirname
-        ;;
-
-    "add_sub")
-        git submodule add bundle/$2
         ;;
 
     "help")
