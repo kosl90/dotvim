@@ -144,7 +144,9 @@ let g:snips_author = 'kosl90'
 "                             syntastic
 "=========================================================================
 "let g:syntastic_check_on_open=1
-let g:syntastic_mode_map = { 'mode': 'passive', "active_filetypes": ['python'], "passive_filetypes":[]}
+let g:syntastic_mode_map = { 'mode': 'passive',
+            \ "active_filetypes": [],
+            \ "passive_filetypes":[]}
 let g:syntastic_error_symbol='X'
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler="clang++"
@@ -322,3 +324,4 @@ endfunc
 if has("autocmd")
     autocmd! bufwritepost .vimrc source $MYVIMRC
 endif
+
