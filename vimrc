@@ -8,6 +8,8 @@ set foldmethod=marker
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
+runtime! ftplugin/man.vim
+
 if has("win32")
     set shellslash
     set guifont=DejaVu_Sans_Mono:h12
@@ -32,6 +34,8 @@ set showcmd  " display incomplete commands
 set textwidth=79
 "set colorcolumn=80
 set history=50
+set showmatch
+set matchtime=1
 set autoread
 set autowriteall
 set lbr  " linebreak
@@ -172,20 +176,20 @@ vmap <C-c> "+y
 "nmap <C-v> "+gp
 "vmap <C-v> "+gp
 nmap <F5> :call Run_Py()<CR>
-nmap <C-F5> :call Flake8()<CR>
+nmap <C-F5> :!pep8 %<CR>
 nmap <F6> :call CFamilyFormat()<CR>
 " delete the blank of the line
 nmap <F8> :silent! %s/\s\+$//g<CR><C-s>
 nmap <C-F8> :%s///g
 nmap <C-n><C-h> :nohls<cr>
-nmap <C-h> :h 
+nmap <C-h> :h<Space>
 " nmap <F2> :helptags ~/.vim/doc<CR>
 nmap <F2> :Helptags<CR>
 nmap <M-a> ^
 nmap <M-l> $
 nmap <F9> :call CompileC_PP()<CR>
 nmap <S-F9> :call RunC_PP()<CR>
-nmap <C-i> :call InsertDomain()<CR>
+nmap <leader>i :call InsertDomain()<CR>
 nmap <leader>f :NERDTreeToggle<CR>
 nmap <leader>t :SyntasticToggleMode<CR>
 " To avoid popup menu in Ubuntu
@@ -242,9 +246,9 @@ funct! CompileC_PP()
     "call CheckHeader()
 
     if &ft == 'c'
-        set makeprg=gcc\ -g\ -Wall\ -o\ %<\.exe\ %
+        set makeprg=clang\ -g\ -Wall\ -o\ %<\.exe\ %
     elseif &ft == 'cpp'
-        set makeprg=g++\ -std=c++0x\ -g\ -Wall\ -o\ %<\.exe\ %
+        set makeprg=clang++\ -std=c++0x\ -g\ -Wall\ -o\ %<\.exe\ %
     else
         execute "!notify-send -i vim 'Falurely' 'this is not a C/CPP file'"
         return
