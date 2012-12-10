@@ -62,8 +62,7 @@ if has("gui_running")
     set winaltkeys=no
 endif
 
-set infercase
-
+set path=/usr/include/*,./*.,./include
 
 
 "==========================================================================
@@ -329,3 +328,26 @@ if has("autocmd")
     autocmd! bufwritepost .vimrc source $MYVIMRC
 endif
 
+func! FileEncoding()
+    if &fenc == ""
+        return ""
+    endif
+
+    let b=""
+
+    if exists("+bomb") && &bomb
+        let b = "+B"
+    endif
+
+    return "[".&fenc.b."]"
+endfunc
+
+func! StatusLine()
+    return "%f %m%y%r".FileEncoding()."%q%w[%{&ff}]%=%l,%c%V%12P"
+endfunc
+
+set laststatus=2
+if has("statusline")
+    set statusline=%!StatusLine()
+    "set statusline=
+endif
