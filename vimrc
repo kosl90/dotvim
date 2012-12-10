@@ -8,6 +8,7 @@ set foldmethod=marker
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
+runtime! macros/matchit.vim
 runtime! ftplugin/man.vim
 
 if has("win32")
