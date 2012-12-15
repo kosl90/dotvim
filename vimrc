@@ -63,7 +63,7 @@ if has("gui_running")
     set winaltkeys=no
 endif
 
-set path=/usr/include/*,./*.,./include
+set path=./*/*,../include,/usr/include/*/*
 
 
 "==========================================================================
@@ -246,8 +246,10 @@ funct! CompileC_PP()
     "call CheckHeader()
 
     if &ft == 'c'
+        set makeprg=gcc\ -g\ -Wall\ -o\ %<\.exe\ %
         set makeprg=clang\ -g\ -Wall\ -o\ %<\.exe\ %
     elseif &ft == 'cpp'
+        set makeprg=g++\ -std=c++0x\ -g\ -Wall\ -o\ %<\.exe\ %
         set makeprg=clang++\ -std=c++0x\ -g\ -Wall\ -o\ %<\.exe\ %
     else
         execute "!notify-send -i vim 'Falurely' 'this is not a C/CPP file'"
