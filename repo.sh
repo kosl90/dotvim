@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function help_info {
-    echo "Usage: repo.sh install | update | help"
+    echo "Usage: repo.sh init | update | add | help"
 }
 
 case "$1" in
@@ -11,7 +11,10 @@ case "$1" in
         ;;
 
     "update")
-        git submodule foreach --recursive git pull origin master
+        git submodule foreach --recursive git pull
+        #git add .
+        #git commit -m 'update plugins'
+        #git push
         ;;
 
     "add")
