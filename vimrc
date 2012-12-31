@@ -18,7 +18,8 @@ if has("win32")
     set vb t_vb=\".  " stop beep
 endif
 
-set ambiwidth=double
+"set ambiwidth=double
+set t_Co=256
 colorscheme molokai
 "colorscheme desert
 set nocompatible
