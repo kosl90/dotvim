@@ -34,3 +34,6 @@
 [submodule "bundle/css3"]
 	path = bundle/css3
 	url = https://github.com/vim-scripts/css3.git
+[submodule "bundle/ctrlp"]
+	path = bundle/ctrlp
+	url = https://github.com/kien/ctrlp.vim.git
