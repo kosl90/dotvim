@@ -19,7 +19,7 @@ case "$1" in
         git submodule foreach --recursive git pull
         git add .
 
-        if [ "$2" == "-push"];
+        if [ "$2" == "-push" ];
         then
             git commit -m 'update plugins'
             git push
