@@ -109,6 +109,22 @@ set autowriteall
 filetype plugin on
 
 set path=./*/*,../include,/usr/include/*,/usr/include/c++/*/*
+
+let auto_new_line = 1
+" }}}1
+
+" autocmd   {{{1
+" auto source .vimrc when saving
+if has("autocmd")
+    autocmd! BufWritePost .vimrc source $MYVIMRC
+endif
+
+if exists('auto_new_line') && auto_new_line
+    autocmd! BufWritePre,FileWritePre,BufUnload *.c,*.cc,*.cpp call AutoNewLine()
+endif
+" }}}1
+
+" command   {{{1
 " }}}1
 
 " plugin   {{{1
@@ -192,9 +208,9 @@ vmap <C-C> "+y
 "imap <c-v> <esc>"+gp
 "nmap <c-v> "+gp
 "vmap <c-v> "+gp
-nmap <F5> :call <SID>run_py()<CR>
+nmap <F5> :call Run_py()<CR>
 nmap <C-F5> :!pep8 %<CR>
-nmap <F6> :call <SID>cfamilyformat()<cr>
+nmap <F6> :call Cfamilyformat()<cr>
 " delete the blank of the line
 nmap <F8> :silent!<SPACE>%s/\s\+$//g<CR>w<CR>
 nmap <C-F8> :%s///g
@@ -203,9 +219,9 @@ nmap <C-H> :h<space>
 " nmap <f2> :helptags ~/.vim/doc<cr>
 nmap <M-A> ^
 nmap <M-L> $
-nmap <F9> :call <SID>compilec_pp()<CR>
-nmap <S-F9> :call <SID>runc_pp()<CR>
-nmap <leader>i :call <SID>insertdomain()<CR>
+nmap <F9> :call Compilec_pp()<CR>
+nmap <S-F9> :call Runc_pp()<CR>
+nmap <leader>i :call Insertdomain()<CR>
 nmap <leader>f :nerdtreetoggle<CR>
 nmap <leader>t :tagbartoggle<CR>
 " to avoid popup menu in ubuntu
@@ -215,23 +231,25 @@ imap <C-UP> <ESC><C-W>k
 imap <C-DOWN> <ESC><C-W>j
 imap <C-LEFT> <ESC><C-W>h
 imap <C-RIGHT> <ESC><C-W>l
-imap <C-L> <C-O>:call <SID>emacs_ctrl_l()<CR>
+imap <C-L> <C-O>:call Emacs_ctrl_l()<CR>
+nmap <C-L> :call Emacs_ctrl_l()<CR>
+nnoremap <leader>l <C-L>
 " }}}1
 
 " function definition   {{{1
-func! <SID>run_py()   " {{{2
+func! Run_py()   " {{{2
     if &ft != 'python'
         echo 'this file is not python'
         return
     endif
 
     let dir = expand("%:p:h")
-    "silent execute "!gnome-terminal --working-directory='".dir."' -x bash -c \"python '".expand("%:t")."'; read -s -p 'press any key to exit...' -n 1\""
+    silent execute "!gnome-terminal --working-directory='".dir."' -x bash -c \"python '".expand("%:t")."'; read -s -p 'press any key to exit...' -n 1\""
 
     exe 'redraw!'
 endfunc " }}}2
 
-function! <SID>cfamilyformat()   " {{{2
+function! Cfamilyformat()   " {{{2
     let fullpath = expand("%:p")
 
     if has("win32")
@@ -241,18 +259,16 @@ function! <SID>cfamilyformat()   " {{{2
     endif
 
     if &ft == 'c' || &ft == 'cpp'
-        execute "!astyle -a3s4ccsnlwym0mfuphjk1nz".docformat." --options=none '".fullpath."'"
+        execute "!astyle -A3s4cCSLwYmMfUpHjk1nz".docformat." --options=none '".fullpath."'"
         "exe "!astyle '".fullpath."'"
-        echo "format finished"
     elseif &ft == 'java'
-        execute "!astyle --options=none --style=java -s4ccslwymmfuphjk1nz".docformat." '".fullpath."'"
+        execute "!astyle --options=none --style=java -A3s4cCSLwYmMfUpHjk1nz".docformat." '".fullpath."'"
     endif
 
-    let dummpy = input('press enter to continue...')
     execute "redraw!"
 endfunction " }}}2
 
-funct! <SID>compilec_pp()   " {{{2
+funct! Compilec_pp()   " {{{2
     let dir=expand("%:h:t")
     let fulldir=expand("%:p:h")
     let fname=expand("%:t")
@@ -281,7 +297,7 @@ funct! <SID>compilec_pp()   " {{{2
     make
 endfunc " }}}2
 
-"func! <SID>checkheader()   " {{{2 let g:use_thread=0 let g:use_math=0 let
+"func! Checkheader()   " {{{2 let g:use_thread=0 let g:use_math=0 let
 "g:use_aput=0
 
     "for line in getline()
@@ -303,7 +319,7 @@ endfunc " }}}2
 
 "endfunc " }}}2
 
-func! <SID>runc_pp()   " {{{2
+func! Runc_pp()   " {{{2
     let dir = expand("%:p:h")
     let fname = expand("%:t:r").'.exe'
     let exefile = dir.'/'.fname
@@ -312,7 +328,7 @@ func! <SID>runc_pp()   " {{{2
     exec 'redraw!'
 endfunc " }}}2
 
-func! <SID>insertdomain()   " {{{2
+func! Insertdomain()   " {{{2
     if &ft != 'c' && &ft != 'cpp'
         return
     endif
@@ -328,7 +344,7 @@ func! <SID>insertdomain()   " {{{2
     exec cmd
 endfunc " }}}2
 
-func! <SID>fileencoding()   " {{{2
+func! Fileencoding()   " {{{2
     if &fenc == ""
         return ""
     endif
@@ -343,10 +359,10 @@ func! <SID>fileencoding()   " {{{2
 endfunc " }}}2
 
 func! Statusline()   " {{{2
-    return "%f %m%y%r".<SID>fileencoding()."%q%w[%{&ff}]%=%l,%c%v%12p"
+    return "%f %m%y%r".Fileencoding()."%q%w[%{&ff}]%=%l,%c%v%12p"
 endfunc " }}}2
 
-func! <SID>emacs_ctrl_l()
+func! Emacs_ctrl_l()   " {{{2
     if !exists("b:count")  " {{{
         let b:win_line_nu = winheight(0)
         let b:cur_line_nu = winline()
@@ -378,15 +394,11 @@ func! <SID>emacs_ctrl_l()
     " }}}
 
     let b:count = (b:count + 1) % 3
-endfunc
-" }}}1
+endfunc " }}}2
 
-" autocmd   {{{1
-" auto source .vimrc when saving
-if has("autocmd")
-    autocmd! bufwritepost .vimrc source $MYVIMRC
-endif
-" }}}1
-
-" command   {{{1
-" }}}1
+func! AutoNewLine()   " {{{2
+    let last_line = getline('$')
+    if last_line != ""
+        call append('$', [''])
+    endif
+endfunc " }}}2 " }}}1

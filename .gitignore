@@ -1,6 +1,5 @@
 .netrwhist
-*.swo
-*.swp
+*.sw[op]
 *~
-*#
+*\#
 *.bak
