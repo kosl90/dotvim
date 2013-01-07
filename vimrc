@@ -401,4 +401,5 @@ func! AutoNewLine()   " {{{2
     if last_line != ""
         call append('$', [''])
     endif
-endfunc " }}}2 " }}}1
+endfunc " }}}2
+" }}}1
