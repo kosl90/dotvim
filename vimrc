@@ -78,6 +78,7 @@ set expandtab
 set tabstop=8  " tab length 8
 set shiftwidth=4  " indent length 4
 set softtabstop=4
+set cinoptions=:0,l1,g0,(0
 " }}}2
 
 " misc {{{2
@@ -95,7 +96,7 @@ set showcmd  " display incomplete commands
 set showmatch
 set matchtime=1
 set fo+=mt
-"set cursorline  " heighlight current line
+set cursorline  " heighlight current line
 " }}}2
 
 if has('mouse')
@@ -108,7 +109,7 @@ set autoread
 set autowriteall
 filetype plugin on
 
-set path=./*/*,../include,/usr/include/*,/usr/include/c++/*/*
+set path=.,./*/*,../include,/usr/include/*,/usr/include/c++/*/*
 
 let auto_new_line = 1
 " }}}1
@@ -222,8 +223,8 @@ nmap <M-L> $
 nmap <F9> :call Compilec_pp()<CR>
 nmap <S-F9> :call Runc_pp()<CR>
 nmap <leader>i :call Insertdomain()<CR>
-nmap <leader>f :nerdtreetoggle<CR>
-nmap <leader>t :tagbartoggle<CR>
+nmap <leader>f :NERDTreeToggle<CR>
+nmap <leader>t :TagbarToggle<CR>
 " to avoid popup menu in ubuntu
 imap <F10> <NOP>
 nmap <F10> <NOP>
@@ -279,11 +280,11 @@ funct! Compilec_pp()   " {{{2
     "call checkheader()
 
     if &ft == 'c'
-        set makeprg=gcc\ -g\ -wall\ -o\ %<\.exe\ %
-        set makeprg=clang\ -g\ -wall\ -o\ %<\.exe\ %
+        set makeprg=gcc\ -g\ -Wall\ -o\ %<\.exe\ %
+        set makeprg=clang\ -g\ -Wall\ -o\ %<\.exe\ %
     elseif &ft == 'cpp'
-        set makeprg=g++\ -std=c++0x\ -g\ -wall\ -o\ %<\.exe\ %
-        set makeprg=clang++\ -std=c++0x\ -g\ -wall\ -o\ %<\.exe\ %
+        set makeprg=g++\ -std=c++0x\ -g\ -Wall\ -o\ %<\.exe\ %
+        set makeprg=clang++\ -std=c++0x\ -g\ -Wall\ -o\ %<\.exe\ %
     else
         execute "!notify-send -i vim 'falurely' 'this is not a c/cpp file'"
         return
@@ -363,37 +364,39 @@ func! Statusline()   " {{{2
 endfunc " }}}2
 
 func! Emacs_ctrl_l()   " {{{2
-    if !exists("b:count")  " {{{
-        let b:win_line_nu = winheight(0)
-        let b:cur_line_nu = winline()
-        let half_lines = (b:win_line_nu - 1) / 2
+    let pos = s:pos_marker()
 
-        if b:cur_line_nu == 0
-            " top
-            let b:count = 2
-        elseif b:cur_line_nu <= half_lines
-            " (top, middle]
-            let b:count = 1
-        else
-            " (middle, bottom]
-            let b:count = 0
-        endif
+    call s:scroll(pos)
+endfunc " }}}2
+
+func! s:pos_marker()   " {{{2
+    let win_line_nu = winheight(0)
+    let cur_line_nu = winline()
+    let half_lines = (win_line_nu + 1) / 2
+
+    if cur_line_nu == 1
+        " top
+        return 2
+    elseif cur_line_nu <= half_lines
+        " (top, middle]
+        return 1
+    else
+        " (middle, bottom]
+        return 0
     endif
-    " }}}
+endfunc " }}}2
 
-    if b:count == 2 " {{{
+func! s:scroll(pos)   " {{{2
+    if a:pos == 2
         " from top to bottom
         normal zb
-    elseif b:count == 1
+    elseif a:pos == 1
         " from middle to top
         normal zt
     else
         " from bottom to middle
         normal zz
     endif
-    " }}}
-
-    let b:count = (b:count + 1) % 3
 endfunc " }}}2
 
 func! AutoNewLine()   " {{{2
