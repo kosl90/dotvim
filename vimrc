@@ -120,6 +120,9 @@ if has("autocmd")
     autocmd! BufWritePost .vimrc source $MYVIMRC
 endif
 
+au FileType python set omnifunc=pythoncomplete#Complete
+au FileType ruby set omnifunc=rubycomplete#Complete
+
 if exists('auto_new_line') && auto_new_line
     autocmd! BufWritePre,FileWritePre,BufUnload *.c,*.cc,*.cpp call AutoNewLine()
 endif
