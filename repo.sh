@@ -23,7 +23,7 @@ case "$1" in
         then
             git commit -m 'update plugins'
             git push
-        elif [ -n $2 ];
+        elif [ $2 ];
         then
             echo "Unknown option"
         fi
