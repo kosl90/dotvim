@@ -97,7 +97,6 @@ set showmatch
 set matchtime=1
 set fo+=mt
 set cursorline  " heighlight current line
-" }}}2
 
 if has('mouse')
     set mouse=a
@@ -110,8 +109,10 @@ set autowriteall
 filetype plugin on
 
 set path=.,./*/*,../include,/usr/include/*,/usr/include/c++/*/*
+set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.desktop,*.chm
 
 let auto_new_line = 1
+" }}}2
 " }}}1
 
 " autocmd   {{{1
@@ -219,7 +220,6 @@ nmap <F6> :call Cfamilyformat()<cr>
 nmap <F8> :silent!<SPACE>%s/\s\+$//g<CR>w<CR>
 nmap <C-F8> :%s///g
 nmap <C-N><C-H> :nohls<CR>
-nmap <C-H> :h<space>
 " nmap <f2> :helptags ~/.vim/doc<cr>
 nmap <M-A> ^
 nmap <M-L> $
@@ -231,13 +231,19 @@ nmap <leader>t :TagbarToggle<CR>
 " to avoid popup menu in ubuntu
 imap <F10> <NOP>
 nmap <F10> <NOP>
-imap <C-UP> <ESC><C-W>k
-imap <C-DOWN> <ESC><C-W>j
-imap <C-LEFT> <ESC><C-W>h
-imap <C-RIGHT> <ESC><C-W>l
+imap <C-UP> <ESC><C-W>ka
+imap <C-DOWN> <ESC><C-W>ja
+imap <C-LEFT> <ESC><C-W>ha
+imap <C-RIGHT> <ESC><C-W>la
 imap <C-L> <C-O>:call Emacs_ctrl_l()<CR>
 nmap <C-L> :call Emacs_ctrl_l()<CR>
 nnoremap <leader>l <C-L>
+nmap [t :tabprevious<CR>
+nmap [T :tabfirst<CR>
+nmap ]t :tabNext<CR>
+nmap ]T :tablast<CR>
+nmap <C-H> :h<space>
+nmap <C-E> :set fileencoding=
 " }}}1
 
 " function definition   {{{1
