@@ -204,7 +204,7 @@ nmap ,t :syntastictogglemode<CR>
 " mapping   {{{1
 "let mapleader = "\"
 nmap 0 ^
-nmap <leader>e :vsp $MYVIMRC<CR>
+nmap <leader>e :call OpenVimrc()<CR>
 nmap <leader>s :so $MYVIMRC<CR>
 nmap <leader>w :lcd %:p:h<CR>
 nmap <C-S> <ESC>:w<CR>
@@ -412,6 +412,14 @@ func! AutoNewLine()   " {{{2
     let last_line = getline('$')
     if last_line != ""
         call append('$', [''])
+    endif
+endfunc " }}}2
+
+func! OpenVimrc()   " {{{2
+    if getline(nextnonblank(1)) == ""
+        e $MYVIMRC
+    else
+        vsp $MYVIMRC
     endif
 endfunc " }}}2
 " }}}1
