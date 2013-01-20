@@ -17,9 +17,8 @@ Bundle 'kien/ctrlp.vim'
 
 Bundle 'vim-scripts/css3'
 Bundle 'vim-scripts/LargeFile'
-Bundle 'vim-scripts/Conque-Shell'
 
-Bundle 'scrooloose/nerdcommenter'
+Bundle 'tomtom/tcomment_vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 
@@ -29,19 +28,17 @@ Bundle 'SirVer/ultisnips'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-pathogen'
 
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'mattn/zencoding-vim'
 Bundle 'jnwhiteh/vim-golang'
-Bundle 'kevinw/pyflakes-vim'
+Bundle 'kosl90/pyflakes-vim'
 Bundle 'tomasr/molokai'
 " }}}2
 
 " on vim-scripts   {{{2
-"Bundle 'doxygen'
-"Bundle 'pyflakes'
 Bundle 'indenthaskell.vim'
+Bundle 'DoxygenToolkit.vim'
 " }}}2
 " }}}1
 
@@ -103,12 +100,11 @@ if &t_Co > 2 || has("gui_running")
 
     set t_Co=256  " to use molokai in terminal
 
-    "if findfile("molokai.vim", finddir("~/.vim/colors")) != ""
-                "\ || 
+    if findfile("molokai.vim", finddir("~/.vim/bundle/molokai/colors")) != ""
         colorscheme molokai
-    "else
-        "colorscheme desert
-    "endif
+    else
+        colorscheme desert
+    endif
 
     if !has("gui_running")
         hi Normal ctermbg=none

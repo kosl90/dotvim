@@ -1,6 +1,6 @@
 .netrwhist
 *.sw[op]
 *~
-*\#
+\#*\#
 *.bak
 bundle/
