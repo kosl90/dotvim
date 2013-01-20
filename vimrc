@@ -2,16 +2,83 @@
 " source $VIMRUNTIME/vimrc_example.vim
 set nocompatible
 
-runtime! macros/matchit.vim
-runtime! ftplugin/man.vim
+" Vundle   {{{2
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+" }}}2
+" }}}1
 
-" pathogen
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
-nmap <F2> :Helptags<CR>
+" Bundles   {{{1
+"on github   {{{2
+Bundle 'gmarik/vundle'
+Bundle 'Rip-Rip/clang_complete'
+Bundle 'kien/ctrlp.vim'
+
+Bundle 'vim-scripts/css3'
+Bundle 'vim-scripts/LargeFile'
+Bundle 'vim-scripts/Conque-Shell'
+
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+
+Bundle 'majutsushi/tagbar'
+Bundle 'SirVer/ultisnips'
+
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-pathogen'
+
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'mattn/zencoding-vim'
+Bundle 'jnwhiteh/vim-golang'
+Bundle 'kevinw/pyflakes-vim'
+Bundle 'tomasr/molokai'
+" }}}2
+
+" on vim-scripts   {{{2
+"Bundle 'doxygen'
+"Bundle 'pyflakes'
+Bundle 'indenthaskell.vim'
+" }}}2
 " }}}1
 
 " General   {{{1
+" misc {{{2
+filetype indent plugin on
+set number
+set foldmethod=marker
+set textwidth=79
+set colorcolumn=+1
+set wrap
+set linebreak
+set noignorecase
+set incsearch  " instance search
+set wildmenu
+set ruler  " show the cursor position all the time
+set showcmd  " display incomplete commands
+set showmatch
+set matchtime=1
+set fo+=mt
+set cursorline  " heighlight current line
+
+if has('mouse')
+    set mouse=a
+endif
+
+set nobackup
+set history=50
+set autoread
+set autowriteall
+
+set path=.,./*/*,../include,/usr/include/*,/usr/include/c++/*/*
+set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.desktop,*.chm
+
+let auto_new_line = 1
+" }}}2
+
 if has("win32")   " {{{2
     set shellslash
     "set guifont=DejaVu_Sans_Mono:h12
@@ -36,11 +103,12 @@ if &t_Co > 2 || has("gui_running")
 
     set t_Co=256  " to use molokai in terminal
 
-    if findfile("molokai.vim", finddir("~/.vim/colors")) != ""
+    "if findfile("molokai.vim", finddir("~/.vim/colors")) != ""
+                "\ || 
         colorscheme molokai
-    else
-        colorscheme desert
-    endif
+    "else
+        "colorscheme desert
+    "endif
 
     if !has("gui_running")
         hi Normal ctermbg=none
@@ -80,52 +148,24 @@ set shiftwidth=4  " indent length 4
 set softtabstop=4
 set cinoptions=:0,l1,g0,(0
 " }}}2
-
-" misc {{{2
-set number
-set foldmethod=marker
-set textwidth=79
-set colorcolumn=+1
-set wrap
-set linebreak
-set noignorecase
-set incsearch  " instance search
-set wildmenu
-set ruler  " show the cursor position all the time
-set showcmd  " display incomplete commands
-set showmatch
-set matchtime=1
-set fo+=mt
-set cursorline  " heighlight current line
-
-if has('mouse')
-    set mouse=a
-endif
-
-set nobackup
-set history=50
-set autoread
-set autowriteall
-filetype plugin on
-
-set path=.,./*/*,../include,/usr/include/*,/usr/include/c++/*/*
-set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.desktop,*.chm
-
-let auto_new_line = 1
-" }}}2
 " }}}1
 
 " autocmd   {{{1
 " auto source .vimrc when saving
-if has("autocmd")
-    autocmd! BufWritePost .vimrc source $MYVIMRC
-endif
+au BufWritePost .vimrc source $MYVIMRC
 
+" auto complete
 au FileType python set omnifunc=pythoncomplete#Complete
 au FileType ruby set omnifunc=rubycomplete#Complete
 
+" change mapping behavior of unimpaired
+au VimEnter * nmap [t :tabprevious<CR>
+            \| nmap ]t :tabNext<CR>
+            \| nmap [T :tabfirst<CR>
+            \| nmap ]T :tablast<CR>
+
 if exists('auto_new_line') && auto_new_line
-    autocmd! BufWritePre,FileWritePre,BufUnload *.c,*.cc,*.cpp call AutoNewLine()
+    au BufWritePre,FileWritePre,BufUnload *.c,*.cc,*.cpp call AutoNewLine()
 endif
 " }}}1
 
@@ -133,6 +173,20 @@ endif
 " }}}1
 
 " plugin   {{{1
+runtime! macros/matchit.vim
+runtime! ftplugin/man.vim
+
+" UltiSnips   {{{2
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" }}}2
+
+" haskell indent   " {{{2
+let g:haskell_indent_if = 0
+let g:haskell_indent_case = 0
+" }}}2
+
 " ctrlp  {{{2
 let g:ctrlp_show_hidden = 1
 " }}}2
@@ -188,21 +242,20 @@ let g:snips_author = 'Li Liqiang'
 " syntastic   {{{2
 "let g:syntastic_check_on_open=1
 let g:syntastic_mode_map = { 'mode': 'passive',
-            \ "active_filetypes": [],
-            \ "passive_filetypes":[]}
+            \ 'active_filetypes': ['javascript'],
+            \ 'passive_filetypes':[]}
 let g:syntastic_error_symbol='x'
 let g:syntastic_cpp_check_header = 1
-let g:syntastic_cpp_compiler="clang++"
-let g:syntastic_cpp_compiler_options=" -std=c++0x"
+let g:syntastic_cpp_compiler='clang++'
+let g:syntastic_cpp_compiler_options=' -std=c++0x'
 let g:syntastic_cpp_auto_refresh_includes = 1
-nmap ,e :error<CR>
-nmap ,s :syntasticcheck<CR>
-nmap ,t :syntastictogglemode<CR>
+nmap ,e :Error<CR>
+nmap ,c :SyntasticCheck<CR>
+nmap ,t :SyntasticToggleMode<CR>
 " }}}2
 " }}}1
 
 " mapping   {{{1
-"let mapleader = "\"
 nmap 0 ^
 nmap <leader>e :call OpenVimrc()<CR>
 nmap <leader>s :so $MYVIMRC<CR>
@@ -216,6 +269,7 @@ vmap <C-C> "+y
 nmap <F5> :call Run_py()<CR>
 nmap <C-F5> :!pep8 %<CR>
 nmap <F6> :call Cfamilyformat()<cr>
+
 " delete the blank of the line
 nmap <F8> :silent!<SPACE>%s/\s\+$//g<CR>w<CR>
 nmap <C-F8> :%s///g
@@ -238,10 +292,6 @@ imap <C-RIGHT> <ESC><C-W>la
 imap <C-L> <C-O>:call Emacs_ctrl_l()<CR>
 nmap <C-L> :call Emacs_ctrl_l()<CR>
 nnoremap <leader>l <C-L>
-nmap [t :tabprevious<CR>
-nmap [T :tabfirst<CR>
-nmap ]t :tabNext<CR>
-nmap ]T :tablast<CR>
 nmap <C-H> :h<space>
 nmap <C-E> :set fileencoding=
 " }}}1
