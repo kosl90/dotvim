@@ -189,7 +189,6 @@ let g:ctrlp_show_hidden = 1
 
 " doxygentoolkit   {{{2
 " url: http://www.vim.org/scripts/script.php?script_id=987
-
 "let g:doxygentoolkit_commenttype = "c++
 let g:doxygentoolkit_authorname="Li Liqiang"
 let g:doxygentoolkit_brieftag_funcname = "yes"
@@ -202,8 +201,8 @@ let g:doxygentoolkit_datetag="@date - "
 let g:doxygentoolkit_authortag="@author - "
 let g:doxygentoolkit_licensetag="@license - "
 
-map <f4> :dox<cr>
-map <c-f4> :doxauthor<cr>
+map <F4> :Dox<CR>
+map <C-F4> :Doxauthor<CR>
 " }}}2
 
 " python-dict   {{{2
@@ -262,7 +261,7 @@ vmap <C-C> "+y
 "imap <c-v> <esc>"+gp
 "nmap <c-v> "+gp
 "vmap <c-v> "+gp
-nmap <F5> :call Run_py()<CR>
+nmap <F5> :call RunPy()<CR>
 nmap <C-F5> :!pep8 %<CR>
 nmap <F6> :call Cfamilyformat()<cr>
 
@@ -293,7 +292,7 @@ nmap <C-E> :set fileencoding=
 " }}}1
 
 " function definition   {{{1
-func! Run_py()   " {{{2
+func! RunPy()   " {{{2
     if &ft != 'python'
         echo 'this file is not python'
         return
