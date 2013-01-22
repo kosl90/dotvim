@@ -15,6 +15,7 @@ Bundle 'gmarik/vundle'
 Bundle 'Rip-Rip/clang_complete'
 Bundle 'kien/ctrlp.vim'
 
+Bundle 'xuhdev/SingleCompile'
 Bundle 'vim-scripts/css3'
 Bundle 'vim-scripts/LargeFile'
 
@@ -71,7 +72,7 @@ set autoread
 set autowriteall
 
 set path=.,./*/*,../include,/usr/include/*,/usr/include/c++/*/*
-set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.desktop,*.chm
+set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.chm,#*#
 
 let auto_new_line = 1
 " }}}2
@@ -180,7 +181,6 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " haskell indent   " {{{2
 let g:haskell_indent_if = 0
-let g:haskell_indent_case = 0
 " }}}2
 
 " ctrlp  {{{2
