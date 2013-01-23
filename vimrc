@@ -122,7 +122,7 @@ set laststatus=2
 
 if has("statusline")
     set statusline=%!Statusline()
-    "set statusline=
+    " set statusline=
 endif
 " }}}2
 
@@ -414,7 +414,7 @@ func! Fileencoding()   " {{{2
 endfunc " }}}2
 
 func! Statusline()   " {{{2
-    return "%f %m%y%r".Fileencoding()."%q%w[%{&ff}]%=%l,%c%V%12p"
+    return "%f %m%y%r".Fileencoding()."%q%w[%{&ff}]%=%l,%c%V%12P"
 endfunc " }}}2
 
 func! Emacs_ctrl_l()   " {{{2
@@ -468,3 +468,4 @@ func! OpenVimrc()   " {{{2
     endif
 endfunc " }}}2
 " }}}1
+
