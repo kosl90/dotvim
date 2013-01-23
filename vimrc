@@ -414,7 +414,7 @@ func! Fileencoding()   " {{{2
 endfunc " }}}2
 
 func! Statusline()   " {{{2
-    return "%f %m%y%r".Fileencoding()."%q%w[%{&ff}]%=%l,%c%v%12p"
+    return "%f %m%y%r".Fileencoding()."%q%w[%{&ff}]%=%l,%c%V%12p"
 endfunc " }}}2
 
 func! Emacs_ctrl_l()   " {{{2

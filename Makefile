@@ -11,4 +11,5 @@ install:
 	cd bundle && git clone https://github.com/gmarik/vundle.git \
 	    && git svn clone http://conque.googlecode.com/svn/trunk/ conque
 	vim -c 'BundleInstall!'
+	ln -s ~/.vim/vimrc ~/.vimrc
 
