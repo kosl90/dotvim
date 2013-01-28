@@ -148,6 +148,9 @@ set cinoptions=:0,l1,g0,(0
 " }}}1
 
 " autocmd   {{{1
+" xmobar
+au BufReadPost,BufNewFile .xmobarrc,xmobarrc set filetype=haskell
+
 " auto source .vimrc when saving
 au BufWritePost .vimrc source $MYVIMRC
 
