@@ -38,7 +38,6 @@ Bundle 'tomasr/molokai'
 " }}}2
 
 " on vim-scripts   {{{2
-Bundle 'indenthaskell.vim'
 Bundle 'DoxygenToolkit.vim'
 " }}}2
 " }}}1
@@ -355,8 +354,10 @@ funct! Compilec_pp()   " {{{2
     make
 endfunc " }}}2
 
-"func! Checkheader()   " {{{2 let g:use_thread=0 let g:use_math=0 let
-"g:use_aput=0
+"func! Checkheader()   " {{{2
+    "let g:use_thread=0
+    "let g:use_math=0
+    "let g:use_aput=0
 
     "for line in getline()
         "if !~ "#include"
