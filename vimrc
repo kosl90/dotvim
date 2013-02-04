@@ -39,6 +39,7 @@ Bundle 'tomasr/molokai'
 
 " on vim-scripts   {{{2
 Bundle 'DoxygenToolkit.vim'
+Bundle 'conque'
 " }}}2
 " }}}1
 
