@@ -111,6 +111,7 @@ if &t_Co > 2 || has("gui_running")
         hi Normal ctermbg=none
         hi LineNr ctermbg=none
         hi NonText ctermbg=none
+        hi Comment ctermfg=228
     endif
 
     hi ColorColumn ctermbg=238 guibg=darkgray
