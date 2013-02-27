@@ -4,13 +4,23 @@ set nocompatible
 
 " Vundle   {{{2
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+if 'bundle' !~ &rtp
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
+end
+" }}}2
+
+" Variables   {{{2
+let g:note_path="~/Dropbox/notes"
 " }}}2
 " }}}1
 
 " Bundles   {{{1
 "on github   {{{2
+Bundle 'ujihisa/neco-ghc'
+Bundle 'Shougo/vimproc'
+Bundle 'eagletmt/ghcmod-vim'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'gmarik/vundle'
 Bundle 'Rip-Rip/clang_complete'
 Bundle 'kien/ctrlp.vim'
@@ -71,6 +81,7 @@ set history=50
 set autoread
 set autowriteall
 
+let $PATH=$PATH . ':' . expand('~/.cabal/bin')
 set path=.,./*/*,../include,/usr/include/*,/usr/include/c++/*/*
 set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.chm,#*#
 
@@ -149,15 +160,20 @@ set cinoptions=:0,l1,g0,(0
 " }}}1
 
 " autocmd   {{{1
-" xmobar
+" set filetype   {{{2
 au BufReadPost,BufNewFile .xmobarrc,xmobarrc set filetype=haskell
+au BufReadPost,BufNewFile *.zsh* set filetype=zsh
+au BufReadPost,BufNewFile *.md,*.note set filetype=markdown
+" }}}2
 
 " auto source .vimrc when saving
 au BufWritePost .vimrc source $MYVIMRC
 
-" auto complete
+" auto complete   {{{2
+au FileType haskell set omnifunc=necoghc#omnifunc
 au FileType python set omnifunc=pythoncomplete#Complete
 au FileType ruby set omnifunc=rubycomplete#Complete
+" }}}2
 
 " change mapping behavior of unimpaired
 au VimEnter * nmap [t :tabprevious<CR>
@@ -171,6 +187,7 @@ endif
 " }}}1
 
 " command   {{{1
+command! -nargs=1 CreateNote :call CreateNoteFunc(<q-args>)
 " }}}1
 
 " plugin   {{{1
@@ -473,5 +490,17 @@ func! OpenVimrc()   " {{{2
         vsp $MYVIMRC
     endif
 endfunc " }}}2
+
+func! CreateNoteFunc(name)  " {{{2
+    if !exists("g:note_path")
+        let g:note_path = "~/Dropbox/notes/"
+    endif
+
+    if g:note_path !~ '/$'
+        let g:note_path = g:note_path . '/'
+    endif
+
+    exec "edit " . g:note_path . a:name
+endfunc   "}}}2
 " }}}1
 
