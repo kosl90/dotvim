@@ -160,6 +160,8 @@ set cinoptions=:0,l1,g0,(0
 " }}}1
 
 " autocmd   {{{1
+au VimEnter * call ChangeUnimpariedMap()
+
 " set filetype   {{{2
 au BufReadPost,BufNewFile .xmobarrc,xmobarrc set filetype=haskell
 au BufReadPost,BufNewFile *.zsh* set filetype=zsh
@@ -174,12 +176,6 @@ au FileType haskell set omnifunc=necoghc#omnifunc
 au FileType python set omnifunc=pythoncomplete#Complete
 au FileType ruby set omnifunc=rubycomplete#Complete
 " }}}2
-
-" change mapping behavior of unimpaired
-au VimEnter * nmap [t :tabprevious<CR>
-            \| nmap ]t :tabNext<CR>
-            \| nmap [T :tabfirst<CR>
-            \| nmap ]T :tablast<CR>
 
 if exists('auto_new_line') && auto_new_line
     au BufWritePre,FileWritePre,BufUnload *.c,*.cc,*.cpp call AutoNewLine()
@@ -313,6 +309,13 @@ nmap <C-E> :set fileencoding=
 " }}}1
 
 " function definition   {{{1
+func! ChangeUnimpariedMap()   " {{{2
+    nmap [t :tabprevious<CR>
+    nmap ]t :tabnext<CR>
+    nmap [T :tabfirst<CR>
+    nmap ]T :tablast<CR>
+endfunc  " }}}2
+
 func! RunPy()   " {{{2
     if &ft != 'python'
         echo 'this file is not python'
