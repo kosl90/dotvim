@@ -11,3 +11,6 @@ More information, please read [Makefile](makefile).
 
 # Update
 `make update` or `make update-quiet`
+
+# LICENSE
+[MIT License](http://opensource.org/licenses/MIT)
