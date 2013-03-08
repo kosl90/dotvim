@@ -72,6 +72,7 @@ set showmatch
 set matchtime=1
 set fo+=mt
 set cursorline  " heighlight current line
+set autochdir
 
 if has('mouse')
     set mouse=a
