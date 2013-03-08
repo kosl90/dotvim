@@ -17,6 +17,7 @@ let g:note_path="~/Dropbox/notes"
 
 " Bundles   {{{1
 "on github   {{{2
+Bundle 'mileszs/ack.vim'
 Bundle 'ujihisa/neco-ghc'
 Bundle 'Shougo/vimproc'
 Bundle 'eagletmt/ghcmod-vim'
