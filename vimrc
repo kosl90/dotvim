@@ -29,6 +29,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'xuhdev/SingleCompile'
 Bundle 'vim-scripts/css3'
 Bundle 'vim-scripts/LargeFile'
+Bundle "vim-scripts/gtk-vim-syntax"
 
 Bundle 'tomtom/tcomment_vim'
 Bundle 'scrooloose/nerdtree'
@@ -159,6 +160,7 @@ set tabstop=8  " tab length 8
 set shiftwidth=4  " indent length 4
 set softtabstop=4
 set cinoptions=:0,l1,g0,(0
+set listchars=tab:>-,trail:-
 " }}}2
 " }}}1
 
@@ -173,6 +175,10 @@ au BufReadPost,BufNewFile *.md,*.note set filetype=markdown
 
 " auto source .vimrc when saving
 au BufWritePost .vimrc source $MYVIMRC
+
+" coffee
+au BufWritePost *.coffee :!make > /dev/null
+au BufNewFile,BufRead *.coffee :set list
 
 " auto complete   {{{2
 au FileType haskell set omnifunc=necoghc#omnifunc
