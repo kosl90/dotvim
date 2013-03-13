@@ -516,3 +516,16 @@ func! CreateNoteFunc(name)  " {{{2
 endfunc   "}}}2
 " }}}1
 
+
+func! TabMapAux(num)
+    let num = a:num == 0 ? 10 : a:num
+    exec "map <leader>".num." ".num."gt"
+endfunc
+func! TabMap()
+    let i = 0
+    while i < 10
+        call TabMapAux(i)
+        let i += 1
+    endwhile
+endfunc
+call TabMap()
