@@ -176,10 +176,6 @@ au BufReadPost,BufNewFile *.md,*.note set filetype=markdown
 " auto source .vimrc when saving
 au BufWritePost .vimrc source $MYVIMRC
 
-" coffee
-au BufWritePost *.coffee :!make > /dev/null
-au BufNewFile,BufRead *.coffee :set list
-
 " auto complete   {{{2
 au FileType haskell set omnifunc=necoghc#omnifunc
 au FileType python set omnifunc=pythoncomplete#Complete
