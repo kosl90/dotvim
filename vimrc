@@ -29,7 +29,9 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'xuhdev/SingleCompile'
 Bundle 'vim-scripts/css3'
 Bundle 'vim-scripts/LargeFile'
+" maybe someone will be deleted
 Bundle "vim-scripts/gtk-vim-syntax"
+Bundle "vim-scripts/gtk-mode"
 
 Bundle 'tomtom/tcomment_vim'
 Bundle 'scrooloose/nerdtree'
@@ -179,7 +181,6 @@ au BufWritePost .vimrc source $MYVIMRC
 
 " coffee
 au BufWritePost *.coffee :!make > /dev/null
-
 " auto complete   {{{2
 au FileType haskell set omnifunc=necoghc#omnifunc
 au FileType python set omnifunc=pythoncomplete#Complete

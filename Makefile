@@ -1,4 +1,6 @@
-.PHONY: update update-quite install-base install install-conque install-with-conque
+.PHONY: all update update-quiet install-base install install-conque install-with-conque
+
+all: install-base update-quiet
 
 update:
 	vim -c 'BundleInstall!'
