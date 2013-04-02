@@ -187,6 +187,8 @@ au FileType ruby set omnifunc=rubycomplete#Complete
 if exists('auto_new_line') && auto_new_line
     au BufWritePre,FileWritePre,BufUnload *.c,*.cc,*.cpp call AutoNewLine()
 endif
+
+au BufWritePre,FileWritePre,BufUnload *.c,*.cc,*.cpp call DeleteTrailingBlank()
 " }}}1
 
 " command   {{{1
@@ -290,7 +292,7 @@ nmap <C-F5> :!pep8 %<CR>
 nmap <F6> :call Cfamilyformat()<cr>
 
 " delete the blank of the line
-nmap <F8> :silent!<SPACE>%s/\s\+$//g<CR>w<CR>
+nmap <F8> :call DeleteTrailingBlank()<CR>
 nmap <C-F8> :%s///g
 nmap <C-N><C-H> :nohls<CR>
 " nmap <f2> :helptags ~/.vim/doc<cr>
@@ -312,7 +314,7 @@ imap <C-L> <C-O>:call Emacs_ctrl_l()<CR>
 nmap <C-L> :call Emacs_ctrl_l()<CR>
 nnoremap <leader>l <C-L>
 nmap <C-H> :h<space>
-nmap <C-E> :set fileencoding=
+nmap <C-E> :set fileencoding=utf8
 " }}}1
 
 " function definition   {{{1
@@ -512,5 +514,10 @@ func! CreateNoteFunc(name)  " {{{2
 
     exec "edit " . g:note_path . a:name
 endfunc   "}}}2
+
+func! DeleteTrailingBlank()   " {{{
+    " TODO: this is wrong, fix it
+    exec ':slient! %s/\s\+$//g'
+endfunc " }}}
 " }}}1
 
