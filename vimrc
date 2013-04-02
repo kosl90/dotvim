@@ -188,7 +188,7 @@ au FileType ruby set omnifunc=rubycomplete#Complete
 " }}}2
 
 if exists('auto_new_line') && auto_new_line
-    au BufWritePre,FileWritePre,BufUnload *.c,*.cc,*.cpp call AutoNewLine()
+    au BufWritePre,FileWritePre,BufUnload *.c$,*.cc$,*.cpp$ call AutoNewLine()
 endif
 " }}}1
 
@@ -530,3 +530,38 @@ func! TabMap()
     endwhile
 endfunc
 call TabMap()
+
+set tabline=%!MyTabLine()  " custom tab pages line
+
+function! MyTabLine()
+  let s = ''
+  let t = tabpagenr()
+  let i = 1
+  while i <= tabpagenr('$')
+    let buflist = tabpagebuflist(i)
+    let winnr = tabpagewinnr(i)
+    let s .= '%' . i . 'T'
+    let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
+    let bufnr = buflist[winnr - 1]
+    let file = bufname(bufnr)
+    let buftype = getbufvar(bufnr, 'buftype')
+    if buftype == 'nofile'
+      if file =~ '\/.'
+        let file = substitute(file, '.*\/\ze.', '', '')
+      endif
+    else
+      let file = fnamemodify(file, ':p:t')
+    endif
+    if file == ''
+      let file = '[No Name]'
+    endif
+    let s .= string(i) . ":"
+    let file = strpart(file, 0, 10)
+    let s .= file
+    let i = i + 1
+  endwhile
+  let s .= '%T%#TabLineFill#%='
+  let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
+  return s
+endfunction
+
