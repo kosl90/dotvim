@@ -92,6 +92,7 @@ set path=.,./*/*,../include,/usr/include/*,/usr/include/c++/*/*
 set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.chm,#*#
 
 let auto_new_line = 1
+set list
 " }}}2
 
 if has("win32")   " {{{2
@@ -517,7 +518,7 @@ endfunc   "}}}2
 
 func! DeleteTrailingBlank()   " {{{
     " TODO: this is wrong, fix it
-    exec ':slient! %s/\s\+$//g'
+    exec ':silent! %s/\s\+$//g'
 endfunc " }}}
 " }}}1
 
