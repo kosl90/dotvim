@@ -92,7 +92,6 @@ set path=.,./*/*,../include,/usr/include/*,/usr/include/c++/*/*
 set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.chm,#*#
 
 let auto_new_line = 1
-set list
 " }}}2
 
 if has("win32")   " {{{2
@@ -164,6 +163,7 @@ set shiftwidth=4  " indent length 4
 set softtabstop=4
 set cinoptions=:0,l1,g0,(0
 set listchars=tab:>-,trail:-
+set list
 " }}}2
 " }}}1
 
