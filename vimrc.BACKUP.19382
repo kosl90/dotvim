@@ -572,3 +572,254 @@ nnoremap <leader>l <C-L>
 nmap <C-H> :h<space>
 nmap <C-E> :set fileencoding=utf8
 " }}}1
+<<<<<<< HEAD
+
+" function definition   {{{1
+func! ChangeUnimpariedMap()   " {{{2
+    nmap [t :tabprevious<CR>
+    nmap ]t :tabnext<CR>
+    nmap [T :tabfirst<CR>
+    nmap ]T :tablast<CR>
+endfunc  " }}}2
+
+func! RunPy()   " {{{2
+    if &ft != 'python'
+        echo 'this file is not python'
+        return
+    endif
+
+    let dir = expand("%:p:h")
+    silent execute "!gnome-terminal --working-directory='".dir."' -x bash -c \"python '".expand("%:t")."'; read -s -p 'press any key to exit...' -n 1\""
+
+    exe 'redraw!'
+endfunc " }}}2
+
+function! Cfamilyformat()   " {{{2
+    let fullpath = expand("%:p")
+
+    if has("win32")
+        let docformat = '1'
+    else
+        let docformat = '2'
+    endif
+
+    if &ft == 'c' || &ft == 'cpp'
+        execute "!astyle -A3s4cCSLwYmMfUpHjk1nz".docformat." --options=none '".fullpath."'"
+        "exe "!astyle '".fullpath."'"
+    elseif &ft == 'java'
+        execute "!astyle --options=none --style=java -A3s4cCSLwYmMfUpHjk1nz".docformat." '".fullpath."'"
+    endif
+
+    execute "redraw!"
+endfunction " }}}2
+
+funct! Compilec_pp()   " {{{2
+    let dir=expand("%:h:t")
+    let fulldir=expand("%:p:h")
+    let fname=expand("%:t")
+    let fullname = expand("%:p")
+    let exefname = expand("%:t:r")
+    let exefullname = fulldir.'/'.fname
+
+    "call checkheader()
+
+    if &ft == 'c'
+        set makeprg=gcc\ -g\ -Wall\ -o\ %<\.exe\ %
+        set makeprg=clang\ -g\ -Wall\ -o\ %<\.exe\ %
+    elseif &ft == 'cpp'
+        set makeprg=g++\ -std=c++0x\ -g\ -Wall\ -o\ %<\.exe\ %
+        set makeprg=clang++\ -std=c++0x\ -g\ -Wall\ -o\ %<\.exe\ %
+    else
+        execute "!notify-send -i vim 'falurely' 'this is not a c/cpp file'"
+        return
+    endif
+
+    "if findfile(exefname.'.exe', fulldir) == dir.'/'.exefname.'.exe' && \
+    "delete(fulldir.'/'.exefname.'exe') != 0
+        "execute "!notify-send -i vim 'falurely' 'delete falurely'"
+        "return
+    "endif
+    make
+endfunc " }}}2
+
+"func! Checkheader()   " {{{2
+    "let g:use_thread=0
+    "let g:use_math=0
+    "let g:use_aput=0
+
+    "for line in getline()
+        "if !~ "#include"
+        "endif
+
+        "if =~ "<pthread.h>"
+            "exec "let g:use_thread=1"
+        "endif
+
+        "if =~ "<math.h>"
+            "exec "let g:use_math=1"
+        "endif
+
+        "if =~ "\"apue.h\""
+            "exec "let g:use_apue=1"
+        "endif
+    "endfor
+
+"endfunc " }}}2
+
+func! Runc_pp()   " {{{2
+    let dir = expand("%:p:h")
+    let fname = expand("%:t:r").'.exe'
+    let exefile = dir.'/'.fname
+    let excmd = "!if [ -f ".exefile." ]; then gnome-terminal -x bash -c \"'".exefile."'; read -s -p 'press any key to exit...' -n 1;\" else notify-send -i vim 'there is not such a file'; fi"
+    silent execute excmd
+    exec 'redraw!'
+endfunc " }}}2
+
+func! Insertdomain()   " {{{2
+    if &ft != 'c' && &ft != 'cpp'
+        return
+    endif
+
+    if has('win32')
+        let newline='\r\n'
+    else
+        let newline='\r'
+    endif
+
+    let classname = input('input class name: ')
+    let cmd = "%s/\\<\\(\\~\\?\\(\\a\\|_\\)\\w*(.*)\\s*\\w*\\s*\\);/".classname."::\\1".newline."{".newline."}".newline."/g"
+    exec cmd
+endfunc " }}}2
+
+func! Fileencoding()   " {{{2
+    if &fenc == ""
+        return ""
+    endif
+
+    let b=""
+
+    if exists("+bomb") && &bomb
+        let b = "+b"
+    endif
+
+    return "[".&fenc.b."]"
+endfunc " }}}2
+
+func! Statusline()   " {{{2
+    return "%f %m%y%r".Fileencoding()."%q%w[%{&ff}]%=%l,%c%V%12P"
+endfunc " }}}2
+
+func! Emacs_ctrl_l()   " {{{2
+    let pos = s:pos_marker()
+
+    call s:scroll(pos)
+endfunc " }}}2
+
+func! s:pos_marker()   " {{{2
+    let win_line_nu = winheight(0)
+    let cur_line_nu = winline()
+    let half_lines = (win_line_nu + 1) / 2
+
+    if cur_line_nu == 1
+        " top
+        return 2
+    elseif cur_line_nu <= half_lines
+        " (top, middle]
+        return 1
+    else
+        " (middle, bottom]
+        return 0
+    endif
+endfunc " }}}2
+
+func! s:scroll(pos)   " {{{2
+    if a:pos == 2
+        " from top to bottom
+        normal zb
+    elseif a:pos == 1
+        " from middle to top
+        normal zt
+    else
+        " from bottom to middle
+        normal zz
+    endif
+endfunc " }}}2
+
+func! AutoNewLine()   " {{{2
+    let last_line = getline('$')
+    if last_line != ""
+        call append('$', [''])
+    endif
+endfunc " }}}2
+
+func! OpenVimrc()   " {{{2
+    if getline(nextnonblank(1)) == ""
+        e $MYVIMRC
+    else
+        vsp $MYVIMRC
+    endif
+endfunc " }}}2
+
+func! CreateNoteFunc(name)  " {{{2
+    if !exists("g:note_path")
+        let g:note_path = "~/Dropbox/notes/"
+    endif
+
+    if g:note_path !~ '/$'
+        let g:note_path = g:note_path . '/'
+    endif
+
+    exec "edit " . g:note_path . a:name
+endfunc   "}}}2
+" }}}1
+
+
+func! TabMapAux(num)
+    let num = a:num == 0 ? 10 : a:num
+    exec "map <leader>".num." ".num."gt"
+endfunc
+func! TabMap()
+    let i = 0
+    while i < 10
+        call TabMapAux(i)
+        let i += 1
+    endwhile
+endfunc
+call TabMap()
+
+set tabline=%!MyTabLine()  " custom tab pages line
+
+function! MyTabLine()
+  let s = ''
+  let t = tabpagenr()
+  let i = 1
+  while i <= tabpagenr('$')
+    let buflist = tabpagebuflist(i)
+    let winnr = tabpagewinnr(i)
+    let s .= '%' . i . 'T'
+    let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
+    let bufnr = buflist[winnr - 1]
+    let file = bufname(bufnr)
+    let buftype = getbufvar(bufnr, 'buftype')
+    if buftype == 'nofile'
+      if file =~ '\/.'
+        let file = substitute(file, '.*\/\ze.', '', '')
+      endif
+    else
+      let file = fnamemodify(file, ':p:t')
+    endif
+    if file == ''
+      let file = '[No Name]'
+    endif
+    let s .= string(i) . ":"
+    let file = strpart(file, 0, 10)
+    let s .= file
+    let i = i + 1
+  endwhile
+  let s .= '%T%#TabLineFill#%='
+  let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
+  return s
+endfunction
+
+=======
+>>>>>>> master
