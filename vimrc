@@ -302,7 +302,6 @@ function! MyTabLine()   " {{{2
 endfunction "}}}2
 
 func! DeleteTrailingBlank()   " {{{2
-    " TODO: this is wrong, fix it
     exec ':silent! %s/\s\+$//g'
 endfunc " }}}2
 " }}}1
