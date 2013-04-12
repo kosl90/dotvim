@@ -257,12 +257,11 @@ func! CreateNoteFunc(name)  " {{{2
 endfunc   "}}}2
 
 func! TabMapAux(num)   " {{{2
-    let num = a:num == 0 ? 10 : a:num
-    exec "map <leader>".num." ".num."gt"
+    exec "map <leader>".a:num." ".a:num."gt"
 endfunc " }}}2
 
 func! TabMap()  " {{{2
-    let i = 0
+    let i = 1
     while i < 10
         call TabMapAux(i)
         let i += 1
