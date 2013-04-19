@@ -525,19 +525,20 @@ let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler='clang++'
 let g:syntastic_cpp_compiler_options=' -std=c++0x'
 let g:syntastic_cpp_auto_refresh_includes = 1
-nmap ,e :Error<CR>
-nmap ,c :SyntasticCheck<CR>
-nmap ,t :SyntasticToggleMode<CR>
+nmap \e :Error<CR>
+nmap \c :SyntasticCheck<CR>
+nmap \t :SyntasticToggleMode<CR>
 " }}}2
 " }}}1
 
 " mapping   {{{1
+let mapleader=','
 nmap 0 ^
 nmap <leader>e :call OpenVimrc()<CR>
 nmap <leader>s :so $MYVIMRC<CR>
-nmap <leader>w :lcd %:p:h<CR>
+nmap <leader>d :lcd %:p:h<CR>
 nmap <C-S> <ESC>:w<CR>
-nmap ,s <ESC>:w<CR>
+nmap <leader>w <ESC>:w<CR>
 vmap <C-C> "+y
 "imap <c-v> <esc>"+gp
 "nmap <c-v> "+gp
