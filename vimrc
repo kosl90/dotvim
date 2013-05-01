@@ -422,6 +422,9 @@ set list
 " autocmd   {{{1
 au VimEnter * call ChangeUnimpariedMap()
 
+" auto read template
+au BufNewFile README* 0read ~/.vim/template/README.md
+
 " set filetype   {{{2
 au BufReadPost,BufNewFile .xmobarrc,xmobarrc set filetype=haskell
 au BufReadPost,BufNewFile *.zsh* set filetype=zsh
