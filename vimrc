@@ -337,6 +337,7 @@ set autowriteall
 let $PATH=$PATH . ':' . expand('~/.cabal/bin')
 set path=.,./*/*,../include,/usr/include/*,/usr/include/c++/*/*
 set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.chm,#*#
+let mapleader=','
 
 let auto_new_line = 1
 " }}}2
@@ -575,3 +576,5 @@ nnoremap <leader>l <C-L>
 nmap <C-H> :h<space>
 nmap <C-E> :set fileencoding=utf8
 " }}}1
+
+set spell
