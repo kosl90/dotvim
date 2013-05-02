@@ -337,6 +337,7 @@ set autowriteall
 let $PATH=$PATH . ':' . expand('~/.cabal/bin')
 set path=.,./*/*,../include,/usr/include/*,/usr/include/c++/*/*
 set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.chm,#*#
+let mapleader=','
 
 let auto_new_line = 1
 " }}}2
@@ -535,7 +536,6 @@ nmap \t :SyntasticToggleMode<CR>
 " }}}1
 
 " mapping   {{{1
-let mapleader=','
 nmap 0 ^
 nmap <leader>e :call OpenVimrc()<CR>
 nmap <leader>s :so $MYVIMRC<CR>
