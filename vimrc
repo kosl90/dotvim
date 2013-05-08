@@ -60,6 +60,8 @@ Bundle 'a.vim'
 
 " function definition   {{{1
 func! ChangeUnimpariedMap()   " {{{2
+    unmap [b
+    unmap ]b
     nmap [t :tabprevious<CR>
     nmap ]t :tabnext<CR>
     nmap [T :tabfirst<CR>
@@ -323,6 +325,7 @@ set showmatch
 set matchtime=1
 set fo+=mt
 set cursorline  " heighlight current line
+" set cursorcolumn
 set autochdir
 
 if has('mouse')
@@ -576,5 +579,3 @@ nnoremap <leader>l <C-L>
 nmap <C-H> :h<space>
 nmap <C-E> :set fileencoding=utf8
 " }}}1
-
-set spell
