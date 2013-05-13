@@ -539,6 +539,7 @@ nmap \t :SyntasticToggleMode<CR>
 " }}}1
 
 " mapping   {{{1
+let mapleader=','
 nmap 0 ^
 nmap <leader>e :call OpenVimrc()<CR>
 nmap <leader>s :so $MYVIMRC<CR>
