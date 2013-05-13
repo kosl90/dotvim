@@ -544,6 +544,7 @@ nmap 0 ^
 nmap <leader>e :call OpenVimrc()<CR>
 nmap <leader>s :so $MYVIMRC<CR>
 nmap <leader>d :lcd %:p:h<CR>
+nmap <leader>c :bd<CR>
 nmap <C-S> <ESC>:w<CR>
 nmap <leader>w <ESC>:w<CR>
 vmap <C-C> "+y
