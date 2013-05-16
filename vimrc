@@ -17,16 +17,17 @@ let g:note_path="~/Dropbox/notes"
 
 " Bundles   {{{1
 "on github   {{{2
+" Bundle 'frerich/unicode-haskell'
 Bundle 'mileszs/ack.vim'
-Bundle 'ujihisa/neco-ghc'
-Bundle 'Shougo/vimproc'
-Bundle 'eagletmt/ghcmod-vim'
+" Bundle 'ujihisa/neco-ghc'
+" Bundle 'Shougo/vimproc'
+" Bundle 'eagletmt/ghcmod-vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'gmarik/vundle'
 " Bundle 'Rip-Rip/clang_complete'
 Bundle 'kien/ctrlp.vim'
 
-Bundle 'xuhdev/SingleCompile'
+" Bundle 'xuhdev/SingleCompile'
 Bundle 'vim-scripts/css3'
 Bundle 'vim-scripts/LargeFile'
 " maybe someone will be deleted
@@ -543,8 +544,8 @@ let mapleader=','
 nmap 0 ^
 nmap <leader>e :call OpenVimrc()<CR>
 nmap <leader>s :so $MYVIMRC<CR>
-nmap <leader>d :lcd %:p:h<CR>
-nmap <leader>c :bd<CR>
+nmap <leader>c :lcd %:p:h<CR>
+nmap <leader>d :bd<CR>
 nmap <C-S> <ESC>:w<CR>
 nmap <leader>w <ESC>:w<CR>
 vmap <C-C> "+y
