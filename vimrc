@@ -377,7 +377,7 @@ if &t_Co > 2 || has("gui_running")
     endif
 
     if !has("gui_running")
-        hi Normal ctermbg=none
+        " hi Normal ctermbg=none
         hi LineNr ctermbg=none
         hi NonText ctermbg=none
         hi Comment ctermfg=228
