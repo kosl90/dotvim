@@ -17,6 +17,8 @@ let g:note_path="~/Dropbox/notes"
 
 " Bundles   {{{1
 "on github   {{{2
+Bundle 'nathanaelkane/vim-indent-guides'
+
 " Bundle 'frerich/unicode-haskell'
 Bundle 'mileszs/ack.vim'
 " Bundle 'ujihisa/neco-ghc'
@@ -340,7 +342,7 @@ set autowriteall
 
 let $PATH=$PATH . ':' . expand('~/.cabal/bin')
 set path=.,./*/*,../include,/usr/include/*,/usr/include/c++/*/*
-set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.chm,#*#
+set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.chm,#*#,*.hi
 let mapleader=','
 
 let auto_new_line = 1
@@ -461,6 +463,12 @@ command! -nargs=1 CreateNote :call CreateNoteFunc(<q-args>)
 " plugin   {{{1
 runtime! macros/matchit.vim
 runtime! ftplugin/man.vim
+
+" indent-guides   {{{2
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_enable_on_vim_startup = 0
+" }}}2
 
 " UltiSnips   {{{2
 let g:UltiSnipsExpandTrigger="<tab>"
