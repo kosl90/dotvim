@@ -342,7 +342,7 @@ set autowriteall
 
 let $PATH=$PATH . ':' . expand('~/.cabal/bin')
 set path=.,./*/*,../include,/usr/include/*,/usr/include/c++/*/*
-set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.chm,#*#,*.hi
+set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.chm,#*#,*.hi,*.error*
 let mapleader=','
 
 let auto_new_line = 1
@@ -372,20 +372,20 @@ if &t_Co > 2 || has("gui_running")
 
     set t_Co=256  " to use molokai in terminal
 
-    if findfile("molokai.vim", finddir("~/.vim/bundle/molokai/colors")) != ""
+    if &term != "linux" && findfile("molokai.vim", finddir("~/.vim/bundle/molokai/colors")) != ""
         colorscheme molokai
+
+        if !has("gui_running")
+            hi Normal ctermbg=none
+            hi LineNr ctermbg=none
+            hi NonText ctermbg=none
+            hi Comment ctermfg=228
+        endif
+
+        hi ColorColumn ctermbg=238 guibg=darkgray
     else
         colorscheme desert
     endif
-
-    if !has("gui_running")
-        " hi Normal ctermbg=none
-        hi LineNr ctermbg=none
-        hi NonText ctermbg=none
-        hi Comment ctermfg=228
-    endif
-
-    hi ColorColumn ctermbg=238 guibg=darkgray
 endif
 " }}}2
 
