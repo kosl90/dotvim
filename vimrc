@@ -510,9 +510,10 @@ map <C-F4> :Doxauthor<CR>
 
 " clang-complete   {{{2
 " url: http://www.vim.org/scripts/script.php?script_id=3302
-" let g:clang_use_library=1
+let g:clang_use_library=1
 " let g:clang_library_path="/usr/local/lib"
-" let g:clang_auto_select=1
+let g:clang_library_path="/usr/lib"
+let g:clang_auto_select=1
 " }}}2
 
 " snipmate   {{{2
