@@ -48,10 +48,11 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
 
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'mattn/zencoding-vim'
+Bundle 'mattn/emmet-vim'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'kosl90/pyflakes-vim'
 Bundle 'tomasr/molokai'
+Bundle 'AndrewRadev/splitjoin.vim'
 " }}}2
 
 " on vim-scripts   {{{2
@@ -512,8 +513,10 @@ map <C-F4> :Doxauthor<CR>
 " url: http://www.vim.org/scripts/script.php?script_id=3302
 let g:clang_use_library=1
 " let g:clang_library_path="/usr/local/lib"
-let g:clang_library_path="/usr/lib"
-let g:clang_auto_select=1
+" let g:clang_auto_select=1
+" let g:clang_close_preview=1
+" let g:clang_snippets=1
+" let g:clang_user_options='-std=c++0x'
 " }}}2
 
 " snipmate   {{{2
