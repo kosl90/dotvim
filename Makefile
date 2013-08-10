@@ -1,4 +1,4 @@
-.PHONY: all update update-quiet install-base install install-conque install-with-conque
+.PHONY: all update update-quiet install-base install install-conque install-with-conque clean
 
 all: install-base update-quiet
 
@@ -22,3 +22,6 @@ install-conque:
 install: install-base update
 
 install-with-conque: install-base install-conque update
+
+clean:
+	rm -rf *.orig .netrwhist *.sw[op] *~ *.bak \#*\#
