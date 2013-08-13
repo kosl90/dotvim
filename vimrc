@@ -443,7 +443,7 @@ au BufReadPost,BufNewFile *.md,*.note set filetype=markdown
 au BufWritePost .vimrc source $MYVIMRC
 
 " coffee
-au BufWritePost *.coffee :!make > /dev/null
+au BufWritePost *.coffee :!if [ -f makefile ] || [ -f Makefile ]; then make > /dev/null; fi
 " auto complete   {{{2
 au FileType haskell set omnifunc=necoghc#omnifunc
 au FileType python set omnifunc=pythoncomplete#Complete
