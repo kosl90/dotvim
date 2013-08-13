@@ -313,6 +313,7 @@ endfunc " }}}2
 
 " General   {{{1
 " misc {{{2
+set backspace=2
 filetype indent plugin on
 set number
 set foldmethod=marker
