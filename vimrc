@@ -26,7 +26,7 @@ Bundle 'mileszs/ack.vim'
 " Bundle 'eagletmt/ghcmod-vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'gmarik/vundle'
-" Bundle 'Rip-Rip/clang_complete'
+Bundle 'Rip-Rip/clang_complete'
 Bundle 'kien/ctrlp.vim'
 
 " Bundle 'xuhdev/SingleCompile'
@@ -313,6 +313,8 @@ endfunc " }}}2
 
 " General   {{{1
 " misc {{{2
+let mapleader=','
+set backspace=2
 filetype indent plugin on
 set number
 set foldmethod=marker
@@ -344,7 +346,6 @@ set autowriteall
 let $PATH=$PATH . ':' . expand('~/.cabal/bin')
 set path=.,./*/*,../include,/usr/include/*,/usr/include/c++/*/*
 set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.chm,#*#,*.hi,*.error*
-let mapleader=','
 
 let auto_new_line = 1
 " }}}2
@@ -443,7 +444,7 @@ au BufReadPost,BufNewFile *.md,*.note set filetype=markdown
 au BufWritePost .vimrc source $MYVIMRC
 
 " coffee
-au BufWritePost *.coffee :!make > /dev/null
+au BufWritePost *.coffee :!if [ -f makefile ] || [ -f Makefile ]; then make > /dev/null; fi
 " auto complete   {{{2
 au FileType haskell set omnifunc=necoghc#omnifunc
 au FileType python set omnifunc=pythoncomplete#Complete
@@ -552,7 +553,6 @@ nmap \t :SyntasticToggleMode<CR>
 " }}}1
 
 " mapping   {{{1
-let mapleader=','
 nmap 0 ^
 nmap <leader>e :call OpenVimrc()<CR>
 nmap <leader>s :so $MYVIMRC<CR>
@@ -592,6 +592,10 @@ nmap <C-L> :call Emacs_ctrl_l()<CR>
 nnoremap <leader>l <C-L>
 nmap <C-H> :h<space>
 nmap <C-E> :set fileencoding=utf8
+" map <C-A> to move cursor to the begin of line
+cmap <C-A> <C-B>
+nmap <leader>a :Ack "<cword>"
+nmap <leader>q :cclose<CR>
 " }}}1
 
 " set spell
