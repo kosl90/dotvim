@@ -313,6 +313,7 @@ endfunc " }}}2
 
 " General   {{{1
 " misc {{{2
+let mapleader=','
 set backspace=2
 filetype indent plugin on
 set number
@@ -345,7 +346,6 @@ set autowriteall
 let $PATH=$PATH . ':' . expand('~/.cabal/bin')
 set path=.,./*/*,../include,/usr/include/*,/usr/include/c++/*/*
 set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.chm,#*#,*.hi,*.error*
-let mapleader=','
 
 let auto_new_line = 1
 " }}}2
@@ -553,7 +553,6 @@ nmap \t :SyntasticToggleMode<CR>
 " }}}1
 
 " mapping   {{{1
-let mapleader=','
 nmap 0 ^
 nmap <leader>e :call OpenVimrc()<CR>
 nmap <leader>s :so $MYVIMRC<CR>
@@ -593,4 +592,8 @@ nmap <C-L> :call Emacs_ctrl_l()<CR>
 nnoremap <leader>l <C-L>
 nmap <C-H> :h<space>
 nmap <C-E> :set fileencoding=utf8
+" map <C-A> to move cursor to the begin of line
+cmap <C-A> <C-B>
+nmap <leader>a :Ack "<cword>"
+nmap <leader>q :cclose<CR>
 " }}}1
