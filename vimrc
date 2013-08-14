@@ -26,7 +26,7 @@ Bundle 'mileszs/ack.vim'
 " Bundle 'eagletmt/ghcmod-vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'gmarik/vundle'
-Bundle 'Rip-Rip/clang_complete'
+" Bundle 'Rip-Rip/clang_complete'
 Bundle 'kien/ctrlp.vim'
 
 " Bundle 'xuhdev/SingleCompile'
