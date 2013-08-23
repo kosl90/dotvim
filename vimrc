@@ -4,10 +4,8 @@ set nocompatible
 
 " Vundle   {{{2
 filetype off
-if 'bundle' !~ &rtp
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
-end
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 " }}}2
 
 " Variables   {{{2
@@ -238,7 +236,7 @@ endfunc " }}}2
 func! AutoNewLine()   " {{{2
     let last_line = getline('$')
     if last_line != ""
-        call append('$', [''])
+        call append(line('$'), [''])
     endif
 endfunc " }}}2
 
@@ -309,6 +307,46 @@ endfunction "}}}2
 func! DeleteTrailingBlank()   " {{{2
     exec ':silent! %s/\s\+$//g'
 endfunc " }}}2
+
+fun! Find(args)  " {{{2
+    let g = ""
+    let j = ""
+    let files = "%"
+    let pat = ""
+    let args = split(a:args)
+    if len(args) == 1
+        let pat = args[0]
+    elseif len(args) == 2
+        if args[0] == '-g'
+            let g = 'g'
+            let pat = args[1]
+        elseif args[0] == '-j'
+            let j = 'j'
+            let pat = args[1]
+        elseif args[0] == '-gj' || args[0] == '-jg'
+            let g = 'g'
+            let j = 'j'
+            let pat = args[1]
+        else
+            let pat = args[0]
+            let files = args[1]
+        endif
+    elseif len(args) >= 3
+        if args[0] == '-j'
+            let j = 'j'
+        elseif args[0] == '-g'
+            let g = 'g'
+        elseif args[0] == '-gj' || args[0] == '-jg'
+            let j = 'j'
+            let g = 'g'
+        endif
+
+        let pat = args[1]
+        let files = join(args[2:], ' ')
+    endif
+
+    exec 'vimgrep /'.pat.'/'.g.j.' '.files
+endfunction  " }}}2
 " }}}1
 
 " General   {{{1
@@ -346,6 +384,8 @@ set autowriteall
 let $PATH=$PATH . ':' . expand('~/.cabal/bin')
 set path=.,./*/*,../include,/usr/include/*,/usr/include/c++/*/*
 set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.chm,#*#,*.hi,*.error*
+
+set bufhidden=delete
 
 let auto_new_line = 1
 " }}}2
@@ -432,7 +472,7 @@ set list
 au VimEnter * call ChangeUnimpariedMap()
 
 " auto read template
-au BufNewFile README* 0read ~/.vim/template/README.md
+au BufNewFile README* if !filereadable("%") | 0read ~/.vim/template/README.md | endif
 
 " set filetype   {{{2
 au BufReadPost,BufNewFile .xmobarrc,xmobarrc set filetype=haskell
@@ -452,7 +492,7 @@ au FileType ruby set omnifunc=rubycomplete#Complete
 " }}}2
 
 if exists('auto_new_line') && auto_new_line
-    au BufWritePre,FileWritePre,BufUnload *.c$,*.cc$,*.cpp$ call AutoNewLine()
+    au BufWritePre,FileWritePre,BufUnload *.c,*.cc,*.cpp call AutoNewLine()
 endif
 
 au BufWritePre,FileWritePre,BufUnload * call DeleteTrailingBlank()
@@ -460,6 +500,8 @@ au BufWritePre,FileWritePre,BufUnload * call DeleteTrailingBlank()
 
 " command   {{{1
 command! -nargs=1 CreateNote :call CreateNoteFunc(<q-args>)
+
+command! -nargs=* Find :call Find(<q-args>)
 " }}}1
 
 " plugin   {{{1
@@ -596,6 +638,9 @@ nmap <C-E> :set fileencoding=utf8
 " map <C-A> to move cursor to the begin of line
 cmap <C-A> <C-B>
 nmap <leader>a :Ack "<cword>"
-nmap <leader>q :cclose<CR>
-nmap <C-O> :tabnew<space>
+nmap <leader>q :cclose<CR>:pc<CR>
+" nmap <C-O> :tabnew<space>
+nmap <F3> :cn<CR>
+nmap <S-F3> :cp<CR>
+nmap <leader>o :copen<CR>
 " }}}1
