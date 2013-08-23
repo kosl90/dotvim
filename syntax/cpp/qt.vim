@@ -9,7 +9,7 @@
 "
 "
 syn keyword qClass QAccel QDict QIconFactory QPicture QSyntaxHighlighter
-syn keyword qClass QAccessible QDictIterator QIconSet QPixmap Qt
+syn keyword qClass QAccessible QDictIterator QIconSet QPixmap
 syn keyword qClass QAccessibleInterface QDir QIconView QPixmapCache QTab
 syn keyword qClass QAccessibleObject QDirectPainter QIconViewItem QPlatinumStyle QTabBar
 syn keyword qClass QAction QDns QImage QPNGImagePacker QTabDialog
@@ -100,10 +100,18 @@ syn keyword     cDefine           Q_ASSERT Q_CHECK_PTR Q_OBJECT
 
 
 " self added
-syn keyword qClass QTableWidget QTableView QTableWidgetItem
+syn keyword qNamespace Qt
+syn keyword qClass QTableWidget QTableView QTableWidgetItem QTableWidgetSelectionRange
 syn keyword cppStatement emit
 syn keyword cppAccess signales slots
+" QIODevice
+syn keyword cppConstant WriteOnly ReadOnly
+" QDataStream
+syn keyword cppConstant Qt_4_3
+" Qt
+syn keyword cppConstant WaitCursor
+syn keyword cppType qint8 quint8 qint16 quint16 qint32 quint32 qint64 quint64
 
 " highlight Qt classes like bulid-in cpp types
 highlight link qClass Type
-
+highlight link qNamespace cppConstant

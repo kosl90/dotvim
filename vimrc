@@ -369,7 +369,7 @@ endif
 " switch syntax highlighting on, when the terminal has colors.
 " also switch on highlighting the laast used search pattern.
 if &t_Co > 2 || has("gui_running")
-    syntax on
+    syntax enable
     set hlsearch
 
     set t_Co=256  " to use molokai in terminal
@@ -467,6 +467,7 @@ runtime! macros/matchit.vim
 runtime! ftplugin/man.vim
 
 " indent-guides   {{{2
+nmap <leader>g :IndentGuidesToggle<CR>
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_enable_on_vim_startup = 0
@@ -596,4 +597,5 @@ nmap <C-E> :set fileencoding=utf8
 cmap <C-A> <C-B>
 nmap <leader>a :Ack "<cword>"
 nmap <leader>q :cclose<CR>
+nmap <C-O> :tabnew<space>
 " }}}1
