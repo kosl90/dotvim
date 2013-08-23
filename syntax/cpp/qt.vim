@@ -88,15 +88,21 @@ syn keyword qClass QDateTimeEdit QHttpHeader QPainter QStyleFactory QXmlNamespac
 syn keyword qClass QDeepCopy QHttpRequestHeader QPaintEvent QStyleOption QXmlParseException
 syn keyword qClass QDesktopWidget QHttpResponseHeader QPair QStylePlugin QXmlReader
 syn keyword qClass QDial QIconDrag QPalette QStyleSheet QXmlSimpleReader
-syn keyword qClass QDialog QIconDragItem QPen QStyleSheetItem QXtWidget 
+syn keyword qClass QDialog QIconDragItem QPen QStyleSheetItem QXtWidget
 
 " --- Qt keywords
 "
-syn keyword     cType           SIGNAL SLOT
+syn keyword     cDefine           SIGNAL SLOT
 
 " --- Qt Macros
 "
-syn keyword     cType           Q_ASSERT Q_CHECK_PTR Q_OBJECT
+syn keyword     cDefine           Q_ASSERT Q_CHECK_PTR Q_OBJECT
+
+
+" self added
+syn keyword qClass QTableWidget QTableView QTableWidgetItem
+syn keyword cppStatement emit
+syn keyword cppAccess signales slots
 
 " highlight Qt classes like bulid-in cpp types
 highlight link qClass Type
