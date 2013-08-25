@@ -4,8 +4,12 @@ set nocompatible
 
 " Vundle   {{{2
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" FIXME: to set rtp once
+if !exists("g:did_vimrc_init")
+    let g:did_vimrc_init = 1
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
+endif
 " }}}2
 
 " Variables   {{{2
@@ -49,6 +53,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'mattn/emmet-vim'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'kosl90/pyflakes-vim'
+Bundle 'kosl90/qt-highlight-vim'
 Bundle 'tomasr/molokai'
 Bundle 'AndrewRadev/splitjoin.vim'
 " }}}2
@@ -386,6 +391,7 @@ set path=.,./*/*,../include,/usr/include/*,/usr/include/c++/*/*
 set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.chm,#*#,*.hi,*.error*
 
 set bufhidden=delete
+set timeoutlen=300
 
 let auto_new_line = 1
 " }}}2
@@ -638,9 +644,10 @@ nmap <C-E> :set fileencoding=utf8
 " map <C-A> to move cursor to the begin of line
 cmap <C-A> <C-B>
 nmap <leader>a :Ack "<cword>"
-nmap <leader>q :cclose<CR>:pc<CR>
-" nmap <C-O> :tabnew<space>
+nmap <silent> <leader>q :cclose<CR>:pc<CR>
+nmap o :tabnew<space>
 nmap <F3> :cn<CR>
 nmap <S-F3> :cp<CR>
 nmap <leader>o :copen<CR>
+nmap 1 <C-W>o
 " }}}1
