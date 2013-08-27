@@ -4,10 +4,12 @@ set nocompatible
 
 " Vundle   {{{2
 filetype off
-if 'bundle' !~ &rtp
+" FIXME: to set rtp once
+if !exists("g:did_vimrc_init")
+    let g:did_vimrc_init = 1
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
-end
+endif
 " }}}2
 
 " Variables   {{{2
@@ -51,6 +53,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'mattn/emmet-vim'
 Bundle 'jnwhiteh/vim-golang'
 Bundle 'kosl90/pyflakes-vim'
+Bundle 'kosl90/qt-highlight-vim'
 Bundle 'tomasr/molokai'
 Bundle 'AndrewRadev/splitjoin.vim'
 " }}}2
@@ -238,7 +241,7 @@ endfunc " }}}2
 func! AutoNewLine()   " {{{2
     let last_line = getline('$')
     if last_line != ""
-        call append('$', [''])
+        call append(line('$'), [''])
     endif
 endfunc " }}}2
 
@@ -309,6 +312,46 @@ endfunction "}}}2
 func! DeleteTrailingBlank()   " {{{2
     exec ':silent! %s/\s\+$//g'
 endfunc " }}}2
+
+fun! Find(args)  " {{{2
+    let g = ""
+    let j = ""
+    let files = "%"
+    let pat = ""
+    let args = split(a:args)
+    if len(args) == 1
+        let pat = args[0]
+    elseif len(args) == 2
+        if args[0] == '-g'
+            let g = 'g'
+            let pat = args[1]
+        elseif args[0] == '-j'
+            let j = 'j'
+            let pat = args[1]
+        elseif args[0] == '-gj' || args[0] == '-jg'
+            let g = 'g'
+            let j = 'j'
+            let pat = args[1]
+        else
+            let pat = args[0]
+            let files = args[1]
+        endif
+    elseif len(args) >= 3
+        if args[0] == '-j'
+            let j = 'j'
+        elseif args[0] == '-g'
+            let g = 'g'
+        elseif args[0] == '-gj' || args[0] == '-jg'
+            let j = 'j'
+            let g = 'g'
+        endif
+
+        let pat = args[1]
+        let files = join(args[2:], ' ')
+    endif
+
+    exec 'vimgrep /'.pat.'/'.g.j.' '.files
+endfunction  " }}}2
 " }}}1
 
 " General   {{{1
@@ -347,6 +390,9 @@ let $PATH=$PATH . ':' . expand('~/.cabal/bin')
 set path=.,./*/*,../include,/usr/include/*,/usr/include/c++/*/*
 set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.chm,#*#,*.hi,*.error*
 
+set bufhidden=delete
+set timeoutlen=300
+
 let auto_new_line = 1
 " }}}2
 
@@ -369,7 +415,7 @@ endif
 " switch syntax highlighting on, when the terminal has colors.
 " also switch on highlighting the laast used search pattern.
 if &t_Co > 2 || has("gui_running")
-    syntax on
+    syntax enable
     set hlsearch
 
     set t_Co=256  " to use molokai in terminal
@@ -432,7 +478,7 @@ set list
 au VimEnter * call ChangeUnimpariedMap()
 
 " auto read template
-au BufNewFile README* 0read ~/.vim/template/README.md
+au BufNewFile README* if !filereadable("%") | 0read ~/.vim/template/README.md | endif
 
 " set filetype   {{{2
 au BufReadPost,BufNewFile .xmobarrc,xmobarrc set filetype=haskell
@@ -452,7 +498,7 @@ au FileType ruby set omnifunc=rubycomplete#Complete
 " }}}2
 
 if exists('auto_new_line') && auto_new_line
-    au BufWritePre,FileWritePre,BufUnload *.c$,*.cc$,*.cpp$ call AutoNewLine()
+    au BufWritePre,FileWritePre,BufUnload *.c,*.cc,*.cpp call AutoNewLine()
 endif
 
 au BufWritePre,FileWritePre,BufUnload * call DeleteTrailingBlank()
@@ -460,6 +506,8 @@ au BufWritePre,FileWritePre,BufUnload * call DeleteTrailingBlank()
 
 " command   {{{1
 command! -nargs=1 CreateNote :call CreateNoteFunc(<q-args>)
+
+command! -nargs=* Find :call Find(<q-args>)
 " }}}1
 
 " plugin   {{{1
@@ -467,6 +515,7 @@ runtime! macros/matchit.vim
 runtime! ftplugin/man.vim
 
 " indent-guides   {{{2
+nmap <leader>g :IndentGuidesToggle<CR>
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_enable_on_vim_startup = 0
@@ -595,7 +644,12 @@ nmap <C-E> :set fileencoding=utf8
 " map <C-A> to move cursor to the begin of line
 cmap <C-A> <C-B>
 nmap <leader>a :Ack "<cword>"
-nmap <leader>q :cclose<CR>
+nmap <silent> <leader>q :cclose<CR>:pc<CR>
+nmap o :tabnew<space>
+nmap <F3> :cn<CR>
+nmap <S-F3> :cp<CR>
+nmap <leader>o :copen<CR>
+nmap 1 <C-W>o
 " }}}1
 
 " set spell
