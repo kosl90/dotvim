@@ -20,6 +20,7 @@ let g:note_path="~/Dropbox/notes"
 " Bundles   {{{1
 "on github   {{{2
 Bundle 'nathanaelkane/vim-indent-guides'
+" Bundle 'klen/python-mode'
 
 " Bundle 'frerich/unicode-haskell'
 Bundle 'mileszs/ack.vim'
@@ -650,4 +651,5 @@ nmap <F3> :cn<CR>
 nmap <S-F3> :cp<CR>
 nmap <leader>o :copen<CR>
 nmap 1 <C-W>o
+nmap q :wqa<CR>
 " }}}1
