@@ -650,6 +650,7 @@ nmap <F3> :cn<CR>
 nmap <S-F3> :cp<CR>
 nmap <leader>o :copen<CR>
 nmap 1 <C-W>o
+nmap q :wqa<CR>
 " }}}1
 
 " set spell
