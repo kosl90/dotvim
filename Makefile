@@ -10,7 +10,7 @@ update-quiet:
 
 
 install-base:
-	ln -s ~/.vim/vimrc ~/.vimrc
+	ln -fs ~/.vim/vimrc ~/.vimrc
 	mkdir -p bundle
 	cd bundle && git clone https://github.com/gmarik/vundle.git
 
