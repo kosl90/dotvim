@@ -46,6 +46,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'majutsushi/tagbar'
 Bundle 'SirVer/ultisnips'
 
+Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
@@ -322,7 +323,7 @@ func! Preserve(command)  " {{{2
 endfunc  " }}}2
 
 func! DeleteTrailingBlank()   " {{{2
-    call Preserve("silent! %s/\\s\\+$//e")
+    call Preserve("%s/\\s\\+$//e")
 endfunc " }}}2
 
 fun! Find(args)  " {{{2
@@ -513,7 +514,7 @@ if exists('auto_new_line') && auto_new_line
     au BufWritePre,FileWritePre,BufUnload *.c,*.cc,*.cpp call AutoNewLine()
 endif
 
-au BufWritePre,FileWritePre,BufUnload * call DeleteTrailingBlank()
+au BufWritePre * call DeleteTrailingBlank()
 " }}}1
 
 " command   {{{1
