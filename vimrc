@@ -309,8 +309,19 @@ function! MyTabLine()   " {{{2
   return s
 endfunction "}}}2
 
+func! Preserve(command)  " {{{2
+    let previous_search = @/
+    let previous_cursor_line = line('.')
+    let previous_cursor_column = col('.')
+
+    execute a:command
+
+    let @/ = previous_search
+    call cursor(previous_cursor_line, previous_cursor_column)
+endfunc  " }}}2
+
 func! DeleteTrailingBlank()   " {{{2
-    exec ':silent! %s/\s\+$//g'
+    call Preserve("silent! %s/\\s\\+$//e")
 endfunc " }}}2
 
 fun! Find(args)  " {{{2
@@ -617,8 +628,6 @@ nmap <F5> :call RunPy()<CR>
 nmap <C-F5> :!pep8 %<CR>
 nmap <F6> :call Cfamilyformat()<cr>
 
-" delete the blank of the line
-nmap <F8> :call DeleteTrailingBlank()<CR>
 nmap <C-F8> :%s///g
 nmap <C-N><C-H> :nohls<CR>
 " nmap <f2> :helptags ~/.vim/doc<cr>
