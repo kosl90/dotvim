@@ -653,7 +653,7 @@ nmap <C-H> :h<space>
 nmap <C-E> :set fileencoding=utf8
 " map <C-A> to move cursor to the begin of line
 cmap <C-A> <C-B>
-nmap <leader>a :Ack "<cword>"
+nmap <leader>a :Ack "<cword>"<CR>
 nmap <silent> <leader>q :cclose<CR>:pc<CR>
 nmap o :tabnew<space>
 nmap <F3> :cn<CR>
