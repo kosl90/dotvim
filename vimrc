@@ -19,6 +19,7 @@ let g:note_path="~/Dropbox/notes"
 
 " Bundles   {{{1
 "on github   {{{2
+Bundle 'rking/ag.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 
 " Bundle 'frerich/unicode-haskell'
@@ -466,7 +467,7 @@ set tabline=%!MyTabLine()  " custom tab pages line
 " encoding   {{{2
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
-set ambiwidth=double
+" set ambiwidth=double
 set fileformat=unix
 " }}}2
 
@@ -545,6 +546,9 @@ let g:haskell_indent_if = 0
 
 " ctrlp  {{{2
 let g:ctrlp_show_hidden = 1
+let g:ctrlp_tabpage_position='a'
+nmap <leader>m :CtrlPMRU<CR>
+nmap <leader>b :CtrlPBuffer<CR>
 " }}}2
 
 " doxygentoolkit   {{{2
@@ -660,7 +664,7 @@ nmap <F3> :cn<CR>
 nmap <S-F3> :cp<CR>
 nmap <leader>o :copen<CR>
 nmap 1 <C-W>o
-nmap q :wqa<CR>
+nmap q :qa!<CR>
 " }}}1
 
 " set spell
