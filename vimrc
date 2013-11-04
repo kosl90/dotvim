@@ -665,6 +665,8 @@ nmap <S-F3> :cp<CR>
 nmap <leader>o :copen<CR>
 nmap 1 <C-W>o
 nmap q :qa!<CR>
+" turn off <C-Space>
+imap <Nul> <Space>
 " }}}1
 
 " set spell
