@@ -528,6 +528,14 @@ command! -nargs=* Find :call Find(<q-args>)
 runtime! macros/matchit.vim
 runtime! ftplugin/man.vim
 
+" let g:gitgutter_enabled=0
+
+" tcomment  {{{2
+let g:tcommentLineC = {
+            \ 'commentstring': '// %s'
+            \ }
+" }}}2
+
 " indent-guides   {{{2
 nmap <leader>g :IndentGuidesToggle<CR>
 let g:indent_guides_guide_size = 1
