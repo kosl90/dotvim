@@ -38,7 +38,7 @@ Bundle 'vim-scripts/css3'
 Bundle 'vim-scripts/LargeFile'
 " maybe someone will be deleted
 Bundle "vim-scripts/gtk-vim-syntax"
-Bundle "vim-scripts/gtk-mode"
+" Bundle "vim-scripts/gtk-mode"
 
 Bundle 'tomtom/tcomment_vim'
 Bundle 'scrooloose/nerdtree'
@@ -493,6 +493,7 @@ au VimEnter * call ChangeUnimpariedMap()
 
 " auto read template
 au BufNewFile README* if !filereadable("%") | 0read ~/.vim/template/README.md | endif
+au BufNewFile *.html,*.htm if !filereadable("%") | 0read ~/.vim/template/html.html | endif
 
 " set filetype   {{{2
 au BufReadPost,BufNewFile .xmobarrc,xmobarrc set filetype=haskell
@@ -527,6 +528,14 @@ command! -nargs=* Find :call Find(<q-args>)
 " plugin   {{{1
 runtime! macros/matchit.vim
 runtime! ftplugin/man.vim
+
+" let g:gitgutter_enabled=0
+
+" tcomment  {{{2
+let g:tcommentLineC = {
+            \ 'commentstring': '// %s'
+            \ }
+" }}}2
 
 " indent-guides   {{{2
 nmap <leader>g :IndentGuidesToggle<CR>
@@ -658,7 +667,7 @@ nmap <C-H> :h<space>
 nmap <C-E> :set fileencoding=utf8
 " map <C-A> to move cursor to the begin of line
 cmap <C-A> <C-B>
-nmap <leader>a :Ack "<cword>"<CR>
+nmap <leader>a :Ag "<cword>"<CR>
 nmap <silent> <leader>q :cclose<CR>:pc<CR>
 nmap o :tabnew<space>
 nmap <F3> :cn<CR>
