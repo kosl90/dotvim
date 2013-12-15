@@ -4,16 +4,13 @@ set nocompatible
 
 " Vundle   {{{2
 filetype off
-" FIXME: to set rtp once
-if !exists("g:did_vimrc_init")
-    let g:did_vimrc_init = 1
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
-endif
+setlocal rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 " }}}2
 
 " Variables   {{{2
 let g:note_path="~/Dropbox/notes"
+let g:markdown_internal_inline=1
 " }}}2
 " }}}1
 
@@ -478,13 +475,12 @@ set cin
 set autoindent
 set smartindent
 set smarttab
-set expandtab
 set tabstop=8  " tab length 8
-set shiftwidth=4  " indent length 4
-set softtabstop=4
-set cinoptions=:0,l1,g0,(0
-set listchars=tab:>-,trail:-
-set list
+set cinoptions=:0,l1,g0,(0,N-s,t0
+set listchars=tab:>-,eol:†
+" set listchars+=trail:⎵
+" set listchars+=trail:⌷
+" ⌷  †  ⍊  ⍛  ♏
 " }}}2
 " }}}1
 
@@ -498,6 +494,7 @@ au BufNewFile README* if !filereadable("%") | 0read ~/.vim/template/README.md | 
 au BufReadPost,BufNewFile .xmobarrc,xmobarrc set filetype=haskell
 au BufReadPost,BufNewFile *.zsh* set filetype=zsh
 au BufReadPost,BufNewFile *.md,*.note set filetype=markdown
+au BufReadPost,BufNewFile *.conf set filetype=sh
 " }}}2
 
 " auto source .vimrc when saving
@@ -515,7 +512,18 @@ if exists('auto_new_line') && auto_new_line
     au BufWritePre,FileWritePre,BufUnload *.c,*.cc,*.cpp call AutoNewLine()
 endif
 
-au BufWritePre * call DeleteTrailingBlank()
+au BufWritePre *.c,*.h,*.cpp,*.cc,*.py,*.rb,*.go,*.md,*.hs call DeleteTrailingBlank()
+
+au BufRead,BufNewFile *.go setlocal list
+au BufRead,BufNewFile *.c,*.h,*.hpp,*.cpp,*.cc,*.py,*.md,*.hs setlocal list
+			\ expandtab
+			\ shiftwidth=4  " indent length 4
+			\ softtabstop=4
+
+au BufRead,BufNewFile *.rb setlocal list
+			\ expandtab
+			\ shiftwidth=2  " indent length 2
+			\ softtabstop=2
 " }}}1
 
 " command   {{{1
@@ -667,3 +675,6 @@ nmap <leader>o :copen<CR>
 nmap 1 <C-W>o
 nmap q :qa!<CR>
 " }}}1
+
+
+" set list
