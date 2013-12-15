@@ -35,7 +35,7 @@ Bundle 'vim-scripts/css3'
 Bundle 'vim-scripts/LargeFile'
 " maybe someone will be deleted
 Bundle "vim-scripts/gtk-vim-syntax"
-Bundle "vim-scripts/gtk-mode"
+" Bundle "vim-scripts/gtk-mode"
 
 Bundle 'tomtom/tcomment_vim'
 Bundle 'scrooloose/nerdtree'
@@ -489,6 +489,7 @@ au VimEnter * call ChangeUnimpariedMap()
 
 " auto read template
 au BufNewFile README* if !filereadable("%") | 0read ~/.vim/template/README.md | endif
+au BufNewFile *.html,*.htm if !filereadable("%") | 0read ~/.vim/template/html.html | endif
 
 " set filetype   {{{2
 au BufReadPost,BufNewFile .xmobarrc,xmobarrc set filetype=haskell
@@ -535,6 +536,14 @@ command! -nargs=* Find :call Find(<q-args>)
 " plugin   {{{1
 runtime! macros/matchit.vim
 runtime! ftplugin/man.vim
+
+" let g:gitgutter_enabled=0
+
+" tcomment  {{{2
+let g:tcommentLineC = {
+            \ 'commentstring': '// %s'
+            \ }
+" }}}2
 
 " indent-guides   {{{2
 nmap <leader>g :IndentGuidesToggle<CR>
@@ -586,7 +595,7 @@ map <C-F4> :Doxauthor<CR>
 
 " clang-complete   {{{2
 " url: http://www.vim.org/scripts/script.php?script_id=3302
-" let g:clang_use_library=1
+let g:clang_use_library=1
 " let g:clang_library_path="/usr/local/lib"
 " let g:clang_auto_select=1
 " let g:clang_close_preview=1
@@ -666,7 +675,7 @@ nmap <C-H> :h<space>
 nmap <C-E> :set fileencoding=utf8
 " map <C-A> to move cursor to the begin of line
 cmap <C-A> <C-B>
-nmap <leader>a :Ack "<cword>"<CR>
+nmap <leader>a :Ag "<cword>"<CR>
 nmap <silent> <leader>q :cclose<CR>:pc<CR>
 nmap o :tabnew<space>
 nmap <F3> :cn<CR>
@@ -674,6 +683,8 @@ nmap <S-F3> :cp<CR>
 nmap <leader>o :copen<CR>
 nmap 1 <C-W>o
 nmap q :qa!<CR>
+" turn off <C-Space>
+imap <Nul> <Space>
 " }}}1
 
 
