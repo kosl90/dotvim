@@ -513,15 +513,15 @@ if exists('auto_new_line') && auto_new_line
     au BufWritePre,FileWritePre,BufUnload *.c,*.cc,*.cpp call AutoNewLine()
 endif
 
-au BufWritePre *.c,*.h,*.cpp,*.cc,*.py,*.rb,*.go,*.md,*.hs call DeleteTrailingBlank()
+au BufWritePre *.c,*.h,*.cpp,*.cc,*.py,*.rb,*.go,*.md,*.hs,*.coffee call DeleteTrailingBlank()
 
 au BufRead,BufNewFile *.go setlocal list
-au BufRead,BufNewFile *.c,*.h,*.hpp,*.cpp,*.cc,*.py,*.md,*.hs setlocal list
+au BufRead,BufNewFile *.c,*.h,*.hpp,*.cpp,*.cc,*.py,*.md,*.hs,*.coffee,*.html setlocal list
 			\ expandtab
 			\ shiftwidth=4  " indent length 4
 			\ softtabstop=4
 
-au BufRead,BufNewFile *.rb setlocal list
+au BufRead,BufNewFile *.rb,*.css,*.js setlocal list
 			\ expandtab
 			\ shiftwidth=2  " indent length 2
 			\ softtabstop=2
