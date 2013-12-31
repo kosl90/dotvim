@@ -514,15 +514,16 @@ if exists('auto_new_line') && auto_new_line
     au BufWritePre,FileWritePre,BufUnload *.c,*.cc,*.cpp call AutoNewLine()
 endif
 
+" TODO use filetype
 au BufWritePre *.c,*.h,*.cpp,*.cc,*.py,*.rb,*.go,*.md,*.hs,*.coffee call DeleteTrailingBlank()
 
-au BufRead,BufNewFile *.go setlocal list
-au BufRead,BufNewFile *.c,*.h,*.hpp,*.cpp,*.cc,*.py,*.md,*.hs,*.coffee,*.html setlocal list
+au FileType go setlocal list
+au FileType c,cpp,python,haskell,html,markdown nested setlocal list
 			\ expandtab
 			\ shiftwidth=4  " indent length 4
 			\ softtabstop=4
 
-au BufRead,BufNewFile *.rb,*.css,*.js setlocal list
+au FileType ruby,css,javascript setlocal list
 			\ expandtab
 			\ shiftwidth=2  " indent length 2
 			\ softtabstop=2
