@@ -1,5 +1,5 @@
-runtime! syntax/html.vim
-unlet b:current_syntax
+" runtime! syntax/html.vim
+" unlet b:current_syntax
 
 " section
 syn keyword htmlTagName contained section nav article aside header footer main
@@ -19,4 +19,4 @@ syn keyword htmlTagName contained datalist keygen output progress meter
 " interactive elements
 syn keyword htmlTagName contained details summary menuitem menu
 
-let b:current_syntax = "html5"
+" let b:current_syntax = "html5"

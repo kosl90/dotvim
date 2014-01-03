@@ -496,7 +496,7 @@ au BufReadPost,BufNewFile .xmobarrc,xmobarrc set filetype=haskell
 au BufReadPost,BufNewFile *.zsh* set filetype=zsh
 au BufReadPost,BufNewFile *.md,*.note set filetype=markdown
 au BufReadPost,BufNewFile *.conf set filetype=sh
-au BufReadPost,BufNewFile *.html set filetype=html5
+" au BufReadPost,BufNewFile *.html set filetype=html5
 " }}}2
 
 " auto source .vimrc when saving
@@ -518,7 +518,7 @@ endif
 au BufWritePre *.c,*.h,*.cpp,*.cc,*.py,*.rb,*.go,*.md,*.hs,*.coffee call DeleteTrailingBlank()
 
 au FileType go setlocal list
-au FileType c,cpp,python,haskell,html,markdown nested setlocal list
+au FileType c,cpp,python,haskell,html,markdown,coffee setlocal list
 			\ expandtab
 			\ shiftwidth=4  " indent length 4
 			\ softtabstop=4
