@@ -16,6 +16,7 @@ let g:markdown_internal_inline=1
 
 " Bundles   {{{1
 "on github   {{{2
+" Bundle "Blackrush/vim-gocode"
 Bundle 'rking/ag.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 " Bundle 'klen/python-mode'
@@ -51,7 +52,7 @@ Bundle 'tpope/vim-surround'
 
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'mattn/emmet-vim'
-Bundle 'jnwhiteh/vim-golang'
+" Bundle 'jnwhiteh/vim-golang'
 Bundle 'kosl90/pyflakes-vim'
 Bundle 'kosl90/qt-highlight-vim'
 Bundle 'tomasr/molokai'
@@ -537,10 +538,14 @@ augroup AutoComplete  " {{{2
     au!
     au FileType haskell set omnifunc=necoghc#omnifunc
     au FileType python set omnifunc=pythoncomplete#Complete
-    au FileType ruby set omnifunc=rubycomplete#Complete
+    " au FileType go set omnifunc=go#complete#Complete
 augroup END
 " }}}2
 
+augroup Compiler  " {{{2
+    au!
+    au FileType go compiler go
+augroup END  " }}}2
 if exists('auto_new_line') && auto_new_line  " {{{2
     au FileType c,cpp au BufWritePre,FileWritePre,BufUnload <buffer> call AutoNewLine()
 endif " }}}2
@@ -660,17 +665,19 @@ let g:snips_author = 'Li Liqiang'
 
 " syntastic   {{{2
 "let g:syntastic_check_on_open=1
-let g:syntastic_mode_map = { 'mode': 'passive',
-            \ 'active_filetypes': ['javascript'],
-            \ 'passive_filetypes':[]}
+let g:syntastic_mode_map = {
+            \ 'mode': 'passive',
+            \ 'active_filetypes': ['javascript', 'go'],
+            \ 'passive_filetypes':[]
+            \ }
 let g:syntastic_error_symbol='x'
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler='clang++'
 let g:syntastic_cpp_compiler_options=' -std=c++0x'
 let g:syntastic_cpp_auto_refresh_includes = 1
-nmap \e :Error<CR>
-nmap \c :SyntasticCheck<CR>
-nmap \t :SyntasticToggleMode<CR>
+nmap <leader><leader>e :Error<CR>
+nmap <leader><leader>c :SyntasticCheck<CR>
+nmap <leader><leader>t :SyntasticToggleMode<CR>
 " }}}2
 " }}}1
 
