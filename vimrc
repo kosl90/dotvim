@@ -65,7 +65,7 @@ Bundle 'a.vim'
 " }}}2
 " }}}1
 
-" function definition   {{{1
+" Functions {{{1
 func! ChangeUnimpariedMap()   " {{{2
     unmap [b
     unmap ]b
@@ -277,7 +277,7 @@ func! TabMap()  " {{{2
     endwhile
 endfunc " }}}2
 
-function! MyTabLine()   " {{{2
+func! MyTabLine()   " {{{2
   let s = ''
   let t = tabpagenr()
   let i = 1
@@ -324,7 +324,7 @@ func! DeleteTrailingBlank()   " {{{2
     call Preserve("%s/\\s\\+$//e")
 endfunc " }}}2
 
-fun! Find(args)  " {{{2
+func! Find(args)  " {{{2
     let g = ""
     let j = ""
     let files = "%"
@@ -363,6 +363,26 @@ fun! Find(args)  " {{{2
 
     exec 'vimgrep /'.pat.'/'.g.j.' '.files
 endfunction  " }}}2
+
+func! ReadTemplate() " {{{2
+    let _file_type = &ft
+    if filereadable('%')
+        return
+    end
+
+    let template_file = {
+                \ "go": "~/.vim/template/tmp.go",
+                \ "html": "~/.vim/template/tmp.html",
+                \ "python": "~/.vim/template/tmp.py",
+                \ "ruby": "~/.vim/template/tmp.rb",
+                \ }
+
+    let path = get(template_file, &ft, "")
+
+    if path != ""
+        silent exec "0read ".path
+    end
+endfunction " }}}2
 " }}}1
 
 " General   {{{1
@@ -487,46 +507,63 @@ set listchars=tab:>-,eol:†
 " autocmd   {{{1
 au VimEnter * call ChangeUnimpariedMap()
 
-" auto read template
-au BufNewFile README* if !filereadable("%") | 0read ~/.vim/template/README.md | endif
-au BufNewFile *.html,*.htm if !filereadable("%") | 0read ~/.vim/template/html.html | endif
+augroup ReadTemplate  " {{{2
+    au!
+    au BufNewFile README* if !filereadable("%") | 0read ~/.vim/template/README.md | endif
+    au BufNewFile * call ReadTemplate()
+augroup END " }}}2
 
-" set filetype   {{{2
-au BufReadPost,BufNewFile .xmobarrc,xmobarrc set filetype=haskell
-au BufReadPost,BufNewFile *.zsh* set filetype=zsh
-au BufReadPost,BufNewFile *.md,*.note set filetype=markdown
-au BufReadPost,BufNewFile *.conf set filetype=sh
+augroup FileTypeSet  " {{{2
+    au!
+    au BufReadPost,BufNewFile .xmobarrc,xmobarrc set filetype=haskell
+    au BufReadPost,BufNewFile *.zsh* set filetype=zsh
+    au BufReadPost,BufNewFile *.md,*.note set filetype=markdown
+    au BufReadPost,BufNewFile *.conf set filetype=sh
+augroup END
 " au BufReadPost,BufNewFile *.html set filetype=html5
 " }}}2
 
-" auto source .vimrc when saving
-au BufWritePost .vimrc source $MYVIMRC
+augroup SaveEvent  " {{{2
+    au!
+    " auto source .vimrc when saving
+    au BufWritePost .vimrc source $MYVIMRC
+    au FileType go au BufWritePre <buffer> Fmt
+    " au FileType coffee au BufWritePost <buffer> :!if [ -f makefile ] || [ -f Makefile ]; then make > /dev/null; fi
+    au FileType c,cpp,go,python,ruby,markdown,haskell,coffee,xml,vim
+                \ au BufWritePre <buffer> call DeleteTrailingBlank()
+augroup END " }}}2
 
-" coffee
-au BufWritePost *.coffee :!if [ -f makefile ] || [ -f Makefile ]; then make > /dev/null; fi
-" auto complete   {{{2
-au FileType haskell set omnifunc=necoghc#omnifunc
-au FileType python set omnifunc=pythoncomplete#Complete
-au FileType ruby set omnifunc=rubycomplete#Complete
+augroup AutoComplete  " {{{2
+    au!
+    au FileType haskell set omnifunc=necoghc#omnifunc
+    au FileType python set omnifunc=pythoncomplete#Complete
+    au FileType ruby set omnifunc=rubycomplete#Complete
+augroup END
 " }}}2
 
-if exists('auto_new_line') && auto_new_line
-    au BufWritePre,FileWritePre,BufUnload *.c,*.cc,*.cpp call AutoNewLine()
-endif
+if exists('auto_new_line') && auto_new_line  " {{{2
+    au FileType c,cpp au BufWritePre,FileWritePre,BufUnload <buffer> call AutoNewLine()
+endif " }}}2
 
-" TODO use filetype
-au BufWritePre *.c,*.h,*.cpp,*.cc,*.py,*.rb,*.go,*.md,*.hs,*.coffee call DeleteTrailingBlank()
+augroup List  " {{{2
+    au!
+    au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml,ruby,css,go
+                \,javascript
+                \ setlocal list
+augroup END  " }}}2
 
-au FileType go setlocal list
-au FileType c,cpp,python,haskell,html,markdown,coffee setlocal list
-			\ expandtab
-			\ shiftwidth=4  " indent length 4
-			\ softtabstop=4
+augroup FileTypeIndent  " {{{2
+    au!
+    au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml
+                \ setlocal expandtab
+                \ shiftwidth=4
+                \ softtabstop=4
 
-au FileType ruby,css,javascript setlocal list
-			\ expandtab
-			\ shiftwidth=2  " indent length 2
-			\ softtabstop=2
+    au FileType ruby,css,javascript
+                \ setlocal expandtab
+                \ shiftwidth=2
+                \ softtabstop=2
+augroup END  " }}}2
 " }}}1
 
 " command   {{{1
@@ -688,6 +725,5 @@ nmap q :qa!<CR>
 " turn off <C-Space>
 imap <Nul> <Space>
 " }}}1
-
 
 " set list
