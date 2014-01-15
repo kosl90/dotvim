@@ -17,7 +17,7 @@ let g:markdown_internal_inline=1
 " Bundles   {{{1
 "on github   {{{2
 Bundle "Blackrush/vim-gocode"
-Bundle "Lokaltog/vim-easymotion"
+" Bundle "Lokaltog/vim-easymotion"
 Bundle 'rking/ag.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 " Bundle 'klen/python-mode'
@@ -36,8 +36,8 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'vim-scripts/css3'
 Bundle 'vim-scripts/LargeFile'
 " maybe someone will be deleted
-Bundle "vim-scripts/gtk-vim-syntax"
-" Bundle "vim-scripts/gtk-mode"
+" Bundle "vim-scripts/gtk-vim-syntax"
+Bundle "vim-scripts/gtk-mode"
 
 Bundle 'tomtom/tcomment_vim'
 Bundle 'scrooloose/nerdtree'
@@ -669,7 +669,7 @@ let g:snips_author = 'Li Liqiang'
 "let g:syntastic_check_on_open=1
 let g:syntastic_mode_map = {
             \ 'mode': 'passive',
-            \ 'active_filetypes': ['javascript', 'go'],
+            \ 'active_filetypes': [],
             \ 'passive_filetypes':[]
             \ }
 let g:syntastic_error_symbol='x'
@@ -733,6 +733,5 @@ nmap 1 <C-W>o
 nmap q :qa!<CR>
 " turn off <C-Space>
 imap <Nul> <Space>
+nmap <F7> :set spell!<CR>
 " }}}1
-
-" set list
