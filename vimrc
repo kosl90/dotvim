@@ -17,6 +17,7 @@ let g:markdown_internal_inline=1
 " Bundles   {{{1
 "on github   {{{2
 " Bundle "Blackrush/vim-gocode"
+Bundle "Lokaltog/vim-easymotion"
 Bundle 'rking/ag.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 " Bundle 'klen/python-mode'
@@ -546,6 +547,7 @@ augroup Compiler  " {{{2
     au!
     au FileType go compiler go
 augroup END  " }}}2
+
 if exists('auto_new_line') && auto_new_line  " {{{2
     au FileType c,cpp au BufWritePre,FileWritePre,BufUnload <buffer> call AutoNewLine()
 endif " }}}2
