@@ -16,7 +16,7 @@ let g:markdown_internal_inline=1
 
 " Bundles   {{{1
 "on github   {{{2
-" Bundle "Blackrush/vim-gocode"
+Bundle "Blackrush/vim-gocode"
 Bundle "Lokaltog/vim-easymotion"
 Bundle 'rking/ag.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
@@ -119,11 +119,11 @@ funct! Compilec_pp()   " {{{2
     "call checkheader()
 
     if &ft == 'c'
-        set makeprg=gcc\ -g\ -Wall\ -o\ %<\.exe\ %
-        set makeprg=clang\ -g\ -Wall\ -o\ %<\.exe\ %
+        setlocal makeprg=gcc\ -g\ -Wall\ -o\ %<\.exe\ %
+        setlocal makeprg=clang\ -g\ -Wall\ -o\ %<\.exe\ %
     elseif &ft == 'cpp'
-        set makeprg=g++\ -std=c++0x\ -g\ -Wall\ -o\ %<\.exe\ %
-        set makeprg=clang++\ -std=c++0x\ -g\ -Wall\ -o\ %<\.exe\ %
+        setlocal makeprg=g++\ -std=c++0x\ -g\ -Wall\ -o\ %<\.exe\ %
+        setlocal makeprg=clang++\ -std=c++0x\ -g\ -Wall\ -o\ %<\.exe\ %
     else
         execute "!notify-send -i vim 'falurely' 'this is not a c/cpp file'"
         return
@@ -389,9 +389,9 @@ endfunction " }}}2
 
 " General   {{{1
 " misc {{{2
+filetype indent plugin on
 let mapleader=','
 set backspace=2
-filetype indent plugin on
 set number
 set foldmethod=marker
 set textwidth=79
@@ -517,10 +517,10 @@ augroup END " }}}2
 
 augroup FileTypeSet  " {{{2
     au!
-    au BufReadPost,BufNewFile .xmobarrc,xmobarrc set filetype=haskell
-    au BufReadPost,BufNewFile *.zsh* set filetype=zsh
-    au BufReadPost,BufNewFile *.md,*.note set filetype=markdown
-    au BufReadPost,BufNewFile *.conf set filetype=sh
+    au BufReadPost,BufNewFile .xmobarrc,xmobarrc setlocal filetype=haskell
+    au BufReadPost,BufNewFile *.zsh* setlocal filetype=zsh
+    au BufReadPost,BufNewFile *.md,*.note setlocal filetype=markdown
+    au BufReadPost,BufNewFile *.conf setlocal filetype=sh
 augroup END
 " au BufReadPost,BufNewFile *.html set filetype=html5
 " }}}2
@@ -537,9 +537,8 @@ augroup END " }}}2
 
 augroup AutoComplete  " {{{2
     au!
-    au FileType haskell set omnifunc=necoghc#omnifunc
-    au FileType python set omnifunc=pythoncomplete#Complete
-    " au FileType go set omnifunc=go#complete#Complete
+    au FileType haskell setlocal omnifunc=necoghc#omnifunc
+    au FileType python setlocal omnifunc=pythoncomplete#Complete
 augroup END
 " }}}2
 
@@ -570,6 +569,7 @@ augroup FileTypeIndent  " {{{2
                 \ setlocal expandtab
                 \ shiftwidth=2
                 \ softtabstop=2
+    au FileType go setlocal nosmarttab
 augroup END  " }}}2
 " }}}1
 
