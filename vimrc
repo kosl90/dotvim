@@ -373,10 +373,10 @@ func! ReadTemplate() " {{{2
     end
 
     let template_file = {
-                \ "go": "~/.vim/template/tmp.go",
-                \ "html": "~/.vim/template/tmp.html",
-                \ "python": "~/.vim/template/tmp.py",
-                \ "ruby": "~/.vim/template/tmp.rb",
+                \ "go": "~/.vim/template/go.go",
+                \ "html": "~/.vim/template/html.html",
+                \ "python": "~/.vim/template/ruby.py",
+                \ "ruby": "~/.vim/template/python.rb",
                 \ }
 
     let path = get(template_file, &ft, "")
