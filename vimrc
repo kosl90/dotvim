@@ -63,6 +63,7 @@ Bundle 'AndrewRadev/splitjoin.vim'
 " on vim-scripts   {{{2
 Bundle 'DoxygenToolkit.vim'
 Bundle 'a.vim'
+Bundle 'DrawIt'
 " Bundle 'conque'
 " }}}2
 " }}}1
@@ -529,7 +530,6 @@ augroup SaveEvent  " {{{2
     au!
     " auto source .vimrc when saving
     au BufWritePost .vimrc source $MYVIMRC
-    au FileType go au BufWritePre <buffer> Fmt
     " au FileType coffee au BufWritePost <buffer> :!if [ -f makefile ] || [ -f Makefile ]; then make > /dev/null; fi
     au FileType c,cpp,go,python,ruby,markdown,haskell,coffee,xml,vim
                 \ au BufWritePre <buffer> call DeleteTrailingBlank()
@@ -554,7 +554,7 @@ endif " }}}2
 augroup List  " {{{2
     au!
     au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml,ruby,css,go
-                \,javascript
+                \,javascript,make
                 \ setlocal list
 augroup END  " }}}2
 
