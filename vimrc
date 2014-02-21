@@ -16,6 +16,7 @@ let g:markdown_internal_inline=1
 
 " Bundles   {{{1
 "on github   {{{2
+" Bundle "tpope/vim-haml"
 Bundle "groenewege/vim-less"
 Bundle "Blackrush/vim-gocode"
 " Bundle "Lokaltog/vim-easymotion"
@@ -35,6 +36,8 @@ Bundle 'kien/ctrlp.vim'
 
 " Bundle 'xuhdev/SingleCompile'
 Bundle 'vim-scripts/css3'
+Bundle 'hail2u/vim-css3-syntax'
+" Bundle 'skammer/vim-css-color'
 Bundle 'vim-scripts/LargeFile'
 " maybe someone will be deleted
 Bundle "vim-scripts/gtk-vim-syntax"
