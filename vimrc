@@ -16,6 +16,7 @@ let g:markdown_internal_inline=1
 
 " Bundles   {{{1
 "on github   {{{2
+Bundle "groenewege/vim-less"
 Bundle "Blackrush/vim-gocode"
 " Bundle "Lokaltog/vim-easymotion"
 Bundle 'rking/ag.vim'
@@ -36,8 +37,8 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'vim-scripts/css3'
 Bundle 'vim-scripts/LargeFile'
 " maybe someone will be deleted
-" Bundle "vim-scripts/gtk-vim-syntax"
-Bundle "vim-scripts/gtk-mode"
+Bundle "vim-scripts/gtk-vim-syntax"
+" Bundle "vim-scripts/gtk-mode"
 
 Bundle 'tomtom/tcomment_vim'
 Bundle 'scrooloose/nerdtree'
@@ -398,7 +399,7 @@ set foldmethod=marker
 set textwidth=79
 set colorcolumn=+1
 set wrap
-set linebreak
+" set linebreak
 set noignorecase
 set incsearch  " instance search
 set wildmenu
@@ -531,7 +532,7 @@ augroup SaveEvent  " {{{2
     " auto source .vimrc when saving
     au BufWritePost .vimrc source $MYVIMRC
     " au FileType coffee au BufWritePost <buffer> :!if [ -f makefile ] || [ -f Makefile ]; then make > /dev/null; fi
-    au FileType c,cpp,go,python,ruby,markdown,haskell,coffee,xml,vim
+    au FileType c,cpp,go,python,ruby,markdown,haskell,coffee,xml,vim,javascript
                 \ au BufWritePre <buffer> call DeleteTrailingBlank()
 augroup END " }}}2
 
