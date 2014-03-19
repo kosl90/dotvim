@@ -25,7 +25,7 @@ Bundle 'nathanaelkane/vim-indent-guides'
 " Bundle 'klen/python-mode'
 
 " Bundle 'frerich/unicode-haskell'
-Bundle 'mileszs/ack.vim'
+" Bundle 'mileszs/ack.vim'
 " Bundle 'ujihisa/neco-ghc'
 " Bundle 'Shougo/vimproc'
 " Bundle 'eagletmt/ghcmod-vim'
@@ -49,6 +49,7 @@ Bundle 'scrooloose/syntastic'
 
 Bundle 'majutsushi/tagbar'
 Bundle 'SirVer/ultisnips'
+Bundle 'honza/vim-snippets'
 
 Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-fugitive'
@@ -67,7 +68,7 @@ Bundle 'AndrewRadev/splitjoin.vim'
 " on vim-scripts   {{{2
 Bundle 'DoxygenToolkit.vim'
 Bundle 'a.vim'
-Bundle 'DrawIt'
+" Bundle 'DrawIt'
 " Bundle 'conque'
 " }}}2
 " }}}1
@@ -726,7 +727,11 @@ nnoremap <leader>l <C-L>
 nmap <C-H> :h<space>
 nmap <C-E> :set fileencoding=utf8
 " map <C-A> to move cursor to the begin of line
-cmap <C-A> <C-B>
+cnoremap <C-A> <C-B>
+cmap <C-B> <Left>
+cmap <C-F> <Right>
+cmap <Esc>b <S-Left>
+cmap <Esc>f <S-Right>
 nmap <leader>a :Ag "<cword>"<CR>
 nmap <silent> <leader>q :cclose<CR>:pc<CR>
 nmap o :tabnew<space>
