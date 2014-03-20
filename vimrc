@@ -16,6 +16,7 @@ let g:markdown_internal_inline=1
 
 " Bundles   {{{1
 "on github   {{{2
+Bundle "Valloric/YouCompleteMe"
 " Bundle "tpope/vim-haml"
 Bundle "groenewege/vim-less"
 Bundle "Blackrush/vim-gocode"
@@ -590,6 +591,14 @@ runtime! ftplugin/man.vim
 
 " let g:gitgutter_enabled=0
 
+" YCM  {{{2
+let g:ycm_key_list_select_completion=["<C-N>", "<Down>", "<Enter>"]
+let g:ycm_key_list_previous_completion=['<C-P>', '<Up>']
+let g:ycm_key_invoke_completion='<C-C>'
+" let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_global_ycm_extra_conf="~/.vim/ycm_extra_conf.py"
+" }}}2
+
 " tcomment  {{{2
 let g:tcommentLineC = {
             \ 'commentstring': '// %s'
@@ -605,6 +614,7 @@ let g:indent_guides_enable_on_vim_startup = 0
 
 " UltiSnips   {{{2
 let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsListSnippets="<C-tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " }}}2
