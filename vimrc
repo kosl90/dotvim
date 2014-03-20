@@ -592,7 +592,7 @@ runtime! ftplugin/man.vim
 " let g:gitgutter_enabled=0
 
 " YCM  {{{2
-let g:ycm_key_list_select_completion=["<C-N>", "<Down>", "<Enter>"]
+let g:ycm_key_list_select_completion=["<C-N>", "<Down>"]
 let g:ycm_key_list_previous_completion=['<C-P>', '<Up>']
 let g:ycm_key_invoke_completion='<C-C>'
 " let g:ycm_autoclose_preview_window_after_insertion = 1
