@@ -16,6 +16,8 @@ let g:markdown_internal_inline=1
 
 " Bundles   {{{1
 "on github   {{{2
+" Bundle "JessicaKMcIntosh/TagmaTasks"
+Bundle "peterhoeg/vim-qml"
 Bundle "Valloric/YouCompleteMe"
 " Bundle "tpope/vim-haml"
 Bundle "groenewege/vim-less"
@@ -339,7 +341,9 @@ func! Find(args)  " {{{2
     let files = "%"
     let pat = ""
     let args = split(a:args)
-    if len(args) == 1
+    if empty(a:args)
+        let pat = expand("<cword>")
+    elseif len(args) == 1
         let pat = args[0]
     elseif len(args) == 2
         if args[0] == '-g'
@@ -380,7 +384,6 @@ func! ReadTemplate() " {{{2
     end
 
     let template_file = {
-                \ "go": "~/.vim/template/go.go",
                 \ "html": "~/.vim/template/html.html",
                 \ "python": "~/.vim/template/python.py",
                 \ "ruby": "~/.vim/template/ruby.rb",
@@ -580,9 +583,11 @@ augroup END  " }}}2
 " }}}1
 
 " command   {{{1
-command! -nargs=1 CreateNote :call CreateNoteFunc(<q-args>)
+command! -nargs=1 -complete=file CreateNote :call CreateNoteFunc(<q-args>)
 
-command! -nargs=* Find :call Find(<q-args>)
+command! -nargs=* -complete=file Find :call Find(<q-args>)
+
+command! -nargs=0 Todo noautocmd vimgrep /TODO\|FIXME/j ** | cw
 " }}}1
 
 " plugin   {{{1
@@ -597,6 +602,7 @@ let g:ycm_key_list_previous_completion=['<C-P>', '<Up>']
 let g:ycm_key_invoke_completion='<C-C>'
 " let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_global_ycm_extra_conf="~/.vim/ycm_extra_conf.py"
+let g:ycm_add_preview_to_completeopt = 1
 " }}}2
 
 " tcomment  {{{2
@@ -644,8 +650,8 @@ let g:doxygentoolkit_datetag="@date - "
 let g:doxygentoolkit_authortag="@author - "
 let g:doxygentoolkit_licensetag="@license - "
 
-map <F4> :Dox<CR>
-map <C-F4> :Doxauthor<CR>
+map <F3> :Dox<CR>
+map <C-F3> :Doxauthor<CR>
 " }}}2
 
 " python-dict   {{{2
@@ -724,6 +730,7 @@ nmap <S-F9> :call Runc_pp()<CR>
 nmap <leader>i :call Insertdomain()<CR>
 nmap <leader>f :NERDTreeToggle<CR>
 nmap <leader>t :TagbarToggle<CR>
+nmap <leader>to :Todo<CR>
 " to avoid popup menu in ubuntu
 imap <F10> <NOP>
 nmap <F10> <NOP>
@@ -742,10 +749,10 @@ cmap <C-B> <Left>
 cmap <C-F> <Right>
 cmap <Esc>b <S-Left>
 cmap <Esc>f <S-Right>
-nmap <leader>a :Ag "<cword>"<CR>
+nmap <leader>a :Ag<CR>
 nmap <silent> <leader>q :cclose<CR>:pc<CR>
 nmap o :tabnew<space>
-nmap <F3> :cn<CR>
+nmap <c-F3> :cn<CR>
 nmap <S-F3> :cp<CR>
 nmap <leader>o :copen<CR>
 nmap 1 <C-W>o
@@ -753,4 +760,6 @@ nmap q :qa!<CR>
 " turn off <C-Space>
 imap <Nul> <Space>
 nmap <F7> :set spell!<CR>
+nmap <F4> :A<CR>
+nmap <leader><leader>f :Find<CR>
 " }}}1
