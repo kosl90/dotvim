@@ -708,7 +708,7 @@ nmap <leader><leader>t :SyntasticToggleMode<CR>
 nmap 0 ^
 nmap <leader>e :call OpenVimrc()<CR>
 nmap <leader>s :so $MYVIMRC<CR>
-nmap <leader>c :lcd %:p:h<CR>
+" nmap <leader>c :lcd %:p:h<CR>
 nmap <leader>d :bd<CR>
 nmap <C-S> <ESC>:w<CR>
 nmap <leader>w <ESC>:w<CR>
@@ -750,13 +750,13 @@ cmap <C-F> <Right>
 cmap <Esc>b <S-Left>
 cmap <Esc>f <S-Right>
 nmap <leader>a :Ag<CR>
-nmap <silent> <leader>q :cclose<CR>:pc<CR>
+nmap <silent> <leader>c :cclose<CR>:pc<CR>
 nmap o :tabnew<space>
 nmap <c-F3> :cn<CR>
 nmap <S-F3> :cp<CR>
 nmap <leader>o :copen<CR>
 nmap 1 <C-W>o
-nmap q :qa!<CR>
+nmap <leader>q :qa!<CR>
 " turn off <C-Space>
 imap <Nul> <Space>
 nmap <F7> :set spell!<CR>
