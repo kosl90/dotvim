@@ -587,7 +587,7 @@ command! -nargs=1 -complete=file CreateNote :call CreateNoteFunc(<q-args>)
 
 command! -nargs=* -complete=file Find :call Find(<q-args>)
 
-command! -nargs=0 Todo noautocmd vimgrep /TODO\|FIXME/j ** | cw
+command! -nargs=0 Todo noautocmd vimgrep /TODO\|FIXME/j * | cw
 " }}}1
 
 " plugin   {{{1
