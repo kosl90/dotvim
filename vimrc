@@ -16,56 +16,58 @@ let g:markdown_internal_inline=1
 
 " Bundles   {{{1
 "on github   {{{2
-" Bundle "JessicaKMcIntosh/TagmaTasks"
-Bundle "peterhoeg/vim-qml"
-Bundle "Valloric/YouCompleteMe"
-" Bundle "tpope/vim-haml"
-Bundle "groenewege/vim-less"
-Bundle "Blackrush/vim-gocode"
-" Bundle "Lokaltog/vim-easymotion"
-Bundle 'rking/ag.vim'
-Bundle 'nathanaelkane/vim-indent-guides'
-" Bundle 'klen/python-mode'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'gmarik/vundle'
+Plugin 'szw/vim-ctrlspace'
+Plugin 'peterhoeg/vim-qml'
+Plugin 'groenewege/vim-less'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'rking/ag.vim'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-scripts/LargeFile'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'tomasr/molokai'
+Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-surround'
 
-" Bundle 'frerich/unicode-haskell'
-" Bundle 'mileszs/ack.vim'
-" Bundle 'ujihisa/neco-ghc'
-" Bundle 'Shougo/vimproc'
-" Bundle 'eagletmt/ghcmod-vim'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'gmarik/vundle'
-" Bundle 'Rip-Rip/clang_complete'
-Bundle 'kien/ctrlp.vim'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'Blackrush/vim-gocode'
 
-" Bundle 'xuhdev/SingleCompile'
-Bundle 'vim-scripts/css3'
-Bundle 'hail2u/vim-css3-syntax'
-" Bundle 'skammer/vim-css-color'
-Bundle 'vim-scripts/LargeFile'
+Plugin 'vim-scripts/css3'
+Plugin 'hail2u/vim-css3-syntax'
 " maybe someone will be deleted
-Bundle "vim-scripts/gtk-vim-syntax"
-" Bundle "vim-scripts/gtk-mode"
+Plugin 'vim-scripts/gtk-vim-syntax'
+" Bundle 'vim-scripts/gtk-mode'
 
-Bundle 'tomtom/tcomment_vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'mattn/emmet-vim'
+Plugin 'kosl90/pyflakes-vim'
+Plugin 'kosl90/qt-highlight-vim'
 
-Bundle 'majutsushi/tagbar'
-Bundle 'SirVer/ultisnips'
-Bundle 'honza/vim-snippets'
+" Plugin 'JessicaKMcIntosh/TagmaTasks'
+" Plugin 'Valloric/YouCompleteMe'
+" Plugin 'tpope/vim-haml'
+" Plugin 'klen/python-mode'
 
-Bundle 'airblade/vim-gitgutter'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-surround'
-
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'mattn/emmet-vim'
-" Bundle 'jnwhiteh/vim-golang'
-Bundle 'kosl90/pyflakes-vim'
-Bundle 'kosl90/qt-highlight-vim'
-Bundle 'tomasr/molokai'
-Bundle 'AndrewRadev/splitjoin.vim'
+" Plugin 'frerich/unicode-haskell'
+" Plugin 'mileszs/ack.vim'
+" Plugin 'ujihisa/neco-ghc'
+Plugin 'Shougo/vimproc'
+" Plugin 'eagletmt/ghcmod-vim'
+" Plugin 'Rip-Rip/clang_complete'
+" Plugin 'xuhdev/SingleCompile'
+" Plugin 'skammer/vim-css-color'
+" Plugin 'jnwhiteh/vim-golang'
 " }}}2
 
 " on vim-scripts   {{{2
