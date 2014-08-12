@@ -763,5 +763,5 @@ nmap <leader>q :qa!<CR>
 imap <Nul> <Space>
 nmap <F7> :set spell!<CR>
 nmap <F4> :A<CR>
-nmap <leader><leader>f :Find<CR>
+nmap <leader><leader>a :Find<CR>
 " }}}1
