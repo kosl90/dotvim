@@ -54,6 +54,8 @@ Plugin 'mattn/emmet-vim'
 Plugin 'kosl90/pyflakes-vim'
 Plugin 'kosl90/qt-highlight-vim'
 
+Bundle "tkztmk/vim-vala"
+
 " Plugin 'JessicaKMcIntosh/TagmaTasks'
 " Plugin 'Valloric/YouCompleteMe'
 " Plugin 'tpope/vim-haml'
@@ -435,6 +437,7 @@ let $PATH=$PATH . ':' . expand('~/.cabal/bin')
 set path=.,./*/*,../include,/usr/include/*,/usr/include/c++/*/*
 set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.chm,#*#,*.hi,*.error*
 
+set hidden
 set bufhidden=delete
 set timeoutlen=300
 
@@ -493,7 +496,7 @@ endif
 
 " Tab line setting {{{2
 call TabMap()
-set tabline=%!MyTabLine()  " custom tab pages line
+" set tabline=%!MyTabLine()  " custom tab pages line
 " }}}2
 
 " encoding   {{{2
@@ -533,6 +536,7 @@ augroup FileTypeSet  " {{{2
     au BufReadPost,BufNewFile *.zsh* setlocal filetype=zsh
     au BufReadPost,BufNewFile *.md,*.note setlocal filetype=markdown
     au BufReadPost,BufNewFile *.conf setlocal filetype=sh
+    au BufReadPost,BufNewFile Sconstruct setlocal filetype=python
 augroup END
 " au BufReadPost,BufNewFile *.html set filetype=html5
 " }}}2
@@ -603,8 +607,9 @@ let g:ycm_key_list_select_completion=["<C-N>", "<Down>"]
 let g:ycm_key_list_previous_completion=['<C-P>', '<Up>']
 let g:ycm_key_invoke_completion='<C-C>'
 " let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_global_ycm_extra_conf="~/.vim/ycm_extra_conf.py"
+" let g:ycm_global_ycm_extra_conf="~/.vim/ycm_extra_conf.py"
 let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_complete_in_comments = 1
 " }}}2
 
 " tcomment  {{{2
@@ -652,7 +657,7 @@ let g:doxygentoolkit_datetag="@date - "
 let g:doxygentoolkit_authortag="@author - "
 let g:doxygentoolkit_licensetag="@license - "
 
-map <F3> :Dox<CR>
+" map <F3> :Dox<CR>
 map <C-F3> :Doxauthor<CR>
 " }}}2
 
