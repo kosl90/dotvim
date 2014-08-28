@@ -15,69 +15,10 @@ let g:markdown_internal_inline=1
 " }}}1
 
 " Bundles   {{{1
-"on github   {{{2
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'gmarik/vundle'
-Plugin 'szw/vim-ctrlspace'
-Plugin 'peterhoeg/vim-qml'
-Plugin 'groenewege/vim-less'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'rking/ag.vim'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'kien/ctrlp.vim'
-Plugin 'vim-scripts/LargeFile'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'tomasr/molokai'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-surround'
-
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'Blackrush/vim-gocode'
-
-Plugin 'vim-scripts/css3'
-Plugin 'hail2u/vim-css3-syntax'
-" maybe someone will be deleted
-Plugin 'vim-scripts/gtk-vim-syntax'
-" Bundle 'vim-scripts/gtk-mode'
-
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'mattn/emmet-vim'
-Plugin 'kosl90/pyflakes-vim'
-Plugin 'kosl90/qt-highlight-vim'
-
-Bundle "tkztmk/vim-vala"
-
-" Plugin 'JessicaKMcIntosh/TagmaTasks'
-" Plugin 'Valloric/YouCompleteMe'
-" Plugin 'tpope/vim-haml'
-" Plugin 'klen/python-mode'
-
-" Plugin 'frerich/unicode-haskell'
-" Plugin 'mileszs/ack.vim'
-" Plugin 'ujihisa/neco-ghc'
-Plugin 'Shougo/vimproc'
-" Plugin 'eagletmt/ghcmod-vim'
-" Plugin 'Rip-Rip/clang_complete'
-" Plugin 'xuhdev/SingleCompile'
-" Plugin 'skammer/vim-css-color'
-" Plugin 'jnwhiteh/vim-golang'
-" }}}2
-
-" on vim-scripts   {{{2
-Bundle 'DoxygenToolkit.vim'
-Bundle 'a.vim'
-" Bundle 'DrawIt'
-" Bundle 'conque'
-" }}}2
+if filereadable(expand("~/.vimrc.bundles"))
+    source ~/.vimrc.bundles
+    source ~/.vimrc.bundles.local
+endif
 " }}}1
 
 " Functions {{{1
@@ -770,3 +711,7 @@ nmap <F7> :set spell!<CR>
 nmap <F4> :A<CR>
 nmap <leader><leader>a :Find<CR>
 " }}}1
+
+if filereadable("~/.vimrc.local")
+    source ~/.vimrc.local
+endif
