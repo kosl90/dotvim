@@ -37,7 +37,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'kosl90/pyflakes-vim'
 Plugin 'kosl90/qt-highlight-vim'
 
-Bundle "tkztmk/vim-vala"
+Plugin 'tkztmk/vim-vala'
 
 " Plugin 'JessicaKMcIntosh/TagmaTasks'
 " Plugin 'Valloric/YouCompleteMe'
