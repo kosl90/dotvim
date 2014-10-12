@@ -478,8 +478,8 @@ augroup FileTypeSet  " {{{2
     au BufReadPost,BufNewFile *.md,*.note setlocal filetype=markdown
     au BufReadPost,BufNewFile *.conf setlocal filetype=sh
     au BufReadPost,BufNewFile Sconstruct setlocal filetype=python
+    " au BufReadPost,BufNewFile *.html set filetype=html5
 augroup END
-" au BufReadPost,BufNewFile *.html set filetype=html5
 " }}}2
 
 augroup SaveEvent  " {{{2
