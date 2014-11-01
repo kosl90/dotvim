@@ -35,7 +35,7 @@ Plugin 'kosl90/pyflakes-vim'
 " Plugin 'eagletmt/ghcmod-vim'
 
 " Plugin 'Rip-Rip/clang_complete'
-" Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -74,9 +74,9 @@ Plugin 'vim-scripts/LargeFile'
 " }}}
 
 " on vim-scripts   {{{
-Bundle 'DoxygenToolkit.vim'
-Bundle 'a.vim'
-" Bundle 'DrawIt'
-" Bundle 'conque'
+Plugin 'DoxygenToolkit.vim'
+Plugin 'a.vim'
+" Plugin 'DrawIt'
+" Plugin 'conque'
 " }}}
 

@@ -15,12 +15,16 @@ let g:markdown_internal_inline=1
 " }}}1
 
 " Bundles   {{{1
-if filereadable(expand("~/.vimrc.bundles"))
-    source ~/.vimrc.bundles
-    source ~/.vimrc.bundles.local
+if filereadable(expand("~/.vim.bundles"))
+    source ~/.vim.bundles
+endif
+
+if filereadable(expand("~/.vim.bundles.local"))
+    source ~/.vim.bundles.local
 endif
 " }}}1
 
+" TODO: clean useless functions
 " Functions {{{1
 func! ChangeUnimpariedMap()   " {{{2
     unmap [b
@@ -485,7 +489,7 @@ augroup END
 augroup SaveEvent  " {{{2
     au!
     " auto source .vimrc when saving
-    au BufWritePost .vimrc source $MYVIMRC
+    au BufWritePost vimrc,.vimrc,.vimrc.local,vimrc.local,.vim.bundles,vim.bundles,.vim.bundles.local,vim.bundles.local source $MYVIMRC
     " au FileType coffee au BufWritePost <buffer> :!if [ -f makefile ] || [ -f Makefile ]; then make > /dev/null; fi
     au FileType c,cpp,go,python,ruby,markdown,haskell,coffee,xml,vim,javascript
                 \ au BufWritePre <buffer> call DeleteTrailingBlank()
@@ -544,13 +548,18 @@ runtime! ftplugin/man.vim
 " let g:gitgutter_enabled=0
 
 " YCM  {{{2
+let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_key_list_select_completion=["<C-N>", "<Down>"]
 let g:ycm_key_list_previous_completion=['<C-P>', '<Up>']
-let g:ycm_key_invoke_completion='<C-C>'
-" let g:ycm_autoclose_preview_window_after_insertion = 1
-" let g:ycm_global_ycm_extra_conf="~/.vim/ycm_extra_conf.py"
+let g:ycm_key_invoke_completion='<C-y>'
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_complete_in_comments = 1
+let g:ycm_global_ycm_extra_conf = '~/.dotfiles/ycm_extra_conf.py'
+let g:ycm_comfirm_extra_conf=0
+" let g:ycm_server_log_level='debug'
+" let g:ycm_server_keep_logfiles = 1
 " }}}2
 
 " tcomment  {{{2
