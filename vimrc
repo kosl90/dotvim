@@ -353,7 +353,7 @@ let mapleader=','
 set backspace=2
 set number
 set foldmethod=marker
-set textwidth=79
+" set textwidth=79
 set colorcolumn=+1
 set wrap
 " set linebreak
@@ -385,6 +385,7 @@ set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.chm,#*#,*.hi,*.error*
 set hidden
 set bufhidden=delete
 set timeoutlen=300
+set cb=unnamedplus,autoselect,exclude:cons\|linux
 
 let auto_new_line = 1
 " }}}2
@@ -514,13 +515,13 @@ endif " }}}2
 augroup List  " {{{2
     au!
     au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml,ruby,css,go
-                \,javascript,make
+                \,javascript,make,sh,zsh
                 \ setlocal list
 augroup END  " }}}2
 
 augroup FileTypeIndent  " {{{2
     au!
-    au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml
+    au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml,sh,zsh
                 \ setlocal expandtab
                 \ shiftwidth=4
                 \ softtabstop=4
