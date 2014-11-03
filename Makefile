@@ -29,9 +29,9 @@ install-conque:
 	cd ~/.vim/bundle && \
 	    git svn clone http://conque.googlecode.com/svn/trunk/ conque
 
-install: install-base install-bundles install-ycm update
+install: install-base install-bundles update
 
-install-with-conque: install-base install-bundles install-ycm install-conque update
+install-with-conque: install-base install-bundles install-conque update
 
 clean:
 	rm -rf *.orig .netrwhist *.sw[op] *~ *.bak \#*\#
