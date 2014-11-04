@@ -21,7 +21,8 @@ Plugin 'vim-ruby/vim-ruby' " in vim7.4
 
 " language tools
 Plugin 'scrooloose/syntastic'
-Plugin 'Blackrush/vim-gocode'
+" Plugin 'Blackrush/vim-gocode'
+Plugin 'fatih/vim-go'
 
 Plugin 'mattn/emmet-vim'
 Plugin 'kosl90/pyflakes-vim'

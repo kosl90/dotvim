@@ -478,6 +478,8 @@ augroup END " }}}2
 
 augroup FileTypeSet  " {{{2
     au!
+    au BufReadPost,BufNewFile vim.bundles,vim.bundles.local,vim.local setlocal filetype=vim
+    au BufReadPost,BufNewFile .vim.bundles,.vim.bundles.local,.vim.local setlocal filetype=vim
     au BufReadPost,BufNewFile .xmobarrc,xmobarrc setlocal filetype=haskell
     au BufReadPost,BufNewFile *.zsh* setlocal filetype=zsh
     au BufReadPost,BufNewFile *.md,*.note setlocal filetype=markdown
