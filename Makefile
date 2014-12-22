@@ -11,9 +11,6 @@ update-quiet:
 
 install-base:
 	ln -fs ~/.vim/vimrc ~/.vimrc
-	ln -fs ~/.vim/vim.bundles ~/.vim.bundles
-	ln -fs ~/.vim/vim.bundles.local ~/.vim.bundles.local
-	ln -fs ~/.vim/vim.local ~/.vim.local
 
 install-bundles:
 	mkdir -p bundle
