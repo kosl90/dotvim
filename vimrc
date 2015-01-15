@@ -48,9 +48,10 @@ Plugin 'kosl90/pyflakes-vim'
 " Plugin 'skammer/vim-css-color'
 " Plugin 'jnwhiteh/vim-golang'
 
-" Plugin 'frerich/unicode-haskell'
-" Plugin 'ujihisa/neco-ghc'
-" Plugin 'eagletmt/ghcmod-vim'
+" Plugin 'zenzike/vim-haskell-unicode'
+Plugin 'Phlogistique/unicode-haskell'
+Plugin 'ujihisa/neco-ghc'
+Plugin 'eagletmt/ghcmod-vim'
 
 " Plugin 'Rip-Rip/clang_complete'
 Plugin 'Valloric/YouCompleteMe'
