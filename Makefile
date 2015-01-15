@@ -11,9 +11,6 @@ update-quiet:
 
 install-base:
 	ln -fs ~/.vim/vimrc ~/.vimrc
-	ln -fs ~/.vim/vim.bundles ~/.vim.bundles
-	ln -fs ~/.vim/vim.bundles.local ~/.vim.bundles.local
-	ln -fs ~/.vim/vim.local ~/.vim.local
 
 install-bundles:
 	mkdir -p bundle
@@ -29,9 +26,9 @@ install-conque:
 	cd ~/.vim/bundle && \
 	    git svn clone http://conque.googlecode.com/svn/trunk/ conque
 
-install: install-base install-bundles install-ycm update
+install: install-base install-bundles update
 
-install-with-conque: install-base install-bundles install-ycm install-conque update
+install-with-conque: install-base install-bundles install-conque update
 
 clean:
 	rm -rf *.orig .netrwhist *.sw[op] *~ *.bak \#*\#

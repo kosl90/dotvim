@@ -15,13 +15,88 @@ let g:markdown_internal_inline=1
 " }}}1
 
 " Bundles   {{{1
-if filereadable(expand("~/.vim.bundles"))
-    source ~/.vim.bundles
-endif
+" TODO: remove useless plugins
+" on github   {{{2
+" syntax
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'kosl90/qt-highlight-vim'
 
-if filereadable(expand("~/.vim.bundles.local"))
-    source ~/.vim.bundles.local
-endif
+" maybe someone will be deleted
+Plugin 'vim-scripts/gtk-vim-syntax'
+" Bundle 'vim-scripts/gtk-mode'
+
+Plugin 'groenewege/vim-less'
+Plugin 'peterhoeg/vim-qml'
+Plugin 'tkztmk/vim-vala'
+
+" Plugin 'klen/python-mode'
+
+Plugin 'JulesWang/css.vim' " in vim7.4
+Plugin 'vim-ruby/vim-ruby' " in vim7.4
+" Plugin 'tpope/vim-haml' " in vim7.4
+
+" language tools
+Plugin 'scrooloose/syntastic'
+" Plugin 'Blackrush/vim-gocode'
+Plugin 'fatih/vim-go'
+
+Plugin 'mattn/emmet-vim'
+Plugin 'kosl90/pyflakes-vim'
+
+" Plugin 'xuhdev/SingleCompile'
+" Plugin 'skammer/vim-css-color'
+" Plugin 'jnwhiteh/vim-golang'
+
+" Plugin 'frerich/unicode-haskell'
+" Plugin 'ujihisa/neco-ghc'
+" Plugin 'eagletmt/ghcmod-vim'
+
+" Plugin 'Rip-Rip/clang_complete'
+Plugin 'Valloric/YouCompleteMe'
+
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
+Plugin 'tomtom/tcomment_vim'
+
+" theme
+Plugin 'tomasr/molokai'
+
+" tools
+Plugin 'gmarik/vundle'
+Plugin 'editorconfig/editorconfig-vim'
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'szw/vim-ctrlspace'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Lokaltog/vim-easymotion'
+
+Plugin 'rking/ag.vim'
+" Plugin 'mileszs/ack.vim'
+
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'majutsushi/tagbar'
+
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-surround'
+
+Plugin 'Shougo/vimproc'
+Plugin 'vim-scripts/LargeFile'
+
+" Plugin 'JessicaKMcIntosh/TagmaTasks'
+" }}}2
+
+" on vim-scripts   {{{2
+Plugin 'DoxygenToolkit.vim'
+Plugin 'a.vim'
+" Plugin 'DrawIt'
+" Plugin 'conque'
+" }}}2
 " }}}1
 
 " TODO: clean useless functions
@@ -344,6 +419,59 @@ func! ReadTemplate() " {{{2
         silent exec "0read ".path
     end
 endfunction " }}}2
+
+func! s:goComplete(ArgLead, CmdLine, CursorPos) "{{{2
+    let s:goos = $GOOS
+    let s:goarch = $GOARCH
+
+    if len(s:goos) == 0
+        if exists('g:golang_goos')
+            let s:goos = g:golang_goos
+        elseif has('win32') || has('win64')
+            let s:goos = 'windows'
+        elseif has('macunix')
+            let s:goos = 'darwin'
+        else
+            let s:goos = '*'
+        endif
+    endif
+
+    if len(s:goarch) == 0
+        if exists('g:golang_goarch')
+            let s:goarch = g:golang_goarch
+        else
+            let s:goarch = '*'
+        endif
+    endif
+
+    let dirs = go#package#Paths()
+
+    if len(dirs) == 0
+        " should not happen
+        return []
+    endif
+
+    let ret = {}
+    for dir in dirs
+        " this may expand to multiple lines
+        let root = split(expand(dir . '/pkg/' . s:goos . '_' . s:goarch), "\n")
+        call add(root, expand(dir . '/src'))
+        for r in root
+            for i in split(globpath(r, a:ArgLead.'*'), "\n")
+                if isdirectory(i)
+                    let i .= '/'
+                elseif i !~ '\.a$'
+                    continue
+                endif
+                let i = substitute(substitute(i[len(r)+1:], '[\\]', '/', 'g'),
+                                  \ '\.a$', '', 'g')
+                let ret[i] = i
+            endfor
+        endfor
+    endfor
+    return sort(keys(ret))
+endfunction "}}}2
+
 " }}}1
 
 " General   {{{1
@@ -353,7 +481,7 @@ let mapleader=','
 set backspace=2
 set number
 set foldmethod=marker
-set textwidth=79
+" set textwidth=79
 set colorcolumn=+1
 set wrap
 " set linebreak
@@ -385,6 +513,7 @@ set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.chm,#*#,*.hi,*.error*
 set hidden
 set bufhidden=delete
 set timeoutlen=300
+set cb=unnamedplus,autoselect,exclude:cons\|linux
 
 let auto_new_line = 1
 " }}}2
@@ -477,6 +606,8 @@ augroup END " }}}2
 
 augroup FileTypeSet  " {{{2
     au!
+    au BufReadPost,BufNewFile vim.bundles,vim.bundles.local,vim.local setlocal filetype=vim
+    au BufReadPost,BufNewFile .vim.bundles,.vim.bundles.local,.vim.local setlocal filetype=vim
     au BufReadPost,BufNewFile .xmobarrc,xmobarrc setlocal filetype=haskell
     au BufReadPost,BufNewFile *.zsh* setlocal filetype=zsh
     au BufReadPost,BufNewFile *.md,*.note setlocal filetype=markdown
@@ -491,7 +622,7 @@ augroup SaveEvent  " {{{2
     " auto source .vimrc when saving
     au BufWritePost vimrc,.vimrc,.vimrc.local,vimrc.local,.vim.bundles,vim.bundles,.vim.bundles.local,vim.bundles.local source $MYVIMRC
     " au FileType coffee au BufWritePost <buffer> :!if [ -f makefile ] || [ -f Makefile ]; then make > /dev/null; fi
-    au FileType c,cpp,go,python,ruby,markdown,haskell,coffee,xml,vim,javascript
+    au FileType c,cpp,python,ruby,markdown,haskell,coffee,xml,vim,javascript
                 \ au BufWritePre <buffer> call DeleteTrailingBlank()
 augroup END " }}}2
 
@@ -514,13 +645,13 @@ endif " }}}2
 augroup List  " {{{2
     au!
     au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml,ruby,css,go
-                \,javascript,make
+                \,javascript,make,sh,zsh
                 \ setlocal list
 augroup END  " }}}2
 
 augroup FileTypeIndent  " {{{2
     au!
-    au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml
+    au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml,sh,zsh
                 \ setlocal expandtab
                 \ shiftwidth=4
                 \ softtabstop=4
@@ -534,11 +665,15 @@ augroup END  " }}}2
 " }}}1
 
 " command   {{{1
-command! -nargs=1 -complete=file CreateNote :call CreateNoteFunc(<q-args>)
+command! -nargs=1 -complete=file CreateNote call CreateNoteFunc(<q-args>)
 
-command! -nargs=* -complete=file Find :call Find(<q-args>)
+command! -nargs=* -complete=file Find call Find(<q-args>)
 
 command! -nargs=0 Todo noautocmd vimgrep /TODO\|FIXME/j * | cw
+
+command! -nargs=0 Imports call go#fmt#Format(1)
+command! -nargs=1 -complete=customlist,go#package#Complete Import call go#import#SwitchImport(1, '', <f-args>)
+command! -nargs=* -complete=customlist,s:goComplete ImportAs call go#import#SwitchImport(1, <f-args>)
 " }}}1
 
 " plugin   {{{1
@@ -546,9 +681,10 @@ runtime! macros/matchit.vim
 runtime! ftplugin/man.vim
 
 " let g:gitgutter_enabled=0
+let g:gitgutter_max_signs = 10000
 
 " YCM  {{{2
-let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_key_list_select_completion=["<C-N>", "<Down>"]
@@ -617,16 +753,6 @@ map <C-F3> :Doxauthor<CR>
 " let g:pydiction_menu_height=15  " default
 " }}}2
 
-" clang-complete   {{{2
-" url: http://www.vim.org/scripts/script.php?script_id=3302
-let g:clang_use_library=1
-" let g:clang_library_path="/usr/local/lib"
-" let g:clang_auto_select=1
-" let g:clang_close_preview=1
-" let g:clang_snippets=1
-" let g:clang_user_options='-std=c++0x'
-" }}}2
-
 " snipmate   {{{2
 " url: http://www.vim.org/scripts/script.php?script_id=3302
 let g:snips_author = 'Li Liqiang'
@@ -664,7 +790,7 @@ nmap <leader><leader>t :SyntasticToggleMode<CR>
 " mapping   {{{1
 nmap 0 ^
 nmap <leader>e :call OpenVimrc()<CR>
-nmap <leader>s :so $MYVIMRC<CR>
+nmap <leader>r :so $MYVIMRC<CR>
 " nmap <leader>c :lcd %:p:h<CR>
 nmap <leader>d :bd<CR>
 nmap <C-S> <ESC>:w<CR>
@@ -720,7 +846,3 @@ nmap <F7> :set spell!<CR>
 nmap <F4> :A<CR>
 nmap <leader><leader>a :Find<CR>
 " }}}1
-
-if filereadable("~/.vimrc.local")
-    source ~/.vimrc.local
-endif
