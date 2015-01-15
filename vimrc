@@ -52,6 +52,7 @@ Plugin 'kosl90/pyflakes-vim'
 Plugin 'Phlogistique/unicode-haskell'
 Plugin 'ujihisa/neco-ghc'
 Plugin 'eagletmt/ghcmod-vim'
+Plugin 'bitc/vim-hdevtools'
 
 " Plugin 'Rip-Rip/clang_complete'
 Plugin 'Valloric/YouCompleteMe'
