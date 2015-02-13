@@ -248,7 +248,7 @@ endfunc " }}}2
 func! s:pos_marker()   " {{{2
     let win_line_nu = winheight(0)
     let cur_line_nu = winline()
-    let half_lines = (win_line_nu + 1) / 2
+    let half_lines = win_line_nu/2+1
 
     if cur_line_nu == 1
         " top
@@ -517,7 +517,7 @@ set bufhidden=delete
 set timeoutlen=300
 set cb=unnamedplus,autoselect,exclude:cons\|linux
 
-let auto_new_line = 1
+let auto_new_line = 0
 " }}}2
 
 if has("win32")   " {{{2
