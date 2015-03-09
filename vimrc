@@ -497,7 +497,7 @@ set matchtime=1
 set fo+=mt
 set cursorline  " heighlight current line
 " set cursorcolumn
-set autochdir
+" set autochdir
 
 if has('mouse')
     set mouse=a
@@ -847,4 +847,7 @@ imap <Nul> <Space>
 nmap <F7> :set spell!<CR>
 nmap <F4> :A<CR>
 nmap <leader><leader>a :Find<CR>
+"map <F11> :!find -name '*.h' -o -name '*.c' \| ctags -R --c++-kinds=+px --fields=+iaS --extra=+q -L<CR>
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 " }}}1

@@ -32,3 +32,9 @@ install-with-conque: install-base install-bundles install-conque update
 
 clean:
 	rm -rf *.orig .netrwhist *.sw[op] *~ *.bak \#*\#
+
+# pass CMD from outside.
+install-haskell:
+	sudo $(CMD) cabal-install
+	cabal update
+	cabal install happy devtools ghc-mod
