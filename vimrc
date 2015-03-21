@@ -49,7 +49,7 @@ Plugin 'kosl90/pyflakes-vim'
 " Plugin 'jnwhiteh/vim-golang'
 
 " Plugin 'zenzike/vim-haskell-unicode'
-Plugin 'Phlogistique/unicode-haskell'
+" Plugin 'Phlogistique/unicode-haskell'
 Plugin 'ujihisa/neco-ghc'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'bitc/vim-hdevtools'
