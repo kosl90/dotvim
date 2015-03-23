@@ -50,6 +50,7 @@ Plugin 'kosl90/pyflakes-vim'
 
 " Plugin 'zenzike/vim-haskell-unicode'
 " Plugin 'Phlogistique/unicode-haskell'
+Plugin 'Twinside/vim-syntax-haskell-cabal'
 Plugin 'ujihisa/neco-ghc'
 Plugin 'eagletmt/ghcmod-vim'
 Plugin 'bitc/vim-hdevtools'
