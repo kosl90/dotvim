@@ -284,6 +284,7 @@ func! AutoNewLine()   " {{{2
 endfunc " }}}2
 
 func! OpenVimrc()   " {{{2
+    " TODO: check whether $MYVIMRC exist from buffers
     if getline(nextnonblank(1)) == ""
         e $MYVIMRC
     else
@@ -498,7 +499,7 @@ set matchtime=1
 set fo+=mt
 set cursorline  " heighlight current line
 " set cursorcolumn
-" set autochdir
+set autochdir
 
 if has('mouse')
     set mouse=a
@@ -654,7 +655,7 @@ augroup END  " }}}2
 
 augroup FileTypeIndent  " {{{2
     au!
-    au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml,sh,zsh
+    au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml,sh,zsh,objc
                 \ setlocal expandtab
                 \ shiftwidth=4
                 \ softtabstop=4
@@ -702,9 +703,12 @@ let g:ycm_comfirm_extra_conf=0
 " }}}2
 
 " tcomment  {{{2
-let g:tcommentLineC = {
-            \ 'commentstring': '// %s'
-            \ }
+" let g:tcommentLineC_fmt = {
+"             \ 'commentstring': '// %s'
+"             \ }
+" let g:tcommentInlineC = {
+"             \'commentstring': '// %s'
+"             \}
 " }}}2
 
 " indent-guides   {{{2
