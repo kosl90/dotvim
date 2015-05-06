@@ -38,3 +38,6 @@ install-haskell:
 	sudo $(CMD) cabal-install
 	cabal update
 	cabal install happy devtools ghc-mod
+
+install-tern:
+	cd ~/.vim/bundle/tern_for_vim && npm install
