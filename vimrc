@@ -21,6 +21,7 @@ let g:markdown_internal_inline=1
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'kosl90/qt-highlight-vim'
+Plugin 'derekwyatt/vim-scala'
 Plugin 'tpope/vim-speeddating'
 Plugin 'marijnh/tern_for_vim'
 
