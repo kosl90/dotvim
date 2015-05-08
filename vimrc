@@ -799,7 +799,7 @@ nmap <leader><leader>t :SyntasticToggleMode<CR>
 
 " mapping   {{{1
 nmap 0 ^
-nmap <leader>e :call OpenVimrc()<CR>
+nmap <leader>rc :call OpenVimrc()<CR>
 nmap <leader>r :so $MYVIMRC<CR>
 " nmap <leader>c :lcd %:p:h<CR>
 nmap <leader>d :bd<CR>
@@ -835,7 +835,7 @@ imap <C-L> <C-O>:call Emacs_ctrl_l()<CR>
 nmap <C-L> :call Emacs_ctrl_l()<CR>
 nnoremap <leader>l <C-L>
 nmap <C-H> :h<space>
-nmap <C-E> :set fileencoding=utf8
+nmap <leader>ec :set fileencoding=utf8
 " map <C-A> to move cursor to the begin of line
 cnoremap <C-A> <C-B>
 cmap <C-B> <Left>
