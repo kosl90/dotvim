@@ -38,6 +38,7 @@ Plugin 'tkztmk/vim-vala'
 Plugin 'JulesWang/css.vim' " in vim7.4
 Plugin 'vim-ruby/vim-ruby' " in vim7.4
 " Plugin 'tpope/vim-haml' " in vim7.4
+Plugin 'rust-lang/rust.vim'
 
 " language tools
 Plugin 'scrooloose/syntastic'
@@ -59,7 +60,6 @@ Plugin 'eagletmt/ghcmod-vim'
 Plugin 'bitc/vim-hdevtools'
 
 " Plugin 'Rip-Rip/clang_complete'
-Plugin 'Valloric/YouCompleteMe'
 
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -95,6 +95,7 @@ Plugin 'Shougo/vimproc'
 Plugin 'vim-scripts/LargeFile'
 
 " Plugin 'JessicaKMcIntosh/TagmaTasks'
+Plugin 'Valloric/YouCompleteMe'
 " }}}2
 
 " on vim-scripts   {{{2
