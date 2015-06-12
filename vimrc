@@ -25,6 +25,7 @@ Plugin 'derekwyatt/vim-scala'
 Plugin 'tpope/vim-speeddating'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'jceb/vim-hier'
 
 " maybe someone will be deleted
 Plugin 'vim-scripts/gtk-vim-syntax'
