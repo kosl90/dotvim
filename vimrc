@@ -24,6 +24,7 @@ Plugin 'kosl90/qt-highlight-vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'tpope/vim-speeddating'
 Plugin 'marijnh/tern_for_vim'
+Plugin 'kien/rainbow_parentheses.vim'
 
 " maybe someone will be deleted
 Plugin 'vim-scripts/gtk-vim-syntax'
@@ -630,8 +631,8 @@ augroup SaveEvent  " {{{2
     " auto source .vimrc when saving
     au BufWritePost vimrc,.vimrc,.vimrc.local,vimrc.local,.vim.bundles,vim.bundles,.vim.bundles.local,vim.bundles.local source $MYVIMRC
     " au FileType coffee au BufWritePost <buffer> :!if [ -f makefile ] || [ -f Makefile ]; then make > /dev/null; fi
-    au FileType c,cpp,python,ruby,markdown,haskell,coffee,xml,vim,javascript
-                \ au BufWritePre <buffer> call DeleteTrailingBlank()
+    " au FileType c,cpp,python,ruby,markdown,haskell,coffee,xml,vim,javascript
+    "             \ au BufWritePre <buffer> call DeleteTrailingBlank()
 augroup END " }}}2
 
 augroup AutoComplete  " {{{2
@@ -650,16 +651,16 @@ if exists('auto_new_line') && auto_new_line  " {{{2
     au FileType c,cpp au BufWritePre,FileWritePre,BufUnload <buffer> call AutoNewLine()
 endif " }}}2
 
-augroup List  " {{{2
+augroup ListChars  " {{{2
     au!
     au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml,ruby,css,go
-                \,javascript,make,sh,zsh
+                \,javascript,make,sh,zsh,cmake
                 \ setlocal list
 augroup END  " }}}2
 
 augroup FileTypeIndent  " {{{2
     au!
-    au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml,sh,zsh,objc
+    au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml,sh,zsh,objc,cmake
                 \ setlocal expandtab
                 \ shiftwidth=4
                 \ softtabstop=4
@@ -690,6 +691,18 @@ runtime! ftplugin/man.vim
 
 " let g:gitgutter_enabled=0
 let g:gitgutter_max_signs = 10000
+
+" Rainbow Parenthese {{{2
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+augroup RBPT
+    au!
+    au VimEnter * RainbowParenthesesToggle
+    au Syntax * RainbowParenthesesLoadRound
+    au Syntax * RainbowParenthesesLoadSquare
+    au Syntax * RainbowParenthesesLoadBraces
+augroup END
+" }}}2
 
 " YCM  {{{2
 let g:ycm_min_num_of_chars_for_completion = 2
