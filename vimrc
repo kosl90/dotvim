@@ -4,7 +4,9 @@ set nocompatible
 
 " Vundle   {{{2
 filetype off
-setlocal rtp+=~/.vim/bundle/vundle/
+if has('vim_starting')
+    setlocal rtp+=~/.vim/bundle/vundle/
+endif
 call vundle#rc()
 " }}}2
 
@@ -552,7 +554,7 @@ if &t_Co > 2 || has("gui_running")
 
     set t_Co=256  " to use molokai in terminal
 
-    if &term != "linux" && findfile("molokai.vim", finddir("~/.vim/bundle/molokai/colors")) != ""
+    if &term != "linux" && finddir("molokai", expand("~/.vim/bundle/")) != ""
         colorscheme molokai
 
         if !has("gui_running")
@@ -696,13 +698,15 @@ let g:gitgutter_max_signs = 10000
 " Rainbow Parenthese {{{2
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
-augroup RBPT
-    au!
-    au VimEnter * RainbowParenthesesToggle
-    au Syntax * RainbowParenthesesLoadRound
-    au Syntax * RainbowParenthesesLoadSquare
-    au Syntax * RainbowParenthesesLoadBraces
-augroup END
+if finddir("rainbow_parentheses.vim", expand("~/.vim/bundle")) != ""
+    augroup RBPT
+        au!
+        au VimEnter * RainbowParenthesesToggle
+        au Syntax * RainbowParenthesesLoadRound
+        au Syntax * RainbowParenthesesLoadSquare
+        au Syntax * RainbowParenthesesLoadBraces
+    augroup END
+endif
 " }}}2
 
 " YCM  {{{2
