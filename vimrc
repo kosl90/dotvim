@@ -95,7 +95,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-surround'
 
-Plugin 'Shougo/vimproc'
+Plugin 'Shougo/vimproc.vim'
 Plugin 'vim-scripts/LargeFile'
 
 " Plugin 'JessicaKMcIntosh/TagmaTasks'

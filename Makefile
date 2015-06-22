@@ -1,5 +1,8 @@
 .PHONY: all update update-quiet install-base install-bundles install-ycm install-ycm-sys install install-conque install-with-conque clean
 
+YCM_INSTALLER=./bundle/YouCompleteMe/install.sh
+VIMPROC=./bundle/vimproc.vim
+
 all: install-base update-quiet
 
 update:
@@ -17,10 +20,13 @@ install-bundles:
 	cd bundle && git clone https://github.com/gmarik/vundle.git 2> /dev/null || :
 
 install-ycm:
-	./bundle/YouCompleteMe/install.sh --clang-completer
+	$(YCM_INSTALLER) --clang-completer
 
 install-ycm-sys:
-	./bundle/YouCompleteMe/install.sh --clang-completer --system-libclang
+	$(YCM_INSTALLER) --clang-completer --system-libclang
+
+install-vimproc:
+	make -C $(VIMPROC)
 
 install-conque:
 	cd ~/.vim/bundle && \
