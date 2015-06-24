@@ -100,6 +100,8 @@ Plugin 'vim-scripts/LargeFile'
 
 " Plugin 'JessicaKMcIntosh/TagmaTasks'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'rdnetto/YCM-Generator'
+Plugin 'jeaye/color_coded'
 " }}}2
 
 " on vim-scripts   {{{2
