@@ -28,6 +28,7 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'jceb/vim-hier'
+Plugin 'lambdatoast/elm.vim'
 
 " maybe someone will be deleted
 Plugin 'vim-scripts/gtk-vim-syntax'
@@ -659,13 +660,13 @@ endif " }}}2
 augroup ListChars  " {{{2
     au!
     au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml,ruby,css,go
-                \,javascript,make,sh,zsh,cmake
+                \,javascript,make,sh,zsh,cmake,elm
                 \ setlocal list
 augroup END  " }}}2
 
 augroup FileTypeIndent  " {{{2
     au!
-    au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml,sh,zsh,objc,cmake
+    au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml,sh,zsh,objc,cmake,elm
                 \ setlocal expandtab
                 \ shiftwidth=4
                 \ softtabstop=4
