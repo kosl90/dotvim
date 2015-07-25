@@ -28,6 +28,7 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'jceb/vim-hier'
+Plugin 'lambdatoast/elm.vim'
 
 " maybe someone will be deleted
 Plugin 'vim-scripts/gtk-vim-syntax'
@@ -115,12 +116,14 @@ Plugin 'a.vim'
 " TODO: clean useless functions
 " Functions {{{1
 func! ChangeUnimpariedMap()   " {{{2
-    unmap [b
-    unmap ]b
-    nmap [t :tabprevious<CR>
-    nmap ]t :tabnext<CR>
-    nmap [T :tabfirst<CR>
-    nmap ]T :tablast<CR>
+    if &loadplugins == 1
+        unmap [b
+        unmap ]b
+        nmap [t :tabprevious<CR>
+        nmap ]t :tabnext<CR>
+        nmap [T :tabfirst<CR>
+        nmap ]T :tablast<CR>
+    endif
 endfunc  " }}}2
 
 func! RunPy()   " {{{2
@@ -659,13 +662,13 @@ endif " }}}2
 augroup ListChars  " {{{2
     au!
     au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml,ruby,css,go
-                \,javascript,make,sh,zsh,cmake
+                \,javascript,make,sh,zsh,cmake,elm
                 \ setlocal list
 augroup END  " }}}2
 
 augroup FileTypeIndent  " {{{2
     au!
-    au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml,sh,zsh,objc,cmake
+    au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml,sh,zsh,objc,cmake,elm
                 \ setlocal expandtab
                 \ shiftwidth=4
                 \ softtabstop=4
@@ -701,13 +704,15 @@ let g:gitgutter_max_signs = 10000
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 if finddir("rainbow_parentheses.vim", expand("~/.vim/bundle")) != ""
-    augroup RBPT
-        au!
-        au VimEnter * RainbowParenthesesToggle
-        au Syntax * RainbowParenthesesLoadRound
-        au Syntax * RainbowParenthesesLoadSquare
-        au Syntax * RainbowParenthesesLoadBraces
-    augroup END
+    if &loadplugins == 1
+        augroup RBPT
+            au!
+            au VimEnter * RainbowParenthesesToggle
+            au Syntax * RainbowParenthesesLoadRound
+            au Syntax * RainbowParenthesesLoadSquare
+            au Syntax * RainbowParenthesesLoadBraces
+        augroup END
+    endif
 endif
 " }}}2
 
