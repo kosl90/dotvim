@@ -24,10 +24,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'kosl90/qt-highlight-vim'
 Plugin 'derekwyatt/vim-scala'
-Plugin 'tpope/vim-speeddating'
 Plugin 'marijnh/tern_for_vim'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'jceb/vim-hier'
 Plugin 'lambdatoast/elm.vim'
 
 " maybe someone will be deleted
@@ -46,6 +43,9 @@ Plugin 'vim-ruby/vim-ruby' " in vim7.4
 Plugin 'rust-lang/rust.vim'
 
 " language tools
+Plugin 'tpope/vim-speeddating'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'jceb/vim-hier'
 Plugin 'scrooloose/syntastic'
 " Plugin 'Blackrush/vim-gocode'
 Plugin 'fatih/vim-go'
@@ -86,7 +86,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'rking/ag.vim'
 " Plugin 'mileszs/ack.vim'
 
-Plugin 'nathanaelkane/vim-indent-guides'
+" Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'majutsushi/tagbar'
 
@@ -100,9 +100,9 @@ Plugin 'Shougo/vimproc.vim'
 Plugin 'vim-scripts/LargeFile'
 
 " Plugin 'JessicaKMcIntosh/TagmaTasks'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'rdnetto/YCM-Generator'
 Plugin 'jeaye/color_coded'
+Plugin 'Valloric/YouCompleteMe'
 " }}}2
 
 " on vim-scripts   {{{2
@@ -126,18 +126,6 @@ func! ChangeUnimpariedMap()   " {{{2
     endif
 endfunc  " }}}2
 
-func! RunPy()   " {{{2
-    if &ft != 'python'
-        echo 'this file is not python'
-        return
-    endif
-
-    let dir = expand("%:p:h")
-    silent execute "!gnome-terminal --working-directory='".dir."' -x bash -c \"python '".expand("%:t")."'; read -s -p 'press any key to exit...' -n 1\""
-
-    exe 'redraw!'
-endfunc " }}}2
-
 function! Cfamilyformat()   " {{{2
     let fullpath = expand("%:p")
 
@@ -156,68 +144,6 @@ function! Cfamilyformat()   " {{{2
 
     execute "redraw!"
 endfunction " }}}2
-
-funct! Compilec_pp()   " {{{2
-    let dir=expand("%:h:t")
-    let fulldir=expand("%:p:h")
-    let fname=expand("%:t")
-    let fullname = expand("%:p")
-    let exefname = expand("%:t:r")
-    let exefullname = fulldir.'/'.fname
-
-    "call checkheader()
-
-    if &ft == 'c'
-        setlocal makeprg=gcc\ -g\ -Wall\ -o\ %<\.exe\ %
-        setlocal makeprg=clang\ -g\ -Wall\ -o\ %<\.exe\ %
-    elseif &ft == 'cpp'
-        setlocal makeprg=g++\ -std=c++0x\ -g\ -Wall\ -o\ %<\.exe\ %
-        setlocal makeprg=clang++\ -std=c++0x\ -g\ -Wall\ -o\ %<\.exe\ %
-    else
-        execute "!notify-send -i vim 'falurely' 'this is not a c/cpp file'"
-        return
-    endif
-
-    "if findfile(exefname.'.exe', fulldir) == dir.'/'.exefname.'.exe' && \
-    "delete(fulldir.'/'.exefname.'exe') != 0
-        "execute "!notify-send -i vim 'falurely' 'delete falurely'"
-        "return
-    "endif
-    make
-endfunc " }}}2
-
-"func! Checkheader()   " {{{2
-    "let g:use_thread=0
-    "let g:use_math=0
-    "let g:use_aput=0
-
-    "for line in getline()
-        "if !~ "#include"
-        "endif
-
-        "if =~ "<pthread.h>"
-            "exec "let g:use_thread=1"
-        "endif
-
-        "if =~ "<math.h>"
-            "exec "let g:use_math=1"
-        "endif
-
-        "if =~ "\"apue.h\""
-            "exec "let g:use_apue=1"
-        "endif
-    "endfor
-
-"endfunc " }}}2
-
-func! Runc_pp()   " {{{2
-    let dir = expand("%:p:h")
-    let fname = expand("%:t:r").'.exe'
-    let exefile = dir.'/'.fname
-    let excmd = "!if [ -f ".exefile." ]; then gnome-terminal -x bash -c \"'".exefile."'; read -s -p 'press any key to exit...' -n 1;\" else notify-send -i vim 'there is not such a file'; fi"
-    silent execute excmd
-    exec 'redraw!'
-endfunc " }}}2
 
 func! Insertdomain()   " {{{2
     if &ft != 'c' && &ft != 'cpp'
@@ -494,6 +420,7 @@ endfunction "}}}2
 " General   {{{1
 " misc {{{2
 filetype indent plugin on
+set iskeyword=@,48-57,192-255
 let mapleader=','
 set backspace=2
 set number
@@ -540,6 +467,7 @@ if has("win32")   " {{{2
     "set guifont=DejaVu_Sans_Mono:h12
     set guifont=Consolas:h12
     set vb t_vb=\".  " stop beep
+    set iskeyword=@,48-57,128-167,224-235
 endif
 " }}}2
 
@@ -824,45 +752,45 @@ nmap <leader><leader>t :SyntasticToggleMode<CR>
 " }}}1
 
 " mapping   {{{1
-nmap 0 ^
+nnoremap ^ g0
+nnoremap 0 g^
+nnoremap g^ 0
+nnoremap g0 ^
+
+nnoremap gj j
+nnoremap gk k
+nnoremap j gj
+nnoremap k gk
+
 nmap <leader>rc :call OpenVimrc()<CR>
 nmap <leader>r :so $MYVIMRC<CR>
 " nmap <leader>c :lcd %:p:h<CR>
 nmap <leader>d :bd<CR>
 nmap <C-S> <ESC>:w<CR>
 nmap <leader>w <ESC>:w<CR>
-vmap <C-C> "+y
-"imap <c-v> <esc>"+gp
-"nmap <c-v> "+gp
-"vmap <c-v> "+gp
-nmap <F5> :call RunPy()<CR>
-nmap <C-F5> :!pep8 %<CR>
 nmap <F6> :call Cfamilyformat()<cr>
 
-nmap <C-F8> :%s///g
+nmap <F8> :%s///g
 nmap <C-N><C-H> :nohls<CR>
 " nmap <f2> :helptags ~/.vim/doc<cr>
-nmap <M-A> ^
-nmap <M-L> $
-nmap <F9> :call Compilec_pp()<CR>
-nmap <S-F9> :call Runc_pp()<CR>
+nmap gl $
 nmap <leader>i :call Insertdomain()<CR>
 nmap <leader>f :NERDTreeToggle<CR>
 nmap <leader>t :TagbarToggle<CR>
 nmap <leader>to :Todo<CR>
+
 " to avoid popup menu in ubuntu
 imap <F10> <NOP>
 nmap <F10> <NOP>
-imap <C-UP> <ESC><C-W>ka
-imap <C-DOWN> <ESC><C-W>ja
-imap <C-LEFT> <ESC><C-W>ha
-imap <C-RIGHT> <ESC><C-W>la
 imap <C-L> <C-O>:call Emacs_ctrl_l()<CR>
 nmap <C-L> :call Emacs_ctrl_l()<CR>
 nnoremap <leader>l <C-L>
 nmap <C-H> :h<space>
 nmap <leader>ec :set fileencoding=utf8
 " map <C-A> to move cursor to the begin of line
+cmap <C-D> <Del>
+" TODO: TBD
+cnoremap <C-\> <C-D>
 cnoremap <C-A> <C-B>
 cmap <C-B> <Left>
 cmap <C-F> <Right>
@@ -878,7 +806,6 @@ nmap 1 <C-W>o
 nmap <leader>q :qa!<CR>
 " turn off <C-Space>
 imap <Nul> <Space>
-nmap <F7> :set spell!<CR>
 nmap <F4> :A<CR>
 nmap <leader><leader>a :Find<CR>
 "map <F11> :!find -name '*.h' -o -name '*.c' \| ctags -R --c++-kinds=+px --fields=+iaS --extra=+q -L<CR>
