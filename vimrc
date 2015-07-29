@@ -101,7 +101,7 @@ Plugin 'vim-scripts/LargeFile'
 
 " Plugin 'JessicaKMcIntosh/TagmaTasks'
 Plugin 'rdnetto/YCM-Generator'
-" Plugin 'jeaye/color_coded'
+Plugin 'jeaye/color_coded'
 " }}}2
 
 " Support bundles
