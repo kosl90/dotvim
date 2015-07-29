@@ -101,9 +101,35 @@ Plugin 'vim-scripts/LargeFile'
 
 " Plugin 'JessicaKMcIntosh/TagmaTasks'
 Plugin 'rdnetto/YCM-Generator'
-Plugin 'jeaye/color_coded'
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'jeaye/color_coded'
 " }}}2
+
+" Support bundles
+" Plugin 'jgdavey/tslime.vim'
+Plugin 'ervandew/supertab'
+" Plugin 'moll/vim-bbye'
+" Plugin 'vim-scripts/gitignore'
+
+" Git
+" Plugin 'int3/vim-extradite'
+
+" Bars, panels, and files
+Plugin 'bling/vim-airline'
+
+" Text manipulation
+" Plugin 'vim-scripts/Align'
+Plugin 'vim-scripts/Gundo'
+" Plugin 'tpope/vim-commentary'
+Plugin 'godlygeek/tabular'
+" Plugin 'michaeljsmith/vim-indent-object'
+
+" Allow pane movement to jump out of vim into tmux
+" Plugin 'christoomey/vim-tmux-navigator'
+
+" Haskell
+Plugin 'raichoo/haskell-vim'
+Plugin 'enomsg/vim-haskellConcealPlus'
+Plugin 'Twinside/vim-hoogle'
 
 " on vim-scripts   {{{2
 Plugin 'DoxygenToolkit.vim'
@@ -111,6 +137,9 @@ Plugin 'a.vim'
 " Plugin 'DrawIt'
 " Plugin 'conque'
 " }}}2
+
+" YouCompleteMe is too slow.
+Plugin 'Valloric/YouCompleteMe'
 " }}}1
 
 " TODO: clean useless functions
@@ -683,7 +712,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " }}}2
 
 " haskell indent   " {{{2
-let g:haskell_indent_if = 0
+" let g:haskell_indent_if = 0
 " }}}2
 
 " ctrlp  {{{2
