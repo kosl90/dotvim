@@ -449,7 +449,7 @@ endfunction "}}}2
 " General   {{{1
 " misc {{{2
 filetype indent plugin on
-set iskeyword=@,48-57,192-255
+" set iskeyword=@,48-57,192-255
 let mapleader=','
 set backspace=2
 set number
