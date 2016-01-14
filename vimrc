@@ -26,6 +26,8 @@ Plugin 'kosl90/qt-highlight-vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'lambdatoast/elm.vim'
+Plugin 'guns/vim-clojure-static'
+Plugin 'toyamarinyon/vim-swift'
 
 " maybe someone will be deleted
 Plugin 'vim-scripts/gtk-vim-syntax'
@@ -41,6 +43,8 @@ Plugin 'JulesWang/css.vim' " in vim7.4
 Plugin 'vim-ruby/vim-ruby' " in vim7.4
 " Plugin 'tpope/vim-haml' " in vim7.4
 Plugin 'rust-lang/rust.vim'
+
+Plugin 'terryma/vim-multiple-cursors'
 
 " language tools
 Plugin 'tpope/vim-speeddating'
@@ -77,6 +81,7 @@ Plugin 'tomasr/molokai'
 " tools
 Plugin 'gmarik/vundle'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'junegunn/vim-easy-align'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'szw/vim-ctrlspace'
@@ -101,7 +106,7 @@ Plugin 'vim-scripts/LargeFile'
 
 " Plugin 'JessicaKMcIntosh/TagmaTasks'
 Plugin 'rdnetto/YCM-Generator'
-Plugin 'jeaye/color_coded'
+" Plugin 'jeaye/color_coded'
 " }}}2
 
 " Support bundles
@@ -128,7 +133,7 @@ Plugin 'godlygeek/tabular'
 
 " Haskell
 Plugin 'raichoo/haskell-vim'
-Plugin 'enomsg/vim-haskellConcealPlus'
+" Plugin 'enomsg/vim-haskellConcealPlus'
 Plugin 'Twinside/vim-hoogle'
 
 " on vim-scripts   {{{2
@@ -139,7 +144,7 @@ Plugin 'a.vim'
 " }}}2
 
 " YouCompleteMe is too slow.
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
 " }}}1
 
 " TODO: clean useless functions
@@ -449,7 +454,7 @@ endfunction "}}}2
 " General   {{{1
 " misc {{{2
 filetype indent plugin on
-set iskeyword=@,48-57,192-255
+" set iskeyword=@,48-57,192-255
 let mapleader=','
 set backspace=2
 set number
@@ -480,7 +485,7 @@ set autoread
 set autowriteall
 
 let $PATH=$PATH . ':' . expand('~/.cabal/bin')
-set path=.,./*/*,../include,/usr/include/*,/usr/include/c++/*/*
+set path=.,./*/*,../include,/usr/include/,/usr/include/*,/usr/local/include,/usr/include/c++/*/*
 set wildignore=*.o,*.obj,*.exe,a.out,*.pdf,*~,*.chm,#*#,*.hi,*.error*
 
 set hidden
@@ -619,18 +624,19 @@ endif " }}}2
 augroup ListChars  " {{{2
     au!
     au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml,ruby,css,go
-                \,javascript,make,sh,zsh,cmake,elm
+                \,javascript,make,sh,zsh,cmake,elm,qml
                 \ setlocal list
 augroup END  " }}}2
 
 augroup FileTypeIndent  " {{{2
     au!
-    au FileType c,cpp,python,haskell,html,markdown,coffee,vim,xml,sh,zsh,objc,cmake,elm
+    au FileType c,cpp,python,haskell,markdown,coffee,vim,xml,sh,zsh,objc
+                \,cmake,elm,qml
                 \ setlocal expandtab
                 \ shiftwidth=4
                 \ softtabstop=4
 
-    au FileType ruby,css,javascript
+    au FileType ruby,css,javascript,html,html5,eruby,scss,sass,yaml
                 \ setlocal expandtab
                 \ shiftwidth=2
                 \ softtabstop=2
@@ -646,8 +652,8 @@ command! -nargs=* -complete=file Find call Find(<q-args>)
 command! -nargs=0 Todo noautocmd vimgrep /TODO\|FIXME/j * | cw
 
 command! -nargs=0 Imports call go#fmt#Format(1)
-command! -nargs=1 -complete=customlist,go#package#Complete Import call go#import#SwitchImport(1, '', <f-args>)
-command! -nargs=* -complete=customlist,s:goComplete ImportAs call go#import#SwitchImport(1, <f-args>)
+command! -nargs=1 -complete=customlist,go#package#Complete Import call go#import#SwitchImport(1, '', <f-args>, '<bang>')
+command! -nargs=* -complete=customlist,s:goComplete ImportAs call go#import#SwitchImport(1, <f-args>, '<bang>')
 " }}}1
 
 " plugin   {{{1
@@ -656,6 +662,15 @@ runtime! ftplugin/man.vim
 
 " let g:gitgutter_enabled=0
 let g:gitgutter_max_signs = 10000
+
+" vim-go{{{2
+let g:go_highlight_functions=1
+let g:go_highlight_methods=1
+let g:go_highlight_structs=1
+let g:go_highlight_build_constraints=1
+" let g:go_fmt_command = "goimports"
+" let g:syntasitc_go_checkers=['golint', 'govet', 'errcheck']
+" }}}2
 
 " Rainbow Parenthese {{{2
 let g:rbpt_max = 16
@@ -675,7 +690,7 @@ endif
 
 " YCM  {{{2
 let g:ycm_min_num_of_chars_for_completion = 2
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 2
 let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_key_list_select_completion=["<C-N>", "<Down>"]
 let g:ycm_key_list_previous_completion=['<C-P>', '<Up>']
@@ -841,3 +856,6 @@ nmap <leader><leader>a :Find<CR>
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 " }}}1
+
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
