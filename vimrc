@@ -27,7 +27,8 @@ Plugin 'derekwyatt/vim-scala'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'lambdatoast/elm.vim'
 Plugin 'guns/vim-clojure-static'
-Plugin 'toyamarinyon/vim-swift'
+" Plugin 'toyamarinyon/vim-swift'
+Plugin 'keith/swift.vim'
 
 " maybe someone will be deleted
 Plugin 'vim-scripts/gtk-vim-syntax'
