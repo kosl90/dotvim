@@ -1,6 +1,6 @@
 .PHONY: all update update-quiet install-base install-bundles install-ycm install-ycm-sys install install-conque install-with-conque clean
 
-YCM_INSTALLER=./bundle/YouCompleteMe/install.sh
+YCM_INSTALLER=./bundle/YouCompleteMe/install.py
 VIMPROC=./bundle/vimproc.vim
 
 all: install-base update-quiet
