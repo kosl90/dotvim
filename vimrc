@@ -690,6 +690,7 @@ endif
 " }}}2
 
 " YCM  {{{2
+let g:ycm_confirm_extra_conf = 0
 let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_collect_identifiers_from_comments_and_strings = 2
 let g:ycm_filepath_completion_use_working_dir = 1
