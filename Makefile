@@ -3,7 +3,7 @@
 YCM_INSTALLER=./bundle/YouCompleteMe/install.py
 VIMPROC=./bundle/vimproc.vim
 
-all: install-base update-quiet
+all: install
 
 update:
 	vim -c 'BundleInstall!'
