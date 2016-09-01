@@ -16,68 +16,75 @@ let g:markdown_internal_inline=1
 " }}}2
 " }}}1
 
-" Bundles   {{{1
 " TODO: remove useless plugins
+" Bundles   {{{1
 " on github   {{{2
 " syntax
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'jelera/vim-javascript-syntax'
-Plugin 'kosl90/qt-highlight-vim'
-Plugin 'derekwyatt/vim-scala'
 Plugin 'marijnh/tern_for_vim'
-Plugin 'lambdatoast/elm.vim'
-Plugin 'guns/vim-clojure-static'
+
+" not always used, uncomment if needed. {{{3
+" Plugin 'kosl90/qt-highlight-vim'
+" Plugin 'derekwyatt/vim-scala'
+" Plugin 'lambdatoast/elm.vim'
+" Plugin 'guns/vim-clojure-static'
 " Plugin 'toyamarinyon/vim-swift'
-Plugin 'keith/swift.vim'
-
-" maybe someone will be deleted
-Plugin 'vim-scripts/gtk-vim-syntax'
-" Bundle 'vim-scripts/gtk-mode'
-
-Plugin 'groenewege/vim-less'
-Plugin 'peterhoeg/vim-qml'
-Plugin 'tkztmk/vim-vala'
-
-" Plugin 'klen/python-mode'
+" Plugin 'keith/swift.vim' " this is better so far
+" Plugin 'groenewege/vim-less'
+" Plugin 'peterhoeg/vim-qml'
+" Plugin 'tkztmk/vim-vala'
+" Plugin 'rust-lang/rust.vim'
+" }}}3
 
 Plugin 'JulesWang/css.vim' " in vim7.4
 Plugin 'vim-ruby/vim-ruby' " in vim7.4
 " Plugin 'tpope/vim-haml' " in vim7.4
-Plugin 'rust-lang/rust.vim'
 
-Plugin 'terryma/vim-multiple-cursors'
+" Plugin 'klen/python-mode'
+
+" maybe someone will be deleted
+Plugin 'vim-scripts/gtk-vim-syntax'
+" Bundle 'vim-scripts/gtk-mode'
 
 " language tools
 Plugin 'tpope/vim-speeddating'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'jceb/vim-hier'
 Plugin 'scrooloose/syntastic'
-" Plugin 'Blackrush/vim-gocode'
 Plugin 'fatih/vim-go'
 
 Plugin 'mattn/emmet-vim'
 Plugin 'kosl90/pyflakes-vim'
-
-" Plugin 'xuhdev/SingleCompile'
-" Plugin 'skammer/vim-css-color'
-" Plugin 'jnwhiteh/vim-golang'
-
-" Plugin 'zenzike/vim-haskell-unicode'
-" Plugin 'Phlogistique/unicode-haskell'
-Plugin 'Twinside/vim-syntax-haskell-cabal'
-Plugin 'ujihisa/neco-ghc'
-Plugin 'eagletmt/ghcmod-vim'
-Plugin 'bitc/vim-hdevtools'
-
-" Plugin 'Rip-Rip/clang_complete'
 
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
 Plugin 'tomtom/tcomment_vim'
 
+" Plugin 'xuhdev/SingleCompile'
+" Plugin 'skammer/vim-css-color'
+" Plugin 'Rip-Rip/clang_complete'
+
+" TODO: haskell-vim-now {{{3
+" Plugin 'zenzike/vim-haskell-unicode'
+" Plugin 'Phlogistique/unicode-haskell'
+" Plugin 'Twinside/vim-syntax-haskell-cabal'
+" Plugin 'ujihisa/neco-ghc'
+" Plugin 'eagletmt/ghcmod-vim'
+" Plugin 'bitc/vim-hdevtools'
+
+" Haskell
+"Plugin 'raichoo/haskell-vim'
+" Plugin 'enomsg/vim-haskellConcealPlus'
+"Plugin 'Twinside/vim-hoogle'
+" }}}3
+
 " theme
 Plugin 'tomasr/molokai'
+
+" Bars, panels, and files
+Plugin 'bling/vim-airline'
 
 " tools
 Plugin 'gmarik/vundle'
@@ -85,14 +92,12 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'junegunn/vim-easy-align'
 
 Plugin 'scrooloose/nerdtree'
-Plugin 'szw/vim-ctrlspace'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/vim-easymotion'
 
 Plugin 'rking/ag.vim'
 " Plugin 'mileszs/ack.vim'
 
-" Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'majutsushi/tagbar'
 
@@ -101,16 +106,18 @@ Plugin 'tpope/vim-fugitive'
 
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-surround'
-
-Plugin 'Shougo/vimproc.vim'
 Plugin 'vim-scripts/LargeFile'
 
-" Plugin 'JessicaKMcIntosh/TagmaTasks'
-Plugin 'rdnetto/YCM-Generator'
+" Plugin 'Shougo/vimproc.vim'
+" Plugin 'rdnetto/YCM-Generator'
 " Plugin 'jeaye/color_coded'
+" Plugin 'terryma/vim-multiple-cursors'
+" Plugin 'nathanaelkane/vim-indent-guides'
+
 " }}}2
 
-" Support bundles
+" TODO: clean bundles {{{3
+" Plugin 'JessicaKMcIntosh/TagmaTasks'
 " Plugin 'jgdavey/tslime.vim'
 Plugin 'ervandew/supertab'
 " Plugin 'moll/vim-bbye'
@@ -119,23 +126,16 @@ Plugin 'ervandew/supertab'
 " Git
 " Plugin 'int3/vim-extradite'
 
-" Bars, panels, and files
-Plugin 'bling/vim-airline'
-
 " Text manipulation
 " Plugin 'vim-scripts/Align'
-Plugin 'vim-scripts/Gundo'
+" Plugin 'vim-scripts/Gundo'
 " Plugin 'tpope/vim-commentary'
-Plugin 'godlygeek/tabular'
+" Plugin 'godlygeek/tabular'
 " Plugin 'michaeljsmith/vim-indent-object'
 
 " Allow pane movement to jump out of vim into tmux
 " Plugin 'christoomey/vim-tmux-navigator'
-
-" Haskell
-Plugin 'raichoo/haskell-vim'
-" Plugin 'enomsg/vim-haskellConcealPlus'
-Plugin 'Twinside/vim-hoogle'
+" }}}3
 
 " on vim-scripts   {{{2
 Plugin 'DoxygenToolkit.vim'
@@ -144,8 +144,11 @@ Plugin 'a.vim'
 " Plugin 'conque'
 " }}}2
 
-" YouCompleteMe is too slow.
-" Plugin 'Valloric/YouCompleteMe'
+" slowly download plugins  {{{2
+Plugin 'szw/vim-ctrlspace'
+Plugin 'Valloric/YouCompleteMe'
+" }}}2
+
 " }}}1
 
 " TODO: clean useless functions
@@ -852,7 +855,6 @@ nmap 1 <C-W>o
 nmap <leader>q :qa!<CR>
 " turn off <C-Space>
 imap <Nul> <Space>
-nmap <F4> :A<CR>
 nmap <leader><leader>a :Find<CR>
 "map <F11> :!find -name '*.h' -o -name '*.c' \| ctags -R --c++-kinds=+px --fields=+iaS --extra=+q -L<CR>
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
