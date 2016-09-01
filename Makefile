@@ -7,9 +7,11 @@ all: install
 
 update:
 	vim -c 'BundleInstall!'
+	@echo 'vimproc, tern and ycm may need some extra operation'
 
 update-quiet:
 	vim -c 'BundleInstall!' -c 'qa!'
+	@echo 'vimproc, tern and ycm may need some extra operation'
 
 
 install-base:
@@ -33,17 +35,16 @@ install-conque:
 	    git svn clone http://conque.googlecode.com/svn/trunk/ conque
 
 install: install-base install-bundles update
+	@echo 'vimproc, tern and ycm need some extra operation'
 
 install-with-conque: install-base install-bundles install-conque update
 
 clean:
 	rm -rf *.orig .netrwhist *.sw[op] *~ *.bak \#*\#
 
-# pass CMD from outside.
+# TODO: learn something from haskell-vim-now
 install-haskell:
-	sudo $(CMD) cabal-install
-	cabal update
-	cabal install happy devtools ghc-mod
+	(cabal update 2> /dev/null || (echo "[Error]: please install cabal-install" && false)) && cabal install happy devtools ghc-mod || :
 
 install-tern:
 	cd ~/.vim/bundle/tern_for_vim && npm install
