@@ -23,6 +23,7 @@ let g:markdown_internal_inline=1
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'marijnh/tern_for_vim'
+" Plugin 'isRuslan/vim-es6'
 
 " not always used, uncomment if needed. {{{3
 " Plugin 'kosl90/qt-highlight-vim'
