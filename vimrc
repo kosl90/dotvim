@@ -592,6 +592,8 @@ set listchars=tab:>-,eol:†
 " autocmd   {{{1
 au VimEnter * call ChangeUnimpariedMap()
 
+au FileType gitcommit setlocal textwidth=80
+
 augroup ReadTemplate  " {{{2
     au!
     au BufNewFile README* if !filereadable("%") | 0read ~/.vim/template/README.md | endif
