@@ -458,6 +458,12 @@ func! s:goComplete(ArgLead, CmdLine, CursorPos) "{{{2
     return sort(keys(ret))
 endfunction "}}}2
 
+" {{{2
+func! s:RemoveTrailComma()
+    exec ':%s/,\(\n\r\?.*[}\])]\)/\1/'
+endfunction
+" }}}2
+
 " }}}1
 
 " General   {{{1
