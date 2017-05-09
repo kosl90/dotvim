@@ -26,6 +26,7 @@ Plugin 'marijnh/tern_for_vim'
 " Plugin 'isRuslan/vim-es6'
 " Plugin 'othree/yajs.vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'leafgarland/typescript-vim'
 
 " not always used, uncomment if needed. {{{3
 " Plugin 'kosl90/qt-highlight-vim'
@@ -43,6 +44,7 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'JulesWang/css.vim' " in vim7.4
 Plugin 'vim-ruby/vim-ruby' " in vim7.4
 " Plugin 'tpope/vim-haml' " in vim7.4
+Plugin 'posva/vim-vue'
 
 " Plugin 'klen/python-mode'
 
