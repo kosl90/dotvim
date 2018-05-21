@@ -160,8 +160,8 @@ Plugin 'Valloric/YouCompleteMe'
 " Functions {{{1
 func! ChangeUnimpariedMap()   " {{{2
     if &loadplugins == 1
-        unmap [b
-        unmap ]b
+        " unmap [b
+        " unmap ]b
         nmap [t :tabprevious<CR>
         nmap ]t :tabnext<CR>
         nmap [T :tabfirst<CR>
