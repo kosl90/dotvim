@@ -6,11 +6,11 @@ VIMPROC=./bundle/vimproc.vim
 all: install
 
 update:
-	vim -c 'BundleInstall!'
+	vim -c 'BundleUpdate'
 	@echo 'vimproc, tern and ycm may need some extra operation'
 
 update-quiet:
-	vim -c 'BundleInstall!' -c 'qa!'
+	vim -c 'BundleUpdate' -c 'qa!'
 	@echo 'vimproc, tern and ycm may need some extra operation'
 
 
