@@ -1,159 +1,164 @@
 " Prerequire   {{{1
 " source $VIMRUNTIME/vimrc_example.vim
 set nocompatible
-
-" Vundle   {{{2
-filetype off
-if has('vim_starting')
-    setlocal rtp+=~/.vim/bundle/vundle/
-endif
-call vundle#rc()
-" }}}2
-
-" Variables   {{{2
-let g:note_path="~/Dropbox/notes"
-let g:markdown_internal_inline=1
-" }}}2
 " }}}1
+
+let g:go_version_warning=0
+" let g:Lf_ShortcutF = '<c-p>'
 
 " TODO: remove useless plugins
 " Bundles   {{{1
+call plug#begin('~/.vim/bundle')
+
 " on github   {{{2
 " syntax
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'marijnh/tern_for_vim'
-" Plugin 'isRuslan/vim-es6'
-" Plugin 'othree/yajs.vim'
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'leafgarland/typescript-vim'
+" Plug 'kchmck/vim-coffee-script'
+" Plug 'jelera/vim-javascript-syntax'
+" Plug 'marijnh/tern_for_vim'
+" Plug 'isRuslan/vim-es6'
+" Plug 'othree/yajs.vim'
+" Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'octol/vim-cpp-enhanced-highlight'
 
 " not always used, uncomment if needed. {{{3
-" Plugin 'kosl90/qt-highlight-vim'
-" Plugin 'derekwyatt/vim-scala'
-" Plugin 'lambdatoast/elm.vim'
-" Plugin 'guns/vim-clojure-static'
-" Plugin 'toyamarinyon/vim-swift'
-" Plugin 'keith/swift.vim' " this is better so far
-" Plugin 'groenewege/vim-less'
-" Plugin 'peterhoeg/vim-qml'
-" Plugin 'tkztmk/vim-vala'
-" Plugin 'rust-lang/rust.vim'
+" Plug 'kosl90/qt-highlight-vim'
+" Plug 'derekwyatt/vim-scala'
+" Plug 'lambdatoast/elm.vim'
+" Plug 'guns/vim-clojure-static'
+" Plug 'toyamarinyon/vim-swift'
+" Plug 'keith/swift.vim' " this is better so far
+" Plug 'groenewege/vim-less'
+" Plug 'peterhoeg/vim-qml'
+Plug 'tkztmk/vim-vala'
+" Plug 'rust-lang/rust.vim'
 " }}}3
 
-Plugin 'JulesWang/css.vim' " in vim7.4
-Plugin 'vim-ruby/vim-ruby' " in vim7.4
-" Plugin 'tpope/vim-haml' " in vim7.4
-Plugin 'posva/vim-vue'
+Plug 'posva/vim-vue'
 
-" Plugin 'klen/python-mode'
+" Plug 'klen/python-mode'
 
 " maybe someone will be deleted
-Plugin 'vim-scripts/gtk-vim-syntax'
+Plug 'vim-scripts/gtk-vim-syntax'
 " Bundle 'vim-scripts/gtk-mode'
 
 " language tools
-Plugin 'tpope/vim-speeddating'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'jceb/vim-hier'
-Plugin 'scrooloose/syntastic'
-Plugin 'fatih/vim-go'
+Plug 'tpope/vim-speeddating'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'jceb/vim-hier'
+" Plug 'scrooloose/syntastic'
+" Plug 'w0rp/ale'
+Plug 'neomake/neomake'
+Plug 'sbdchd/neoformat'
+Plug 'fatih/vim-go'
 
-Plugin 'mattn/emmet-vim'
-Plugin 'kosl90/pyflakes-vim'
+Plug 'mattn/emmet-vim'
+Plug 'kosl90/pyflakes-vim'
 
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
-Plugin 'tomtom/tcomment_vim'
+Plug 'tomtom/tcomment_vim'
 
-" Plugin 'xuhdev/SingleCompile'
-" Plugin 'skammer/vim-css-color'
-" Plugin 'Rip-Rip/clang_complete'
+" Plug 'xuhdev/SingleCompile'
+" Plug 'skammer/vim-css-color'
+" Plug 'Rip-Rip/clang_complete'
 
 " TODO: haskell-vim-now {{{3
-" Plugin 'zenzike/vim-haskell-unicode'
-" Plugin 'Phlogistique/unicode-haskell'
-" Plugin 'Twinside/vim-syntax-haskell-cabal'
-" Plugin 'ujihisa/neco-ghc'
-" Plugin 'eagletmt/ghcmod-vim'
-" Plugin 'bitc/vim-hdevtools'
+" Plug 'zenzike/vim-haskell-unicode'
+" Plug 'Phlogistique/unicode-haskell'
+" Plug 'Twinside/vim-syntax-haskell-cabal'
+" Plug 'ujihisa/neco-ghc'
+" Plug 'eagletmt/ghcmod-vim'
+" Plug 'bitc/vim-hdevtools'
 
 " Haskell
-"Plugin 'raichoo/haskell-vim'
-" Plugin 'enomsg/vim-haskellConcealPlus'
-"Plugin 'Twinside/vim-hoogle'
+"Plug 'raichoo/haskell-vim'
+" Plug 'enomsg/vim-haskellConcealPlus'
+"Plug 'Twinside/vim-hoogle'
 " }}}3
 
+" textobj family {{{3
+" Plug 'kana/vim-textobj-user'
+" Plug 'kana/vim-textobj-indent'
+" Plug 'kana/vim-textobj-syntax'
+" Plug 'kana/vim-textobj-function', { 'for': ['c', 'cpp', 'vim', 'java'] }
+" Plug 'sgur/vim-textobj-parameter'
+" }}}3
+
+Plug 'tpope/vim-projectionist'
+
 " theme
-Plugin 'tomasr/molokai'
+Plug 'tomasr/molokai'
 
 " Bars, panels, and files
-Plugin 'bling/vim-airline'
+Plug 'bling/vim-airline'
 
 " tools
-Plugin 'gmarik/vundle'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'junegunn/vim-easy-align'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'junegunn/vim-easy-align'
 
-Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
-Plugin 'Lokaltog/vim-easymotion'
+Plug 'scrooloose/nerdtree'
+" Plug 'kien/ctrlp.vim'
+Plug 'Lokaltog/vim-easymotion'
 
-Plugin 'rking/ag.vim'
-" Plugin 'mileszs/ack.vim'
+Plug 'rking/ag.vim'
+" Plug 'mileszs/ack.vim'
 
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'majutsushi/tagbar'
+" Plug 'AndrewRadev/splitjoin.vim'
+Plug 'majutsushi/tagbar'
 
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
+" Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-fugitive'
 
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-scripts/LargeFile'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/LargeFile'
 
-" Plugin 'Shougo/vimproc.vim'
-" Plugin 'rdnetto/YCM-Generator'
-" Plugin 'jeaye/color_coded'
-" Plugin 'terryma/vim-multiple-cursors'
-" Plugin 'nathanaelkane/vim-indent-guides'
+" Plug 'Shougo/vimproc.vim'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+" Plug 'jeaye/color_coded'
+" Plug 'terryma/vim-multiple-cursors'
+" Plug 'nathanaelkane/vim-indent-guides'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'Yggdroot/LeaderF'
 
 " }}}2
 
 " TODO: clean bundles {{{3
-" Plugin 'JessicaKMcIntosh/TagmaTasks'
-" Plugin 'jgdavey/tslime.vim'
-Plugin 'ervandew/supertab'
-" Plugin 'moll/vim-bbye'
-" Plugin 'vim-scripts/gitignore'
+" Plug 'JessicaKMcIntosh/TagmaTasks'
+" Plug 'jgdavey/tslime.vim'
+Plug 'ervandew/supertab'
+" Plug 'moll/vim-bbye'
+" Plug 'vim-scripts/gitignore'
 
 " Git
-" Plugin 'int3/vim-extradite'
+" Plug 'int3/vim-extradite'
 
 " Text manipulation
-" Plugin 'vim-scripts/Align'
-" Plugin 'vim-scripts/Gundo'
-" Plugin 'tpope/vim-commentary'
-" Plugin 'godlygeek/tabular'
-" Plugin 'michaeljsmith/vim-indent-object'
+" Plug 'vim-scripts/Align'
+" Plug 'vim-scripts/Gundo'
+" Plug 'tpope/vim-commentary'
+" Plug 'godlygeek/tabular'
+" Plug 'michaeljsmith/vim-indent-object'
 
 " Allow pane movement to jump out of vim into tmux
-" Plugin 'christoomey/vim-tmux-navigator'
+" Plug 'christoomey/vim-tmux-navigator'
 " }}}3
 
 " on vim-scripts   {{{2
-Plugin 'DoxygenToolkit.vim'
-Plugin 'a.vim'
-" Plugin 'DrawIt'
-" Plugin 'conque'
+" Plug 'DoxygenToolkit.vim'
+" Plug 'DrawIt'
+" Plug 'conque'
 " }}}2
 
 " slowly download plugins  {{{2
-Plugin 'szw/vim-ctrlspace'
-Plugin 'Valloric/YouCompleteMe'
+" Plug 'szw/vim-ctrlspace'
+Plug 'Valloric/YouCompleteMe'
 " }}}2
 
+call plug#end()
 " }}}1
 
 " TODO: clean useless functions
@@ -273,18 +278,6 @@ func! OpenVimrc()   " {{{2
         vsp $MYVIMRC
     endif
 endfunc " }}}2
-
-func! CreateNoteFunc(name)  " {{{2
-    if !exists("g:note_path")
-        let g:note_path = "~/Dropbox/notes/"
-    endif
-
-    if g:note_path !~ '/$'
-        let g:note_path = g:note_path . '/'
-    endif
-
-    exec "edit " . g:note_path . a:name
-endfunc   "}}}2
 
 func! TabMapAux(num)   " {{{2
     exec "map <leader>".a:num." ".a:num."gt"
@@ -553,6 +546,18 @@ if &t_Co > 2 || has("gui_running")
 endif
 " }}}2
 
+" {{{2 termguicolors for true color
+if has("termguicolors")
+    echo "use true color"
+    " fix bug for vim
+    set t_8f=^[[38;2%lu;%lu;%lum
+    set t_8b=^[48;2;%lu;%lu;%lum
+
+    " enable true coloe
+    set termguicolors
+endif
+" }}}2
+
 " status line   {{{2
 set laststatus=2
 
@@ -581,7 +586,7 @@ set autoindent
 set smartindent
 set smarttab
 set tabstop=8  " tab length 8
-set cinoptions=:0,l1,g0,(0,N-s,t0
+set cinoptions=:0,l1,g0,(0,W4,j1,m1,N-s,t0,f0
 set listchars=tab:>-,eol:†
 " set listchars+=trail:⎵
 " set listchars+=trail:⌷
@@ -648,7 +653,7 @@ augroup END  " }}}2
 augroup FileTypeIndent  " {{{2
     au!
     au FileType c,cpp,python,haskell,markdown,coffee,vim,xml,sh,zsh,objc
-                \,cmake,elm,qml
+                \,cmake,elm,qml,vala
                 \ setlocal expandtab
                 \ shiftwidth=4
                 \ softtabstop=4

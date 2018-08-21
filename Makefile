@@ -6,11 +6,11 @@ VIMPROC=./bundle/vimproc.vim
 all: install
 
 update:
-	vim -c 'BundleUpdate'
+	vim -c 'PlugUpdate'
 	@echo 'vimproc, tern and ycm may need some extra operation'
 
 update-quiet:
-	vim -c 'BundleUpdate' -c 'qa!'
+	vim -c 'PlugUpdate' -c 'qa!'
 	@echo 'vimproc, tern and ycm may need some extra operation'
 
 
@@ -19,7 +19,9 @@ install-base:
 
 install-bundles:
 	mkdir -p bundle
-	cd bundle && git clone https://github.com/gmarik/vundle.git 2> /dev/null || :
+	mkdir -p autoload
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+		    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 ycm:
 	$(YCM_INSTALLER) --clang-completer
