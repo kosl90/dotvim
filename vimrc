@@ -546,15 +546,16 @@ if &t_Co > 2 || has("gui_running")
 endif
 " }}}2
 
+" FIXME: this code is buggy
 " {{{2 termguicolors for true color
 if has("termguicolors")
-    echo "use true color"
+"    echo "use true color"
     " fix bug for vim
-    set t_8f=^[[38;2%lu;%lu;%lum
-    set t_8b=^[48;2;%lu;%lu;%lum
+"    set t_8f=^[[38;2%lu;%lu;%lum
+"    set t_8b=^[48;2;%lu;%lu;%lum
 
     " enable true coloe
-    set termguicolors
+"    set termguicolors
 endif
 " }}}2
 
