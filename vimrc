@@ -161,6 +161,19 @@ Plug 'Valloric/YouCompleteMe'
 call plug#end()
 " }}}1
 
+
+if has("win64") || has("win32") || has("win16")
+    let g:os = "Windows"
+else
+    let g:os = substitute(system('uname'), '\n', '', '')
+endif
+
+if g:os == 'Darwin'
+    let transparentBg = 0
+else
+    let transparentBg = 1
+endif
+
 " TODO: clean useless functions
 " Functions {{{1
 func! ChangeUnimpariedMap()   " {{{2
@@ -532,7 +545,7 @@ if &t_Co > 2 || has("gui_running")
     if &term != "linux" && finddir("molokai", expand("~/.vim/bundle/")) != ""
         colorscheme molokai
 
-        if !has("gui_running")
+        if !has("gui_running") && transparentBg == 1
             hi Normal ctermbg=none
             hi LineNr ctermbg=none
             hi NonText ctermbg=none
