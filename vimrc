@@ -155,7 +155,7 @@ Plug 'ervandew/supertab'
 
 " slowly download plugins  {{{2
 " Plug 'szw/vim-ctrlspace'
-Plug 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 " }}}2
 
 call plug#end()
@@ -672,7 +672,7 @@ augroup FileTypeIndent  " {{{2
                 \ shiftwidth=4
                 \ softtabstop=4
 
-    au FileType ruby,css,javascript,html,html5,eruby,scss,sass,yaml
+    au FileType ruby,css,typescript,javascript,html,html5,eruby,scss,sass,yaml
                 \ setlocal expandtab
                 \ shiftwidth=2
                 \ softtabstop=2
