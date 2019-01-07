@@ -6,3 +6,4 @@
 bundle/
 *.orig
 *.pyc
+autoload/plug.vim
