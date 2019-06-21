@@ -53,7 +53,8 @@ Plug 'sbdchd/neoformat'
 Plug 'fatih/vim-go'
 
 Plug 'mattn/emmet-vim'
-Plug 'kosl90/pyflakes-vim'
+" move to new python environment
+" Plug 'kosl90/pyflakes-vim'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
