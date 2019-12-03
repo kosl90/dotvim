@@ -18,6 +18,7 @@ call plug#begin('~/.vim/bundle')
 " Plug 'isRuslan/vim-es6'
 " Plug 'othree/yajs.vim'
 " Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 
