@@ -701,6 +701,24 @@ runtime! ftplugin/man.vim
 " let g:gitgutter_enabled=0
 let g:gitgutter_max_signs = 10000
 
+let g:rbpt_colorpairs = [
+            \ ['red',       'firebrick3'],
+            \ ['brown',       'RoyalBlue3'],
+            \ ['Darkblue',    'SeaGreen3'],
+            \ ['darkgreen',   'firebrick3'],
+            \ ['darkcyan',    'RoyalBlue3'],
+            \ ['darkred',     'SeaGreen3'],
+            \ ['darkmagenta', 'DarkOrchid3'],
+            \ ['brown',       'firebrick3'],
+            \ ['red',       'firebrick3'],
+            \ ['darkmagenta', 'DarkOrchid3'],
+            \ ['Darkblue',    'firebrick3'],
+            \ ['darkgreen',   'RoyalBlue3'],
+            \ ['darkcyan',    'SeaGreen3'],
+            \ ['darkred',     'DarkOrchid3'],
+            \ ['red',         'firebrick3'],
+            \ ]
+
 " vim-go{{{2
 let g:go_highlight_functions=1
 let g:go_highlight_methods=1
