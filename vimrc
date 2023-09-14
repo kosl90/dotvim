@@ -172,6 +172,8 @@ endif
 
 if g:os == 'Darwin'
     let transparentBg = 0
+    " yy doesn't work as we expect, remap it, copy content to '+' register
+    noremap yy "+yy
 else
     let transparentBg = 1
 endif
